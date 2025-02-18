@@ -6,8 +6,8 @@ import java.util.Date;
 public class Shift {
     private int shiftId;
     private TimeBlock timeBlock;
-    private int[] employeesWorking;
-    private int[] employeesAlternatives;
+    private ArrayList<Integer> employeesWorking;
+    private ArrayList<Integer> employeesAlternatives;
     private int date;//first day of the this shifts week, will have the format of yyyymmdd
 
     //Constructor
@@ -33,18 +33,18 @@ public class Shift {
     }
 
     //Employees working will have the employeeIds of the employees working that shift.
-    public int[] getEmployeesWorking() {
+    public ArrayList<Integer> getEmployeesWorking() {
         return employeesWorking;
     }
-    public void setEmployeesWorking(int[] employeesWorking) {
+    public void setEmployeesWorking(ArrayList<Integer> employeesWorking) {
         this.employeesWorking = employeesWorking;
     }
 
     //Employees working will have the employeeIds of the employees working that shift.
-    public int[] getEmployeesAlternatives() {
+    public ArrayList<Integer> getEmployeesAlternatives() {
         return employeesAlternatives;
     }
-    public void setEmployeesAlternatives(int[] employeesAlternatives) {
+    public void setEmployeesAlternatives(ArrayList<Integer> employeesAlternatives) {
         this.employeesAlternatives = employeesAlternatives;
     }
     public int getDate() {
@@ -60,7 +60,7 @@ public class Shift {
         //likely going to be: if (employeesWorking.length == timeBlock.getShiftsRequired()) then return true else return false.
         return false;
     }
-    public int[] fillEmployeesWorkingAndAlternatives(){
+    public int[] fillEmployeesWorkingAndAlternatives(Calendar calendar){
         //TODO: runs through the list of employees within the calendar object.
         //TODO: Checks if they are available to work that shift
         //TODO: adds them to an array list of potential employees

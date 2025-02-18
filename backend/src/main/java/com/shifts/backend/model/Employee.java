@@ -10,13 +10,18 @@ public class Employee {
     private String password;
     private ArrayList<Integer> timeOffRequests;
     private ArrayList<Shift> shifts;
-    private float[] availability;
+    private ArrayList<Float> availability;
 
     //Constructor
     public Employee() {
     }
-    public Employee(int employeeId, String firstName, String lastName, String email, String password,
-            float[] availability) {
+    public Employee(
+        int employeeId,
+        String firstName,
+        String lastName,
+        String email,
+        String password,
+        ArrayList<Float> availability) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
