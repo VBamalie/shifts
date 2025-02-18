@@ -76,10 +76,10 @@ public class Employee {
     public void setShifts(ArrayList<Shift> shifts) {
         this.shifts = shifts;
     }
-    public float[] getAvailability() {
+    public ArrayList<Float> getAvailability() {
         return availability;
     }
-    public void setAvailability(float[] availability) {
+    public void setAvailability(ArrayList<Float> availability) {
         this.availability = availability;
     }
 

@@ -60,7 +60,7 @@ public class Shift {
         //likely going to be: if (employeesWorking.length == timeBlock.getShiftsRequired()) then return true else return false.
         return false;
     }
-    public int[] fillEmployeesWorkingAndAlternatives(Calendar calendar){
+    public ArrayList<Integer> fillEmployeesWorkingAndAlternatives(Calendar calendar){
         //TODO: runs through the list of employees within the calendar object.
         //TODO: Checks if they are available to work that shift
         //TODO: adds them to an array list of potential employees
@@ -70,7 +70,7 @@ public class Shift {
         //TODO: returns the employeesWorking array
         return employeesWorking;
     }
-    public int[] fillEmployeesWorkingAndAlternatives(ArrayList<Employee> priorityEmployees){
+    public ArrayList<Integer> fillEmployeesWorkingAndAlternatives(ArrayList<Employee> priorityEmployees){
         //TODO: runs through the list of employees provided.
         //TODO: Checks if they are available to work that shift
         //TODO: adds them to an array list of potential employees
