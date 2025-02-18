@@ -3,49 +3,58 @@ package com.shifts.backend.model;
 import java.util.ArrayList;
 
 public class Calendar {
-private String businessName;
+    private int id;
+    private String businessName;
     private ArrayList<Employee> Employees;
     private ArrayList<Shift> Shifts;
     private ArrayList<TimeBlock> TimeBlocks;
 
     /*Constructor */
-    public Calendar(String businessName, ArrayList<Employee> employees, ArrayList<TimeBlock> timeBlocks) {
-        businessName = businessName;
-        Employees = employees;
-        TimeBlocks = timeBlocks;
+    public Calendar(int id, String businessName, ArrayList<Employee> employees, ArrayList<TimeBlock> timeBlocks) {
+        this.id = id;
+        this.businessName = businessName;
+        this.Employees = employees;
+        this.TimeBlocks = timeBlocks;
     }
-    public Calendar(String businessName){
-        businessName = businessName;
+    public Calendar(int id, String businessName){
+        this.id = id;
+        this.businessName = businessName;
     }
 
     //**Getters and Setters**//
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getBusinessName() {
         return businessName;
     }
     public void setBusinessName(String businessName) {
-        businessName = businessName;
+        this.businessName = businessName;
     }
     public ArrayList<Employee> getEmployees() {
         return Employees;
     }
     public void setEmployees(ArrayList<Employee> employees) {
-        Employees = employees;
+        this.Employees = employees;
     }
     public ArrayList<Shift> getShifts() {
         return Shifts;
     }
     public void setShifts(ArrayList<Shift> shifts) {
-        Shifts = shifts;
+        this.Shifts = shifts;
     }
     public ArrayList<TimeBlock> getTimeBlocks() {
         return TimeBlocks;
     }
     public void setTimeBlocks(ArrayList<TimeBlock> timeBlocks) {
-        TimeBlocks = timeBlocks;
+        this.TimeBlocks = timeBlocks;
     }
 
     /*Methods */
-    public ArrayList<Shift> createShiftFromTimeBlock(String date){
+    public ArrayList<Shift> createShiftFromTimeBlock(int date){
         ArrayList<Shift> emptyShift = new ArrayList<>();
         //TODO: Create a method that makes every timeblockk within the Calendar's timeblock list use tthe createShift method
         //passes date to createShift

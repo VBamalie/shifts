@@ -8,7 +8,12 @@ public class TimeBlock {
     private Enum<weekDayEnum> weekDayEnum;
 
     //Constructor
-    public TimeBlock(int timeBlockId, int startTime, int endTime, int shiftsRequired, Enum<weekDayEnum> weekDayEnum) {
+    public TimeBlock(
+        int timeBlockId, 
+        int startTime, 
+        int endTime, 
+        int shiftsRequired, 
+        Enum<weekDayEnum> weekDayEnum) {
         this.timeBlockId = timeBlockId;
         this.startTime = startTime;
         this.endTime = endTime;
