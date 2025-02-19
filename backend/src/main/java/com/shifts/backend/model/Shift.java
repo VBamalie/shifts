@@ -16,6 +16,8 @@ public class Shift {
         this.shiftId = shiftId;
         this.timeBlock = timeBlock;
         this.date = date;
+        this.employeesWorking = new ArrayList<Integer>();
+        this.employeesAlternatives = new ArrayList<Integer>();
     }
 
     //Getters and Setters

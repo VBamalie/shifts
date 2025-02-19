@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 public class ShiftTest {
-    ArrayList<Float> availability = new ArrayList<>();
+    ArrayList<Double> availability = new ArrayList<>();
     Employee employee = new Employee(
         1,
         "John",

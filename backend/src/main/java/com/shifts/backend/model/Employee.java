@@ -10,7 +10,7 @@ public class Employee {
     private String password;
     private ArrayList<Integer> timeOffRequests;
     private ArrayList<Shift> shifts;
-    private ArrayList<Float> availability;
+    private ArrayList<Double> availability;
 
     //Constructor
     public Employee() {
@@ -21,7 +21,7 @@ public class Employee {
         String lastName,
         String email,
         String password,
-        ArrayList<Float> availability) {
+        ArrayList<Double> availability) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -74,31 +74,31 @@ public class Employee {
     public void setShifts(ArrayList<Shift> shifts) {
         this.shifts = shifts;
     }
-    public ArrayList<Float> getAvailability() {
+    public ArrayList<Double> getAvailability() {
         return availability;
     }
-    public void setAvailability(ArrayList<Float> availability) {
+    public void setAvailability(ArrayList<Double> availability) {
         this.availability = availability;
     }
 
     //Methods
-    public boolean isAvailable(int date, Enum<weekDayEnum> day, float startTime, float endTime){
+    public boolean isAvailable(int date, Enum<weekDayEnum> day, double startTime, double endTime){
             return false;
         //TODO: Checks if the employee is available for the given date, day, startTime, and endTime.
     }
 
-    public float hoursWorkedThisWeek(int date){
+    public double hoursWorkedThisWeek(int date){
         //TODO: filter the shifts with the given date and return the sum of the shifts hours
         return 0;
     }
-    public float hoursWorkedToday(int date, Enum<weekDayEnum> day){
+    public double hoursWorkedToday(int date, Enum<weekDayEnum> day){
         //TODO: filter the shifts with the given date and day and return the sum of the shifts hours
         return 0;
     }
     public void addShift(Shift shift){
         //TODO: Adds the shift to the shifts ArrayList
     }
-    public void removeShift(Shift shift){
+    public void removeShift( Integer shiftId){
         //TODO: Removes the shift from the shifts ArrayList
     }
 }
