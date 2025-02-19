@@ -1,4 +1,4 @@
-package com.shifts.backend.repository;
+package com.shifts.backend.repository.DemoRepo;
 
 import java.util.ArrayList;
 import java.util.List;

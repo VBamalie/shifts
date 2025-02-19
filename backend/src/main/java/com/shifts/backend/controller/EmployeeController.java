@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shifts.backend.model.Employee;
-import com.shifts.backend.repository.EmployeeRepoDemo;
+import com.shifts.backend.repository.DemoRepo.EmployeeRepoDemo;
 
 //This is the controller for the employee. It is responsible for handling all requests to the /api/employee endpoint. The front end will send a request to this endpoint to get all employees, create a new employee, or update an employee.
 @RestController

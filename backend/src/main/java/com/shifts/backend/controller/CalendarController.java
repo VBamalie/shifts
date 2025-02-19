@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shifts.backend.model.Calendar;
-import com.shifts.backend.repository.CalendarRepoDemo;
+import com.shifts.backend.repository.DemoRepo.CalendarRepoDemo;
 
 
 
