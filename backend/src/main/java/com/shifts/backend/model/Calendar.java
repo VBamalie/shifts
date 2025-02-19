@@ -2,19 +2,20 @@ package com.shifts.backend.model;
 
 import java.util.ArrayList;
 
+//Calendar is a class that represents the business's calendar. It contains the list of employees that can be added to the shifts on the calendar. It also contains the timeblocks that the manager made for this business.
 public class Calendar {
     private int id;
     private String businessName;
-    private ArrayList<Employee> Employees;
-    private ArrayList<Shift> Shifts;
-    private ArrayList<TimeBlock> TimeBlocks;
+    private ArrayList<Employee> employees;
+    private ArrayList<Shift> shifts;
+    private ArrayList<TimeBlock> timeBlocks;
 
     /*Constructor */
     public Calendar(int id, String businessName, ArrayList<Employee> employees, ArrayList<TimeBlock> timeBlocks) {
         this.id = id;
         this.businessName = businessName;
-        this.Employees = employees;
-        this.TimeBlocks = timeBlocks;
+        this.employees = employees;
+        this.timeBlocks = timeBlocks;
     }
     public Calendar(int id, String businessName){
         this.id = id;
@@ -35,22 +36,22 @@ public class Calendar {
         this.businessName = businessName;
     }
     public ArrayList<Employee> getEmployees() {
-        return Employees;
+        return employees;
     }
     public void setEmployees(ArrayList<Employee> employees) {
-        this.Employees = employees;
+        this.employees = employees;
     }
     public ArrayList<Shift> getShifts() {
-        return Shifts;
+        return shifts;
     }
     public void setShifts(ArrayList<Shift> shifts) {
-        this.Shifts = shifts;
+        this.shifts = shifts;
     }
     public ArrayList<TimeBlock> getTimeBlocks() {
-        return TimeBlocks;
+        return timeBlocks;
     }
     public void setTimeBlocks(ArrayList<TimeBlock> timeBlocks) {
-        this.TimeBlocks = timeBlocks;
+        this.timeBlocks = timeBlocks;
     }
 
     /*Methods */

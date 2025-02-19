@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shifts.backend.model.Shift;
 import com.shifts.backend.repository.DemoRepo.ShiftRepoDemo;
 
+//This is the controller for the shift objects. It is responsible for handling all requests to the /api/shift endpoint. The front end will send a request to this endpoint to get all shifts, create a new shift, update a shift, and delete a shift.
 @RestController
 @RequestMapping("/api/shift")
 public class ShiftController {
@@ -21,31 +22,41 @@ public class ShiftController {
     public ShiftController(ShiftRepoDemo repository){
         this.repository = repository;
     }
-
+    //This grabs all shifts in the database. this will never be used in the front end.
     @GetMapping("")
     public List<Shift> getAllShifts(){
         return null;
         //TODO:Write
     }
+    //This grabs a shift by its id.
     @GetMapping("/{id}")
     public Shift getShiftById(int id){
         return null;
         //TODO:Write
     }
+    //This grabs all shifts with a certain calendar id.
     @GetMapping("Calendar/{id}")
     public List<Shift> getShiftsByCalendarId(int id){
         return null;
         //TODO:Write
     }
+    @GetMapping("date/{date}")
+    public List<Shift> getShiftsByDate(int date){
+        return null;
+        //TODO:Write
+    }
+    //This creates a new shift.
     @PostMapping("")
     @ResponseStatus(code = org.springframework.http.HttpStatus.CREATED)
     public void create(@RequestBody Shift shift){
         //TODO:Write
     }
+    //This updates a shift.
     @PutMapping("/{id}")
     public void update(@RequestBody Shift shift){
         //Write
     }
+    //This deletes a shift.
     @DeleteMapping("/{id}")
     public void delete(int id){
         //TODO:Write

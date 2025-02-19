@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shifts.backend.model.TimeBlock;
 import com.shifts.backend.repository.DemoRepo.TimeBlockRepoDemo;
 
+///This is the controller for the time block objects. It is responsible for handling all requests to the /api/timeblock endpoint. The front end will send a request to this endpoint to get all time blocks, create a new time block, update a time block, and delete a time block.
+//I DONT KNOW IF THIS WILL BE USED.//
 @RestController
 @RequestMapping("/api/timeblock")
 public class TimeBlockController {
@@ -21,7 +23,7 @@ public class TimeBlockController {
     public TimeBlockController(TimeBlockRepoDemo repository){
         this.repository = repository;
     }
-    
+    //This grabs all time blocks in the database. this will never be used in the front end.
     @GetMapping("")
     public List<TimeBlock> getAllTimeBlocks(){
         return null;
