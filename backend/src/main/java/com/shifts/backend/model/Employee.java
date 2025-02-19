@@ -61,14 +61,12 @@ public class Employee {
     public void setPassword(String password) {
         this.password = password;
     }
-        //TODO: Change this to adding to a date to the TimeOffRequests ArrayList
-
     public ArrayList<Integer> getTimeOffRequests() {
         return timeOffRequests;
     }
-    //TODO: Change this to adding to a date to the TimeOffRequests ArrayList
-    public void setTimeOffRequests() {
-        this.timeOffRequests = timeOffRequests;
+    public void setTimeOffRequests(Integer timeOffRequest) {
+        timeOffRequests.add(timeOffRequest);
+        
     }
     public ArrayList<Shift> getShifts() {
         return shifts;
