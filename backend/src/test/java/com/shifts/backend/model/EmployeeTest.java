@@ -23,12 +23,13 @@ public class EmployeeTest {
             "Doe",
             "john.doe@example.com",
             "password",
-            makeAvailability(1.0,2.0,3.0,4.0)
+            makeAvailability(1.0,2.0,3.0,4.0),
+            1
         );
         Shift shift = new Shift(
             1,
-            new TimeBlock(1, 1, 2, 1, weekDayEnum.mon),
-            20250101
+            new TimeBlock(1, 1, 2, 1, weekDayEnum.mon,1),
+            20250101,1
         );
         ArrayList<Shift> shifts = new ArrayList<Shift>();
         shifts.add(shift);
@@ -41,8 +42,8 @@ public class EmployeeTest {
         Employee employee = makeEmployee();
         Shift shift = new Shift(
             2,
-            new TimeBlock(1, 1, 2, 1, weekDayEnum.mon),
-            20250101
+            new TimeBlock(1, 1, 2, 1, weekDayEnum.mon,1),
+            20250101, 1
         );
         employee.addShift(shift);
         assert(employee.getShifts().size() == 2);

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class TimeBlockTest {
-    TimeBlock timeBlock = new TimeBlock(1, 1, 2, 3, weekDayEnum.mon);
+    TimeBlock timeBlock = new TimeBlock(1, 1, 2, 3, weekDayEnum.mon,1);
     @Test
     void testCreateShift() {
         //test that the shift is created correctly

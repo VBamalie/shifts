@@ -32,6 +32,11 @@ public class ShiftController {
         return null;
         //TODO:Write
     }
+    @GetMapping("Calendar/{id}")
+    public List<Shift> getShiftsByCalendarId(int id){
+        return null;
+        //TODO:Write
+    }
     @PostMapping("")
     @ResponseStatus(code = org.springframework.http.HttpStatus.CREATED)
     public void create(@RequestBody Shift shift){

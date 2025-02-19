@@ -15,6 +15,7 @@ import com.shifts.backend.model.Employee;
 import com.shifts.backend.repository.DemoRepo.EmployeeRepoDemo;
 
 //This is the controller for the employee. It is responsible for handling all requests to the /api/employee endpoint. The front end will send a request to this endpoint to get all employees, create a new employee, or update an employee.
+
 @RestController
 @RequestMapping("/api/employee")
 public class EmployeeController {
@@ -32,6 +33,13 @@ public class EmployeeController {
             return null;
              //TODO:Write
     }
+    @GetMapping("/CalendarId/{id}")
+    public List<Employee>
+    getEmployeesByCalendarId(int id){
+            return null;
+            //TODO:Write
+    }
+
     @PostMapping("")
     @ResponseStatus(code = org.springframework.http.HttpStatus.CREATED)
     public void create(@RequestBody Employee employee){

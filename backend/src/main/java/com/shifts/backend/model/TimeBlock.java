@@ -6,6 +6,7 @@ public class TimeBlock {
     private double endTime;
     private int shiftsRequired;
     private Enum<weekDayEnum> weekDayEnum;
+    private int calendarId;
 
     //Constructor
     public TimeBlock(
@@ -13,12 +14,14 @@ public class TimeBlock {
         int startTime, 
         int endTime, 
         int shiftsRequired, 
-        Enum<weekDayEnum> weekDayEnum) {
+        Enum<weekDayEnum> weekDayEnum,
+        int calendarId) {
         this.timeBlockId = timeBlockId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.shiftsRequired = shiftsRequired;
         this.weekDayEnum = weekDayEnum;
+        this.calendarId = calendarId;
     }
 
     //Getters and Setters

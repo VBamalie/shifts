@@ -15,19 +15,22 @@ public class ShiftTest {
         "Doe",
         "john@example.com",
         "password",
-        availability
+        availability,
+        1
         );
     TimeBlock timeBlock = new TimeBlock(
         1,
         1,
         2,
         1,
-        weekDayEnum.mon);
+        weekDayEnum.mon,
+        1);
     
     Shift shift = new Shift(
         1,
         timeBlock,
-        20250101);
+        20250101,
+        1);
 
     @Test
     void testFillEmployeesWorkingAndAlternatives(Calendar calendar){
@@ -106,7 +109,8 @@ public class ShiftTest {
             2,
             3,
             2,
-            weekDayEnum.tue);
+            weekDayEnum.tue,
+            1);
         shift.setTimeBlock(newTimeBlock);
         assertEquals(shift.getTimeBlock(), newTimeBlock);
     }

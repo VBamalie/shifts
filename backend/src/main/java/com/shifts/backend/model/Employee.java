@@ -11,9 +11,10 @@ public class Employee {
     private ArrayList<Integer> timeOffRequests;
     private ArrayList<Shift> shifts;
     private ArrayList<Double> availability;
-
+    private int calendarId;
+   
     //Constructor
-    public Employee() {
+    public Employee(int id) {
     }
     public Employee(
         int employeeId,
@@ -21,13 +22,16 @@ public class Employee {
         String lastName,
         String email,
         String password,
-        ArrayList<Double> availability) {
+        ArrayList<Double> availability,
+        int calendarId
+        ) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.availability = availability;
+        this.calendarId = calendarId;
     }
 
     //Getters and Setters

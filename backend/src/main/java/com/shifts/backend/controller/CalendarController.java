@@ -29,6 +29,7 @@ public class CalendarController {
         //dummy data for testing
     }
     //This method is responsible for handling GET requests to the /api/calendar endpoint. It returns a list of all calendars. We likely wont use this method in the front end.
+    //this method also has the call for the autocreate function.
     @GetMapping("")
     public List<Calendar> getAllCalendars(){
         return repository.findAll();
@@ -56,6 +57,12 @@ public class CalendarController {
     @DeleteMapping("/{id}")
     public void delete(@RequestBody Calendar calendar){
         repository.deleteById(calendar.getId());
+    }
+
+    @GetMapping("/autofill/{id}")
+    public void autofill(@RequestBody Calendar calendar){
+        calendar.autofillShifts();
+        //TODO: Should the automatic refresh of the page be handled here or in the front end?
     }
 }
 

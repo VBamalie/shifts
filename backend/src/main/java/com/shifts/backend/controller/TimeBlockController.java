@@ -27,11 +27,17 @@ public class TimeBlockController {
         return null;
         //TODO:Write
     }
-    @GetMapping
+    @GetMapping("/{id}")
     public TimeBlock getTimeBlockById(int id){
         return null;
         //TODO:Write
     }
+    @GetMapping("/calendar/{id}")
+    public List<TimeBlock> getTimeBlocksByCalendarId(int id){
+        return null;
+        //TODO:Write
+    }
+    
     @PostMapping("")
     @ResponseStatus(code = org.springframework.http.HttpStatus.CREATED)
     public void create(@RequestBody TimeBlock timeBlock){

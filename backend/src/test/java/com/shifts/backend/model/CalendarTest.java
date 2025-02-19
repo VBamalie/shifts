@@ -14,7 +14,8 @@ public class CalendarTest {
         1,
         2,
         1,
-        weekDayEnum.mon);
+        weekDayEnum.mon,
+        1);
     ArrayList<TimeBlock> timeBlocks = new ArrayList<>();
     //timeBlocks.add(timeBlock); FIXME: causing error figure it out later
     //add a list of employees

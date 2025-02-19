@@ -9,15 +9,17 @@ public class Shift {
     private ArrayList<Integer> employeesWorking;
     private ArrayList<Integer> employeesAlternatives;
     private int date;//first day of the this shifts week, will have the format of yyyymmdd
+    private int calendarId;
 
     //Constructor
     //employeeWorking and employeesAlternatives will be added either manually or by autocreate method.
-    public Shift(int shiftId, TimeBlock timeBlock, int date) {
+    public Shift(int shiftId, TimeBlock timeBlock, int date, int calendarId) {
         this.shiftId = shiftId;
         this.timeBlock = timeBlock;
         this.date = date;
         this.employeesWorking = new ArrayList<Integer>();
         this.employeesAlternatives = new ArrayList<Integer>();
+        this.calendarId = calendarId;
     }
 
     //Getters and Setters
