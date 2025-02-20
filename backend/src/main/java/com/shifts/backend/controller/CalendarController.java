@@ -20,7 +20,7 @@ import com.shifts.backend.repository.DemoRepo.CalendarRepoDemo;
 
 //This is the controller for the calendar class. It is responsible for handling all requests to the /api/calendar endpoint. The front end will send a request to this endpoint to get all calendars, create a new calendar, or update a calendar. It will also handle the call for the autocreate function.
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173")//all controllers need this in order to work with the front end.
 @RequestMapping("/api/calendar")
 public class CalendarController {
     private final CalendarRepoDemo repository;

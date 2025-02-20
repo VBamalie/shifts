@@ -2,6 +2,7 @@ package com.shifts.backend.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import com.shifts.backend.repository.DemoRepo.EmployeeRepoDemo;
 //TODO: add a put request to remove a shift from an employee.
 //TODO: add a put request to remove a time off request from an employee.
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/employee")
 public class EmployeeController {
     private final EmployeeRepoDemo repository;

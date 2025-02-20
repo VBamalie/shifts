@@ -2,6 +2,7 @@ package com.shifts.backend.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.shifts.backend.repository.DemoRepo.TimeBlockRepoDemo;
 ///This is the controller for the time block objects. It is responsible for handling all requests to the /api/timeblock endpoint. The front end will send a request to this endpoint to get all time blocks, create a new time block, update a time block, and delete a time block.
 //I DONT KNOW IF THIS WILL BE USED.//
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/timeblock")
 public class TimeBlockController {
     private final TimeBlockRepoDemo repository;

@@ -2,6 +2,7 @@ package com.shifts.backend.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import com.shifts.backend.repository.DemoRepo.ShiftRepoDemo;
 
 //This is the controller for the shift objects. It is responsible for handling all requests to the /api/shift endpoint. The front end will send a request to this endpoint to get all shifts, create a new shift, update a shift, and delete a shift.
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/shift")
 public class ShiftController {
     private final ShiftRepoDemo repository;
