@@ -1,4 +1,5 @@
 import axios from "axios";
+import TestFetch from "./testFetch";
 
 function App() {
   const getData=()=>{
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className="App">
     <h1>Hello World</h1>
+    <TestFetch/>
     </div>
   )
 }
