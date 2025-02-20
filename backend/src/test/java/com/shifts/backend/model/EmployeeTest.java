@@ -181,4 +181,8 @@ public class EmployeeTest {
     void testSetTimeOffRequests() {
         //TODO: Make logic for this test
     }
+    @Test
+    void testWorkingAShiftTheyAreUnavailableFor() {
+        //TODO: Make logic for this test
+    }
 }
