@@ -105,5 +105,9 @@ public class Employee {
     public void removeShift( Integer shiftId){
         //TODO: Removes the shift from the shifts ArrayList
     }
+    public boolean workingAShiftTheyAreUnavailableFor(Shift shift){
+        //TODO: Checks if the employee is working a shift they are unavailable for
+        return false;
+    }
 }
 
