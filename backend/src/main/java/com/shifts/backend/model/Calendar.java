@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 //Calendar is a class that represents the business's calendar. It contains the list of employees that can be added to the shifts on the calendar. It also contains the timeblocks that the manager made for this business.
 public class Calendar {
+    //@id? @generatedValue?
     private int id;
     private String businessName;
     private ArrayList<Employee> employees;
