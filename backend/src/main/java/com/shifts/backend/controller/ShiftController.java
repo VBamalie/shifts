@@ -42,6 +42,7 @@ public class ShiftController {
         return null;
         //TODO:Write
     }
+    //This grabs all shifts with a certain date. The dates are always the first date of the week regardless of what day the shift lands on. the front end will sort through the different days
     @GetMapping("date/{date}")
     public List<Shift> getShiftsByDate(int date){
         return null;

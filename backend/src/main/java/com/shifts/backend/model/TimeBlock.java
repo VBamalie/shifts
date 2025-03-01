@@ -57,6 +57,7 @@ public class TimeBlock {
     }
 
     //Methods
+    //FIXME: Refactor these methods into a service layer?
     public Shift createShift(String Date){
         //TODO: Creates an empty shift based on the time block with the given date
         return null;

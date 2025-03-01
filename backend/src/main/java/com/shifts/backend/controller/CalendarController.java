@@ -43,7 +43,7 @@ public class CalendarController {
     }
 
     //This method is responsible for handling POST requests to the /api/calendar endpoint. It creates a new calendar.
-    //TODO: consider adding a calendar constroctor that will also make the first employee and all the timeblocks at the same time as creating the calendar.
+    //TODO: consider adding a calendar constructor that will also make the first employee and all the timeblocks at the same time as creating the calendar.
     @PostMapping("")
     @ResponseStatus(code = org.springframework.http.HttpStatus.CREATED)
     public void create(@RequestBody Calendar calendar){
@@ -57,10 +57,10 @@ public class CalendarController {
     }
     
     //This method is responsible for deleting a calendar.
-    //TODO: add to this method deleting all timeblocks, employees, and shifts associated with the calendar id.
     @DeleteMapping("/{id}")
     public void delete(@RequestBody Calendar calendar){
         repository.deleteById(calendar.getId());
+        //TODO: add to this method deleting all timeblocks, employees, and shifts associated with the calendar id.
     }
 
     //this method is responsible for handling the call for the autocreate function.

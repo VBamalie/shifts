@@ -59,6 +59,7 @@ public class Shift {
     }
 
     ///Methods
+    //FIXME: Refactor these method into a service layer?
     public boolean hasFilledShifts(){
         //TODO: Checks if the shift has filled all the required employees.
         //likely going to be: if (employeesWorking.length == timeBlock.getShiftsRequired()) then return true else return false.

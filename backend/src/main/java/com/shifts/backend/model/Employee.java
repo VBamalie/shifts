@@ -86,6 +86,7 @@ public class Employee {
     }
 
     //Methods
+    //FIXME: Refactor these method into a service layer?
     public boolean isAvailable(int date, Enum<weekDayEnum> day, double startTime, double endTime){
             return false;
         //TODO: Checks if the employee is available for the given date, day, startTime, and endTime.

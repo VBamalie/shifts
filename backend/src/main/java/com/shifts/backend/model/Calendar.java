@@ -56,6 +56,7 @@ public class Calendar {
     }
 
     /*Methods */
+    //FIXME: Refactor these method into a service layer?
     public ArrayList<Shift> createShiftFromTimeBlock(int date){
         ArrayList<Shift> emptyShift = new ArrayList<>();
         //TODO: Create a method that makes every timeblockk within the Calendar's timeblock list use tthe createShift method
@@ -63,7 +64,7 @@ public class Calendar {
         //Arraylist is sorted from earliest shift to latest, monday-sunday
         return null;
     }
-
+    //FIXME: Refactor this method into the service layer
     public ArrayList<Shift> autofillShifts(){
         //TODO: Calendar uses createShiftFromTimeBlock to create a list of shifts
         //TODO: Calendar finds the shift with the most amount of employees required

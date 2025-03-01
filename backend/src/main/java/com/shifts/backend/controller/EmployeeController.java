@@ -58,7 +58,6 @@ public class EmployeeController {
     }
 
     //This updates an employee. 
-    //TODO: Consider adding a put request to add a shift to an employee.
     @PutMapping("/{id}")
     public void update(@RequestBody Employee employee){
          //TODO:Write
