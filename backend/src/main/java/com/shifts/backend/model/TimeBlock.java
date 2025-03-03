@@ -1,6 +1,22 @@
 package com.shifts.backend.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class TimeBlock {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int timeBlockId;
     private double startTime;
     private double endTime;
@@ -8,27 +24,13 @@ public class TimeBlock {
     private Enum<weekDayEnum> weekDayEnum;
     private int calendarId;
 
-    //Constructor
-    public TimeBlock(
-        int timeBlockId, 
-        int startTime, 
-        int endTime, 
-        int shiftsRequired, 
-        Enum<weekDayEnum> weekDayEnum,
-        int calendarId) {
-        this.timeBlockId = timeBlockId;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.shiftsRequired = shiftsRequired;
-        this.weekDayEnum = weekDayEnum;
-        this.calendarId = calendarId;
-    }
 
-    //Methods
-    //FIXME: Refactor these methods into a service layer?
-    public Shift createShift(String Date){
-        //TODO: Creates an empty shift based on the time block with the given date
-        return null;
-    }
+
+    // //Methods
+    // //FIXME: Refactor these methods into a service layer?
+    // public Shift createShift(String Date){
+    //     //TODO: Creates an empty shift based on the time block with the given date
+    //     return null;
+    // }
 }
 
