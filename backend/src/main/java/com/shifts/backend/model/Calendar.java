@@ -7,52 +7,15 @@ public class Calendar {
     //@id? @generatedValue?
     private int id;
     private String businessName;
-    private ArrayList<Employee> employees;
-    private ArrayList<Shift> shifts;
-    private ArrayList<TimeBlock> timeBlocks;
 
     /*Constructor */
     public Calendar(int id, String businessName, ArrayList<Employee> employees, ArrayList<TimeBlock> timeBlocks) {
         this.id = id;
         this.businessName = businessName;
-        this.employees = employees;
-        this.timeBlocks = timeBlocks;
     }
     public Calendar(int id, String businessName){
         this.id = id;
         this.businessName = businessName;
-    }
-
-    //**Getters and Setters**//
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getBusinessName() {
-        return businessName;
-    }
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
-    }
-    public ArrayList<Employee> getEmployees() {
-        return employees;
-    }
-    public void setEmployees(ArrayList<Employee> employees) {
-        this.employees = employees;
-    }
-    public ArrayList<Shift> getShifts() {
-        return shifts;
-    }
-    public void setShifts(ArrayList<Shift> shifts) {
-        this.shifts = shifts;
-    }
-    public ArrayList<TimeBlock> getTimeBlocks() {
-        return timeBlocks;
-    }
-    public void setTimeBlocks(ArrayList<TimeBlock> timeBlocks) {
-        this.timeBlocks = timeBlocks;
     }
 
     /*Methods */

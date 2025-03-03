@@ -8,82 +8,26 @@ public class Employee {
     private String lastName;
     private String email;
     private String password;
-    private ArrayList<Integer> timeOffRequests;
-    private ArrayList<Shift> shifts;
-    private ArrayList<Double> availability;
     private int calendarId;
    
     //Constructor
     public Employee(int id) {
     }
-    public Employee(
-        int employeeId,
-        String firstName,
-        String lastName,
-        String email,
-        String password,
-        ArrayList<Double> availability,
-        int calendarId
-        ) {
-        this.employeeId = employeeId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.availability = availability;
-        this.calendarId = calendarId;
-    }
-
-    //Getters and Setters
-    public int getEmployeeId() {
-        return employeeId;
-    }
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-    public String getFirstName() {
-        return firstName;
-    }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public ArrayList<Integer> getTimeOffRequests() {
-        return timeOffRequests;
-    }
-    public void setTimeOffRequests(Integer timeOffRequest) {
-        timeOffRequests.add(timeOffRequest);
-        
-    }
-    public ArrayList<Shift> getShifts() {
-        return shifts;
-    }
-    public void setShifts(ArrayList<Shift> shifts) {
-        this.shifts = shifts;
-    }
-    public ArrayList<Double> getAvailability() {
-        return availability;
-    }
-    public void setAvailability(ArrayList<Double> availability) {
-        this.availability = availability;
-    }
+    // public Employee(
+    //     int employeeId,
+    //     String firstName,
+    //     String lastName,
+    //     String email,
+    //     String password,
+    //     int calendarId
+    //     ) {
+    //     this.employeeId = employeeId;
+    //     this.firstName = firstName;
+    //     this.lastName = lastName;
+    //     this.email = email;
+    //     this.password = password;
+    //     this.calendarId = calendarId;
+    // }
 
     //Methods
     //FIXME: Refactor these method into a service layer?

@@ -24,38 +24,6 @@ public class TimeBlock {
         this.calendarId = calendarId;
     }
 
-    //Getters and Setters
-    public int getShiftsRequired() {
-        return shiftsRequired;
-    }
-    public void setShiftsRequired(int shiftsRequired) {
-        this.shiftsRequired = shiftsRequired;
-    }
-    public int getTimeBlockId() {
-        return timeBlockId;
-    }
-    public void setTimeBlockId(int timeBlockId) {
-        this.timeBlockId = timeBlockId;
-    }
-    public double getStartTime() {
-        return startTime;
-    }
-    public void setStartTime(double startTime) {
-        this.startTime = startTime;
-    }
-    public double getEndTime() {
-        return endTime;
-    }
-    public void setEndTime(double endTime) {
-        this.endTime = endTime;
-    }
-    public Enum<weekDayEnum> getWeekDayEnum() {
-        return weekDayEnum;
-    }
-    public void setWeekDayEnum(Enum<weekDayEnum> weekDayEnum) {
-        this.weekDayEnum = weekDayEnum;
-    }
-
     //Methods
     //FIXME: Refactor these methods into a service layer?
     public Shift createShift(String Date){

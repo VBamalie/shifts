@@ -6,8 +6,6 @@ import java.util.Date;
 public class Shift {
     private int shiftId;
     private TimeBlock timeBlock;
-    private ArrayList<Integer> employeesWorking;
-    private ArrayList<Integer> employeesAlternatives;
     private int date;//first day of the this shifts week, will have the format of yyyymmdd
     private int calendarId;
 
@@ -17,45 +15,7 @@ public class Shift {
         this.shiftId = shiftId;
         this.timeBlock = timeBlock;
         this.date = date;
-        this.employeesWorking = new ArrayList<Integer>();
-        this.employeesAlternatives = new ArrayList<Integer>();
         this.calendarId = calendarId;
-    }
-
-    //Getters and Setters
-    public int getShiftId() {
-        return shiftId;
-    }
-    public void setShiftId(int shiftId) {
-        this.shiftId = shiftId;
-    }
-    public TimeBlock getTimeBlock() {
-        return timeBlock;
-    }
-    public void setTimeBlock(TimeBlock timeBlock) {
-        this.timeBlock = timeBlock;
-    }
-
-    //Employees working will have the employeeIds of the employees working that shift.
-    public ArrayList<Integer> getEmployeesWorking() {
-        return employeesWorking;
-    }
-    public void setEmployeesWorking(ArrayList<Integer> employeesWorking) {
-        this.employeesWorking = employeesWorking;
-    }
-
-    //Employees working will have the employeeIds of the employees working that shift.
-    public ArrayList<Integer> getEmployeesAlternatives() {
-        return employeesAlternatives;
-    }
-    public void setEmployeesAlternatives(ArrayList<Integer> employeesAlternatives) {
-        this.employeesAlternatives = employeesAlternatives;
-    }
-    public int getDate() {
-        return date;
-    }
-    public void setDate(int date) {
-        this.date = date;
     }
 
     ///Methods
