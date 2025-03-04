@@ -9,6 +9,6 @@ public interface CalendarService {
     Calendar saveCalendar(Calendar calendar);
     List<Calendar> getAllCalendars();
     Calendar getCalendarById(Long id);
-    Calendar updateCalendar(Calendar calendar);
+    Calendar updateCalendar(Calendar calendar, long id);;
     void deleteCalendar(Long id);
 }

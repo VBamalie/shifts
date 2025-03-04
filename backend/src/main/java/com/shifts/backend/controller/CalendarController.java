@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +19,7 @@ public class CalendarController {
     private CalendarService calendarService;
     @PostMapping("/")
     public Calendar saveCalendar(Calendar calendar) {
-        //TODO: process POST request
-
+        calendarService.saveCalendar(calendar);
         return calendar;
     }
     @GetMapping("/")
@@ -30,8 +30,8 @@ public class CalendarController {
     public Calendar getCalendarById(Long id) {
         return calendarService.getCalendarById(id);
     }
-    @PostMapping("/update")
-    public Calendar updateCalendar(Calendar calendar) {
+    @PostMapping("/update/{id}")
+    public Calendar updateCalendar(Calendar calendar, @RequestBody Long id) {
         return calendarService.updateCalendar(calendar);
     }
     @PostMapping("/delete")
