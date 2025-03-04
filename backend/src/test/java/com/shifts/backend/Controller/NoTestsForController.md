@@ -1,0 +1,1 @@
+There will be no tests for the controller classes. They will be tested with postman.

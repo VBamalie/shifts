@@ -10,6 +10,7 @@ import com.shifts.backend.repository.EmployeeRepo;
 import com.shifts.backend.service.service.EmployeeService;
 
 @Service
+///Crud operations for the Employee class as well as some extra data found through 
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired

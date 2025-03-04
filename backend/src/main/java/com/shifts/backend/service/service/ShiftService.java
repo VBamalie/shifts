@@ -10,7 +10,7 @@ public interface ShiftService {
     List<Shift> getAllShifts();
     Shift getShiftById(Long id);
     List<Shift> getAllShiftsByCalendarId(Long calendarId);
-    Shift updateShift(Long shift);
+    Shift updateShift(Shift shift);
     void deleteShift(Long id);
     boolean hasFilledShifts(Long id);
 }

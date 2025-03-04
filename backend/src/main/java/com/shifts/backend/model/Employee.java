@@ -25,6 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//Employee is a class that represents an employee of the business. It contains all of the employee's information as well as their availability and time off requests.
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,15 +42,14 @@ public class Employee {
         joinColumns = @JoinColumn(name = "employee_id"),
         inverseJoinColumns = @JoinColumn(name = "shift_id")
     )
-    private Set<Shift> shifts;
+    private Set<Shift> shifts;//the employee table will be responsible for the joined table
     @OneToOne(mappedBy = "employee")
-    private Availability availability;
+    private Availability availability;//the employee table will not have an availability id.
     @OneToMany(mappedBy = "employee")
-    private Set<TimeOffRequest> timeOffRequests;
+    private Set<TimeOffRequest> timeOffRequests;//the employee table will not have a timeOffRequest id.
     
 
     //Methods
-    //FIXME: Refactor these method into a service layer?
     public boolean isAvailable(int date, Enum<weekDayEnum> day, double startTime, double endTime){
             return false;
         //TODO: Checks if the employee is available for the given date, day, startTime, and endTime.
@@ -66,10 +66,10 @@ public class Employee {
     public void addShift(Shift shift){
         //TODO: Adds the shift to the shifts ArrayList
     }
-    public void removeShift( Integer shiftId){
+    public void removeShift( Shift shift){
         //TODO: Removes the shift from the shifts ArrayList
     }
-    public boolean workingAShiftTheyAreUnavailableFor(Shift shift){
+    public boolean workingAShiftTheyAreUnavailableFor(int date){
         //TODO: Checks if the employee is working a shift they are unavailable for
         return false;
     }

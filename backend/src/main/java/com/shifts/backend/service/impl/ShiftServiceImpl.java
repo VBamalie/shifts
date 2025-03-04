@@ -40,7 +40,7 @@ public class ShiftServiceImpl implements ShiftService{
     }
 
     @Override
-    public Shift updateShift(Long shift) {
+    public Shift updateShift(Shift shift) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateShift'");
     }

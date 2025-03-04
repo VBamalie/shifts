@@ -1,5 +1,6 @@
 package com.shifts.backend.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,36 +16,34 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//Calendar is a class that represents the business's calendar. It contains the list of employees that can be added to the shifts on the calendar. It also contains the timeblocks that the manager made for this business.
+//Calendar is a class that represents the business's calendar. It contains all employees that work for this company as well as all shifts that have been created and all timeblocks for the weekly schedule.
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Calendar {
-    //@id? @generatedValue?
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String businessName;
     @OneToMany(mappedBy = "calendar")
-    private Set<Employee> employees;
+    private List<Employee> employees;
     @OneToMany(mappedBy = "calendar")
-    private Set<TimeBlock> timeBlocks;
+    private List<TimeBlock> timeBlocks;
     @OneToMany(mappedBy = "calendar")
-    private Set<Shift> shifts;
+    private List<Shift> shifts;
 
     /*Methods */
-    //FIXME: Refactor these method into a service layer?
-    public Set<Shift> createShiftFromTimeBlock(int date){
-        Set<Shift> emptyShifts = new HashSet<>();
+    public List<Shift> createShiftFromTimeBlock(int date){
+        List<Shift> emptyShifts = new ArrayList<>();
         //TODO: Create a method that makes every timeblockk within the Calendar's timeblock list use tthe createShift method
         //passes date to createShift
         //Arraylist is sorted from earliest shift to latest, monday-sunday
         return null;
     }
     //FIXME: Refactor this method into the service layer
-    public Set<Shift> autofillShifts(){
+    public List<Shift> autofillShifts(){
         //TODO: Calendar uses createShiftFromTimeBlock to create a list of shifts
         //TODO: Calendar finds the shift with the most amount of employees required
         //TODO: Calendar uses the shift's method fillEmpOnStaffandAltEmployees to fill the shift

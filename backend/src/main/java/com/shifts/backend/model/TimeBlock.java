@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//TimeBlock is a class that represents a time block. It contains the start time, end time, the number of shifts required, the week day, and the calendar that the time block belongs to. this class is primarily used to create the shift table.
 public class TimeBlock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

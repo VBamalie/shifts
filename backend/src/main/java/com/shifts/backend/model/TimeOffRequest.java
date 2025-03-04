@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//TimeOffRequest is a class that represents a time off request. It contains the employee who made the request, the date of the request, and the week day of the request.
 public class TimeOffRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

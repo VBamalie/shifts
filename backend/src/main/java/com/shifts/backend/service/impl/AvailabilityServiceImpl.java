@@ -10,6 +10,7 @@ import com.shifts.backend.repository.AvailabilityRepo;
 import com.shifts.backend.service.service.AvailabilityService;
 
 @Service
+//Crud operations for the Availability class
 public class AvailabilityServiceImpl implements AvailabilityService {
     @Autowired
     private  AvailabilityRepo availabilityRepo;

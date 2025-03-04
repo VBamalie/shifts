@@ -2,6 +2,7 @@ package com.shifts.backend.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -21,16 +22,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//Shift is a class that represents a shift. It contains what timeblock belongs to this table, the first date of this shift's week, the calendar that the shift belongs to, and the employees that are working the shift.
 public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long timeBlockId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private TimeBlock timeBlock;
     private int date;//first day of the this shifts week, will have the format of yyyymmdd
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    private int calendarId;
+    private Calendar calendar;
     @ManyToMany(mappedBy = "shifts")
-    Set<Employee> employeesWorking;
+    List<Employee> employeesWorking;
 
 
 

@@ -10,6 +10,7 @@ import com.shifts.backend.repository.CalendarRepo;
 import com.shifts.backend.service.service.CalendarService;
 
 @Service
+///Crud operations for the Calendar class
 public class CalendarServiceImpl implements CalendarService {
     
     @Autowired
