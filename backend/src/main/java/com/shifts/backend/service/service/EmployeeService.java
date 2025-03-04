@@ -8,8 +8,12 @@ import com.shifts.backend.model.Employee;
 public interface EmployeeService {
     Employee saveEmployee(Employee employee);
     List<Employee> getAllEmployees();
-    Employee getEmployeeById(int id);
-    Employee getAllEmployeesByCalendarId(int calendarId);
+    Employee getEmployeeById(Long id);
+    Employee getAllEmployeesByCalendarId(Long calendarId);
     Employee updateEmployee(Employee employee);
-    void deleteEmployee(int id);
+    void deleteEmployee(Long id);
+    boolean isAvailable(Long id);
+    int hoursWorkedThisWeek(Long id);
+    int hoursWorkdToday(Long id);
+
 }

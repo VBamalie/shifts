@@ -7,6 +7,6 @@ import com.shifts.backend.model.Shift;
 
 //this interface is used to access the database with the help of JPA
 @Repository
-public interface ShiftRepo extends JpaRepository<Shift, Integer> {
+public interface ShiftRepo extends JpaRepository<Shift, Long> {
 
 }

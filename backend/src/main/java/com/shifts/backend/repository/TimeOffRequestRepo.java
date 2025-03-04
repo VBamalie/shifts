@@ -7,7 +7,7 @@ import com.shifts.backend.model.TimeOffRequest;
 
 //this interface is used to access the database with the help of JPA
 @Repository
-public interface TimeOffRequestRepo extends JpaRepository<TimeOffRequest, Integer> {
+public interface TimeOffRequestRepo extends JpaRepository<TimeOffRequest, Long> {
 
     
 } 

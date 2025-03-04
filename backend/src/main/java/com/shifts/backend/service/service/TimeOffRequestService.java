@@ -8,9 +8,9 @@ import com.shifts.backend.model.TimeOffRequest;
 public interface TimeOffRequestService {
     TimeOffRequest saveTimeOffRequest(TimeOffRequest timeOffRequest);
     List<TimeOffRequest> getAllTimeOffRequests();
-    TimeOffRequest getTimeOffRequestById(int id);
-    List<TimeOffRequest> getAllTimeOffRequestsByEmployeeId(int employeeId);
+    TimeOffRequest getTimeOffRequestById(Long id);
+    List<TimeOffRequest> getAllTimeOffRequestsByEmployeeId(Long employeeId);
     TimeOffRequest updateTimeOffRequest(TimeOffRequest timeOffRequest);
-    void deleteTimeOffRequest(int id);
+    void deleteTimeOffRequest(Long id);
 
 }

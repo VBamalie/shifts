@@ -1,1 +1,0 @@
-To test the controllers, run the backend and use Postman to test the endpoints.

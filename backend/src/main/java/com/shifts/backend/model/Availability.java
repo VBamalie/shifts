@@ -1,9 +1,13 @@
 package com.shifts.backend.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,20 +21,22 @@ import lombok.NoArgsConstructor;
 public class Availability {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int availabilityId;
-    private int employeeId;
-    private double m_start;
-    private double m_end;
-    private double t_start;
-    private double t_end;
-    private double w_start;
-    private double w_end;
-    private double th_start;
-    private double th_end;
-    private double f_start;
-    private double f_end;
-    private double s_start;
-    private double s_end;
-    private double su_start;
-    private double su_end;
+    private Long id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    private Employee employee;
+    private double mon_start;
+    private double mon_end;
+    private double tue_start;
+    private double tue_end;
+    private double wed_start;
+    private double wed_end;
+    private double thu_start;
+    private double thu_end;
+    private double fri_start;
+    private double fri_end;
+    private double sat_start;
+    private double sat_end;
+    private double sun_start;
+    private double sun_end;
 }

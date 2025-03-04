@@ -8,9 +8,9 @@ import com.shifts.backend.model.Shift;
 public interface ShiftService {
     Shift saveShift(Shift shift);
     List<Shift> getAllShifts();
-    Shift getShiftById(int id);
-    List<Shift> getAllShiftsByCalendarId(int calendarId);
-    Shift updateShift(Shift shift);
-    void deleteShift(int id);
-
+    Shift getShiftById(Long id);
+    List<Shift> getAllShiftsByCalendarId(Long calendarId);
+    Shift updateShift(Long shift);
+    void deleteShift(Long id);
+    boolean hasFilledShifts(Long id);
 }

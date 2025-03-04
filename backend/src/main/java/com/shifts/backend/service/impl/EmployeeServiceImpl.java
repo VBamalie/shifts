@@ -28,9 +28,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee getEmployeeById(int id) {
+    public Employee getEmployeeById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getEmployeeById'");
+    }
+
+    @Override
+    public Employee getAllEmployeesByCalendarId(Long calendarId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllEmployeesByCalendarId'");
     }
 
     @Override
@@ -40,15 +46,28 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(int id) {
+    public void deleteEmployee(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteEmployee'");
     }
 
     @Override
-    public Employee getAllEmployeesByCalendarId(int calendarId) {
+    public boolean isAvailable(Long id) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllEmployeesByCalendarId'");
+        throw new UnsupportedOperationException("Unimplemented method 'isAvailable'");
     }
+
+    @Override
+    public int hoursWorkedThisWeek(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'hoursWorkedThisWeek'");
+    }
+
+    @Override
+    public int hoursWorkdToday(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'hoursWorkdToday'");
+    }
+
 
 }

@@ -28,7 +28,7 @@ public class CalendarServiceImpl implements CalendarService {
     }
 
     @Override
-    public Calendar getCalendarById(int id) {
+    public Calendar getCalendarById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getCalendarById'");
     }
@@ -40,9 +40,11 @@ public class CalendarServiceImpl implements CalendarService {
     }
 
     @Override
-    public void deleteCalendar(int id) {
+    public void deleteCalendar(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteCalendar'");
     }
+
+
     
 }

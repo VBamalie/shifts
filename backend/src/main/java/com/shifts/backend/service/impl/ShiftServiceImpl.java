@@ -28,27 +28,34 @@ public class ShiftServiceImpl implements ShiftService{
     }
 
     @Override
-    public Shift getShiftById(int id) {
+    public Shift getShiftById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getShiftById'");
     }
 
     @Override
-    public Shift updateShift(Shift shift) {
+    public List<Shift> getAllShiftsByCalendarId(Long calendarId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllShiftsByCalendarId'");
+    }
+
+    @Override
+    public Shift updateShift(Long shift) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateShift'");
     }
 
     @Override
-    public void deleteShift(int id) {
+    public void deleteShift(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteShift'");
     }
 
     @Override
-    public List<Shift> getAllShiftsByCalendarId(int calendarId) {
+    public boolean hasFilledShifts(Long id) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllShiftsByCalendarId'");
+        throw new UnsupportedOperationException("Unimplemented method 'filledShifts'");
     }
+
 
 }

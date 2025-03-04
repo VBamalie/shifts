@@ -28,9 +28,15 @@ public class TimeOffRequestServiceImpl implements TimeOffRequestService {
     }
 
     @Override
-    public TimeOffRequest getTimeOffRequestById(int id) {
+    public TimeOffRequest getTimeOffRequestById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getTimeOffRequestById'");
+    }
+
+    @Override
+    public List<TimeOffRequest> getAllTimeOffRequestsByEmployeeId(Long employeeId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllTimeOffRequestsByEmployeeId'");
     }
 
     @Override
@@ -40,15 +46,11 @@ public class TimeOffRequestServiceImpl implements TimeOffRequestService {
     }
 
     @Override
-    public void deleteTimeOffRequest(int id) {
+    public void deleteTimeOffRequest(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteTimeOffRequest'");
     }
 
-    @Override
-    public List<TimeOffRequest> getAllTimeOffRequestsByEmployeeId(int employeeId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllTimeOffRequestsByEmployeeId'");
-    }
+
 
 }

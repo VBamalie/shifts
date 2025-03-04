@@ -7,6 +7,6 @@ import com.shifts.backend.model.TimeBlock;
 
 //this interface is used to access the database with the help of JPA
 @Repository
-public interface TimeBlockRepo extends JpaRepository<TimeBlock, Integer> {
+public interface TimeBlockRepo extends JpaRepository<TimeBlock, Long> {
 
 }

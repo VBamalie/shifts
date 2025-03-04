@@ -8,7 +8,7 @@ import com.shifts.backend.model.Calendar;
 public interface CalendarService {
     Calendar saveCalendar(Calendar calendar);
     List<Calendar> getAllCalendars();
-    Calendar getCalendarById(int id);
+    Calendar getCalendarById(Long id);
     Calendar updateCalendar(Calendar calendar);
-    void deleteCalendar(int id);
+    void deleteCalendar(Long id);
 }

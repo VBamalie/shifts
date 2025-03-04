@@ -27,9 +27,15 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     }
 
     @Override
-    public Availability getAvailabilityById(int id) {
+    public Availability getAvailabilityById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAvailabilityById'");
+    }
+
+    @Override
+    public Availability getAvailabilityByEmployeeId(Long employeeId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAvailabilityByEmployeeId'");
     }
 
     @Override
@@ -39,15 +45,11 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     }
 
     @Override
-    public void deleteAvailability(int id) {
+    public void deleteAvailability(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteAvailability'");
     }
 
-    @Override
-    public Availability getAvailabilityByEmployeeId(int employeeId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAvailabilityByEmployeeId'");
-    }
+
 
 }

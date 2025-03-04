@@ -28,9 +28,15 @@ public class TimeBlockServiceImpl implements TimeBlockService {
     }
 
     @Override
-    public TimeBlock getTimeBlockById(int id) {
+    public TimeBlock getTimeBlockById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getTimeBlockById'");
+    }
+
+    @Override
+    public List<TimeBlock> getAllTimeBlocksByCalendarId(Long calendarId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllTimeBlocksByCalendarId'");
     }
 
     @Override
@@ -40,15 +46,10 @@ public class TimeBlockServiceImpl implements TimeBlockService {
     }
 
     @Override
-    public void deleteTimeBlock(int id) {
+    public void deleteTimeBlock(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteTimeBlock'");
     }
 
-    @Override
-    public List<TimeBlock> getAllTimeBlocksByCalendarId(int calendarId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllTimeBlocksByCalendarId'");
-    }
 
 }
