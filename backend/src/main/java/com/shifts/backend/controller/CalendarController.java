@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.shifts.backend.model.Calendar;
 import com.shifts.backend.service.service.CalendarService;
 
@@ -20,7 +21,7 @@ public class CalendarController {
     @Autowired
     private CalendarService calendarService;
     @PostMapping("/")
-    public Calendar saveCalendar(Calendar calendar) {
+    public Calendar saveCalendar( @RequestBody Calendar calendar) {
         calendarService.saveCalendar(calendar);
         return calendar;
     }
@@ -29,11 +30,11 @@ public class CalendarController {
         return calendarService.getAllCalendars();
     }
     @GetMapping("/{id}")
-    public Calendar getCalendarById(Long id) {
+    public Calendar getCalendarById(@PathVariable("id") Long id) {
         return calendarService.getCalendarById(id);
     }
-    @PutMapping("/update/{id}")
-    public Calendar updateCalendar(Calendar calendar, @RequestBody @PathVariable("id")Long id) {
+    @PutMapping("/{id}")
+    public Calendar updateCalendar( @RequestBody Calendar calendar, @PathVariable("id") Long id) {
         return calendarService.updateCalendar(calendar, id);
     }
     @PostMapping("/delete")
