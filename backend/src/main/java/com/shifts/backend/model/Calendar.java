@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 //Calendar is a class that represents the business's calendar. It contains all employees that work for this company as well as all shifts that have been created and all timeblocks for the weekly schedule.
 @Entity
@@ -26,6 +27,7 @@ public class Calendar {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String businessName;
     @OneToMany(mappedBy = "calendar")
     private List<Employee> employees;

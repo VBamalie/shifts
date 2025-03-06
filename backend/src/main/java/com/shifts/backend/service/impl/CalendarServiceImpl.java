@@ -17,20 +17,13 @@ public class CalendarServiceImpl implements CalendarService {
     @Autowired
     private CalendarRepo calendarRepo;
 
-    public void createCalendarTest(){
-        Calendar calendar = new Calendar();
-        calendar.setBusinessName("Test Calendar");
-    }
-
     @Override
     public Calendar saveCalendar(Calendar calendar) {
-        calendarRepo.save(calendar);
-        return calendar;
+        return calendarRepo.save(calendar);
     }
 
     @Override
     public List<Calendar> getAllCalendars() {
-        createCalendarTest();
         return calendarRepo.findAll();
     }
 
