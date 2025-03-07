@@ -30,8 +30,7 @@ public class CalendarServiceImpl implements CalendarService {
 
     @Override
     public Calendar getCalendarById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCalendarById'");
+        return calendarRepo.findById(id).get();
     }
 
     @Override
@@ -46,8 +45,8 @@ public class CalendarServiceImpl implements CalendarService {
 
     @Override
     public void deleteCalendar(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCalendar'");
+        calendarRepo.deleteById(id);
+        //TODO: add functionality to delete all shifts, employees and timeblocks associated with the calendar
     }
 
 
