@@ -69,6 +69,12 @@ public class Employee {
     public void removeShift( Shift shift){
         //TODO: Removes the shift from the shifts ArrayList
     }
+    public void addTimeOffRequest(TimeOffRequest timeOffRequest){
+        //TODO: Adds the timeOffRequest to the timeOffRequests ArrayList
+    }
+    public void removeTimeOffRequest(TimeOffRequest timeOffRequest){
+        //TODO: Removes the timeOffRequest from the timeOffRequests ArrayList
+    }
     public boolean workingAShiftTheyAreUnavailableFor(int date){
         //TODO: Checks if the employee is working a shift they are unavailable for
         return false;

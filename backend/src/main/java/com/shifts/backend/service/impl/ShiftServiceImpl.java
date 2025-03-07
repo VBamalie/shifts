@@ -56,6 +56,4 @@ public class ShiftServiceImpl implements ShiftService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'filledShifts'");
     }
-
-
 }
