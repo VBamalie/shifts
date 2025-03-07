@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,6 +32,7 @@ public class Calendar {
 
     private String businessName;
     @OneToMany(mappedBy = "calendar")
+    @JsonIgnore//may change this to @JsonManagedReference
     private List<Employee> employees;
     @OneToMany(mappedBy = "calendar")
     private List<TimeBlock> timeBlocks;

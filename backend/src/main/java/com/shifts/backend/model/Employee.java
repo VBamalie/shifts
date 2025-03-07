@@ -34,7 +34,7 @@ public class Employee {
     private String lastName;
     private String email;
     private String password;
-    @ManyToOne( cascade = CascadeType.ALL, optional = false)
+    @ManyToOne( cascade = CascadeType.ALL)
     private Calendar calendar;
     @ManyToMany
     @JoinTable(

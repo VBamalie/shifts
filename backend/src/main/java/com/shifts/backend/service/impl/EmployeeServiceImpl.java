@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shifts.backend.model.Employee;
+import com.shifts.backend.repository.CalendarRepo;
 import com.shifts.backend.repository.EmployeeRepo;
 import com.shifts.backend.service.service.EmployeeService;
 
@@ -15,33 +16,31 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepo employeeRepo;
+    @Autowired
+    private CalendarRepo calendarRepo;
 
     @Override
     public Employee saveEmployee(Employee employee) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveEmployee'");
+        return employeeRepo.save(employee);
     }
 
     @Override
     public List<Employee> getAllEmployees() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllEmployees'");
+        return employeeRepo.findAll();
     }
 
     @Override
     public Employee getEmployeeById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEmployeeById'");
+        return employeeRepo.findById(id).get();
     }
 
     @Override
-    public Employee getAllEmployeesByCalendarId(Long calendarId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllEmployeesByCalendarId'");
+    public List<Employee> getAllEmployeesByCalendarId(Long calendarId) {
+        return employeeRepo.findByCalendar(calendarRepo.findById(calendarId).get());
     }
 
     @Override
-    public Employee updateEmployee(Employee employee) {
+    public Employee updateEmployee(Employee employee, Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateEmployee'");
     }

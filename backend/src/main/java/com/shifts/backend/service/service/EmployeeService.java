@@ -9,8 +9,8 @@ public interface EmployeeService {
     Employee saveEmployee(Employee employee);
     List<Employee> getAllEmployees();
     Employee getEmployeeById(Long id);
-    Employee getAllEmployeesByCalendarId(Long calendarId);
-    Employee updateEmployee(Employee employee);
+    List<Employee> getAllEmployeesByCalendarId(Long calendarId);
+    Employee updateEmployee(Employee employee, Long id);
     void deleteEmployee(Long id);
     boolean isAvailable(Long id);
     int hoursWorkedThisWeek(Long id);
