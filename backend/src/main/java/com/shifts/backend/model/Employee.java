@@ -1,9 +1,11 @@
 package com.shifts.backend.model;
 
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,8 +36,10 @@ public class Employee {
     private String lastName;
     private String email;
     private String password;
-    @ManyToOne( cascade = CascadeType.ALL)
+
+    @ManyToOne( cascade = CascadeType.PERSIST)
     private Calendar calendar;
+
     @ManyToMany
     @JoinTable(
         name = "employee_shift",
@@ -43,10 +47,12 @@ public class Employee {
         inverseJoinColumns = @JoinColumn(name = "shift_id")
     )
     private Set<Shift> shifts;//the employee table will be responsible for the joined table
-    @OneToOne(mappedBy = "employee")
+
+    @OneToOne(mappedBy = "employee",  cascade = CascadeType.ALL, orphanRemoval = true)//this makes it so that the availability entity related to the employee will be deleted when the employee is deleted.
     private Availability availability;//the employee table will not have an availability id.
-    @OneToMany(mappedBy = "employee")
-    private Set<TimeOffRequest> timeOffRequests;//the employee table will not have a timeOffRequest id.
+    
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TimeOffRequest> timeOffRequests;//the employee table will not have a timeOffRequest id.
     
 
     //Methods

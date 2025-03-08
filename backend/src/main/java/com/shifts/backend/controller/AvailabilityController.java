@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shifts.backend.model.Availability;
 import com.shifts.backend.service.service.AvailabilityService;
+import com.shifts.backend.service.service.EmployeeService;
+
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 
@@ -20,11 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AvailabilityController {
     @Autowired
     private AvailabilityService availabilityService;
+    @Autowired
+    private EmployeeService employeeService;
 
-    @PostMapping("/")
-    public Availability saveAvailability(@RequestBody Availability availability) {
-        //TODO: process POST request
-        
+    @PostMapping("/{id}")
+    public Availability saveAvailability(@RequestBody Availability availability, @PathVariable("id") Long id) {
+        availability.setEmployee(employeeService.getEmployeeById(id));
+        availabilityService.saveAvailability(availability);
         return availability;
     }
 
@@ -33,22 +38,13 @@ public class AvailabilityController {
         return availabilityService.getAllAvailabilities();
     }
     @GetMapping("/{id}")
-    public Availability getAvailabilityById(@RequestParam Long id) {
+    public Availability getAvailabilityById(@PathVariable("id") Long id) {
         return availabilityService.getAvailabilityById(id);
     }
-    @GetMapping("/employee/{employeeId}")
-    public Availability getAvailabilityByEmployeeId(@RequestParam Long employeeId){
-            return availabilityService.getAvailabilityByEmployeeId(employeeId);
+    @PutMapping("/{id}")
+    public Availability updateAvailability(@RequestBody Availability availability, @PathVariable("id") Long id) {
+        return availabilityService.updateAvailability(availability, id);
     }
-    @PostMapping("/update")
-    public Availability updateAvailability(@RequestBody Availability availability) {
-        return availabilityService.updateAvailability(availability);
-    }
-    @PostMapping("/delete")
-    public void deleteAvailability(@RequestParam Long id) {
-        availabilityService.deleteAvailability(id);
-    }
-    
-    
 
+    //no delete method required because the availability entity will be deleted when the employee is deleted.
 }

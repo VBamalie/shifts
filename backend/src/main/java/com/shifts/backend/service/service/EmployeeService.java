@@ -13,7 +13,7 @@ public interface EmployeeService {
     Employee getEmployeeById(Long id);
     List<Employee> getAllEmployeesByCalendarId(Long calendarId);
     Employee updateEmployee(Employee employee, Long id);
-    void deleteEmployee(Long id);
+    String deleteEmployee(Long id);
     Employee addShift(Long id, Shift shift);
     Employee removeShift(Long id, Shift shift);
     Employee addTimeOffRequest(Long id, TimeOffRequest timeOffRequest);

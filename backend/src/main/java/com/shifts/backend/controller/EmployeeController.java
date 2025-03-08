@@ -2,7 +2,6 @@ package com.shifts.backend.controller;
 
 import java.util.List;
 
-import org.hibernate.annotations.processing.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,5 +62,4 @@ public class EmployeeController {
     public int getWorkedHoursToday(@PathVariable("id") Long id) {
         return employeeService.hoursWorkdToday(id);
     }
-
 }

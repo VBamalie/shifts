@@ -65,8 +65,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(Long id) {
-        employeeRepo.deleteById(id);//FIXME delete is having trouble with the foreign key
+    public String deleteEmployee(Long id) {
+        employeeRepo.deleteById(id);
+        return "Employee deleted successfully";
     }
 
     @Override
