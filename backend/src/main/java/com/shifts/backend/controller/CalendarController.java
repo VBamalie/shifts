@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shifts.backend.model.Calendar;
 import com.shifts.backend.service.service.CalendarService;
-//basic CRUD operations for the Calendar class
+//basic CRUD Controller for the Calendar class
 @RestController
 @RequestMapping("/api/calendar")
 public class CalendarController {

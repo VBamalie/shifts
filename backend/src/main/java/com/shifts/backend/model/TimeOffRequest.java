@@ -1,5 +1,7 @@
 package com.shifts.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -22,7 +24,8 @@ public class TimeOffRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)//employee will persist even when the time off request is deleted
+    @JsonIgnore
     private Employee employee;
     private int date;
     private weekDayEnum weekDayEnum;

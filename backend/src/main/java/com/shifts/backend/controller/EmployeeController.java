@@ -16,6 +16,7 @@ import com.shifts.backend.model.Employee;
 import com.shifts.backend.service.service.CalendarService;
 import com.shifts.backend.service.service.EmployeeService;
 
+//Crud operations for the Employee class as well as a method to get all employees by calendar id, find out the employees's availability, and get how many hours they have worked in a day and week
 @RestController
 @RequestMapping("/api/employee")
 public class EmployeeController {

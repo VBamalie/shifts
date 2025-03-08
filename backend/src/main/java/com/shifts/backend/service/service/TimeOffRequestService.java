@@ -10,7 +10,7 @@ public interface TimeOffRequestService {
     List<TimeOffRequest> getAllTimeOffRequests();
     TimeOffRequest getTimeOffRequestById(Long id);
     List<TimeOffRequest> getAllTimeOffRequestsByEmployeeId(Long employeeId);
-    TimeOffRequest updateTimeOffRequest(TimeOffRequest timeOffRequest);
+    TimeOffRequest updateTimeOffRequest(TimeOffRequest timeOffRequest, Long id);
     void deleteTimeOffRequest(Long id);
 
 }

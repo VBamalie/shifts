@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.shifts.backend.model.TimeBlock;
 
+//Interface for the TimeBlock class
 public interface TimeBlockService {
     TimeBlockService saveTimeBlock(TimeBlock timeBlock);
     List<TimeBlock> getAllTimeBlocks();

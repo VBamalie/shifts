@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-
+//Basic Create, Read and Update Controller for Availability Class
 @RestController
 @RequestMapping("/api/availability")
 public class AvailabilityController {

@@ -9,6 +9,7 @@ import com.shifts.backend.model.TimeBlock;
 import com.shifts.backend.repository.TimeBlockRepo;
 import com.shifts.backend.service.service.TimeBlockService;
 
+//Crud operations for the TimeBlock class
 @Service
 public class TimeBlockServiceImpl implements TimeBlockService {
 

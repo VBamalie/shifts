@@ -29,6 +29,7 @@ import lombok.NoArgsConstructor;
 @Builder
 //Employee is a class that represents an employee of the business. It contains all of the employee's information as well as their availability and time off requests.
 public class Employee {
+                                             /*FIELDS */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -51,11 +52,11 @@ public class Employee {
     @OneToOne(mappedBy = "employee",  cascade = CascadeType.ALL, orphanRemoval = true)//this makes it so that the availability entity related to the employee will be deleted when the employee is deleted.
     private Availability availability;//the employee table will not have an availability id.
     
-    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)//time off requests will be deleted when the employee is deleted.
     private List<TimeOffRequest> timeOffRequests;//the employee table will not have a timeOffRequest id.
     
 
-    //Methods
+                                                /*METHODS*/
     public boolean isAvailable(int date, Enum<weekDayEnum> day, double startTime, double endTime){
             return false;
         //TODO: Checks if the employee is available for the given date, day, startTime, and endTime.

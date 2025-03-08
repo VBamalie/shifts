@@ -9,6 +9,7 @@ import com.shifts.backend.model.Shift;
 import com.shifts.backend.repository.ShiftRepo;
 import com.shifts.backend.service.service.ShiftService;
 
+//Crud operations for the Shift class
 @Service
 public class ShiftServiceImpl implements ShiftService{
 
