@@ -27,10 +27,10 @@ public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
     private TimeBlock timeBlock;
     private int date;//first day of the this shifts week, will have the format of yyyymmdd
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
     private Calendar calendar;
     @ManyToMany(mappedBy = "shifts")
     List<Employee> employeesWorking;
