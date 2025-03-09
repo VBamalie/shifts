@@ -24,8 +24,8 @@ public class TimeBlock {
     private double startTime;
     private double endTime;
     private int shiftsRequired;
-    private Enum<weekDayEnum> weekDayEnum;
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    private weekDayEnum weekDayEnum;
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
     private Calendar calendar;
 
 
