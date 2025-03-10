@@ -6,11 +6,11 @@ import com.shifts.backend.model.TimeBlock;
 
 //Interface for the TimeBlock class
 public interface TimeBlockService {
-    TimeBlock saveTimeBlock(TimeBlock timeBlock);
+    TimeBlockService saveTimeBlock(TimeBlock timeBlock);
     List<TimeBlock> getAllTimeBlocks();
     TimeBlock getTimeBlockById(Long id);
     List<TimeBlock> getAllTimeBlocksByCalendarId(Long calendarId);
-    TimeBlock updateTimeBlock(TimeBlock timeBlock, Long id);
+    TimeBlock updateTimeBlock(TimeBlock timeBlock);
     void deleteTimeBlock(Long id);
 
 }
