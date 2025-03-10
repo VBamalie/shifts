@@ -18,38 +18,33 @@ public class ShiftServiceImpl implements ShiftService{
 
     @Override
     public Shift saveShift(Shift shift) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveShift'");
+        return shiftRepo.save(shift);
     }
 
     @Override
     public List<Shift> getAllShifts() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllShifts'");
+        return shiftRepo.findAll();
     }
 
     @Override
     public Shift getShiftById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getShiftById'");
+        return shiftRepo.findById(id).get();
     }
 
     @Override
     public List<Shift> getAllShiftsByCalendarId(Long calendarId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllShiftsByCalendarId'");
-    }
-
-    @Override
-    public Shift updateShift(Shift shift) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateShift'");
+        return shiftRepo.findByCalendar(calendarId);
     }
 
     @Override
     public void deleteShift(Long id) {
+        shiftRepo.deleteById(id);
+    }
+
+    @Override
+    public Shift updateShift(Shift shift, Long id) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteShift'");
+        throw new UnsupportedOperationException("Unimplemented method 'updateShift'");
     }
 
     @Override
@@ -57,4 +52,6 @@ public class ShiftServiceImpl implements ShiftService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'filledShifts'");
     }
+
+
 }

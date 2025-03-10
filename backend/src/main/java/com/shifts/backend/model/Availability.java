@@ -1,5 +1,6 @@
 package com.shifts.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -26,7 +27,7 @@ public class Availability {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToOne
-    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;//this table will have a foreign key of the employee id. the employee table will not have an availability id.
     private double mon_start;
