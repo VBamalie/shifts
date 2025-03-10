@@ -63,7 +63,8 @@ public class TimeBlockServiceImpl implements TimeBlockService {
     }
 
     @Override
-    public void deleteTimeBlock(Long id) {
+    public String deleteTimeBlock(Long id) {
         timeBlockRepo.deleteById(id);
+        return "TimeBlock deleted with id: " + id;
     }
 }

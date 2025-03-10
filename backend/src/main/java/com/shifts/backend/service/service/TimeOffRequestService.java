@@ -11,6 +11,6 @@ public interface TimeOffRequestService {
     TimeOffRequest getTimeOffRequestById(Long id);
     List<TimeOffRequest> getAllTimeOffRequestsByEmployeeId(Long employeeId);
     TimeOffRequest updateTimeOffRequest(TimeOffRequest timeOffRequest, Long id);
-    void deleteTimeOffRequest(Long id);
+    String deleteTimeOffRequest(Long id);
 
 }

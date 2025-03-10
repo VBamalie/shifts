@@ -14,8 +14,11 @@ import com.shifts.backend.service.service.CalendarService;
 ///Crud operations for the Calendar class
 public class CalendarServiceImpl implements CalendarService {
     
-    @Autowired
-    private CalendarRepo calendarRepo;
+    private final CalendarRepo calendarRepo;
+
+    public CalendarServiceImpl(CalendarRepo calendarRepo) {
+        this.calendarRepo = calendarRepo;
+    }
 
     @Override
     public Calendar saveCalendar(Calendar calendar) {
@@ -30,25 +33,29 @@ public class CalendarServiceImpl implements CalendarService {
 
     @Override
     public Calendar getCalendarById(Long id) {
-        return calendarRepo.findById(id).get();
+        return calendarRepo.findById(id)
+        .orElseThrow(() -> new RuntimeException("Calendar not found with id: " + id));
     }
 
     @Override
     public Calendar updateCalendar(Calendar calendar, long id) {
-        Calendar db = calendarRepo.findById(id).get();
-        if(Objects.nonNull(calendar.getBusinessName()) && !"".equalsIgnoreCase(calendar.getBusinessName())){
-            db.setBusinessName(calendar.getBusinessName());
-        }
-
-        return calendarRepo.save(db);
+        return calendarRepo.findById(id)
+            .map(db -> {
+                if(Objects.nonNull(calendar.getBusinessName()) && !"".equalsIgnoreCase(calendar.getBusinessName())){
+                    db.setBusinessName(calendar.getBusinessName());
+                }
+                return calendarRepo.save(db);
+            })
+            .orElseThrow(() -> new RuntimeException("Calendar not found with id: " + id));
     }
 
     @Override
-    public void deleteCalendar(Long id) {
+    public String deleteCalendar(Long id) {
         calendarRepo.deleteById(id);
-        //TODO: add functionality to delete all shifts, employees and timeblocks associated with the calendar
+        return "Calendar deleted with id: " + id;
     }
 
 
     
+
 }

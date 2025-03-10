@@ -14,8 +14,8 @@ import com.shifts.backend.model.TimeBlock;
 public interface ShiftRepo extends JpaRepository<Shift, Long> {
 
 
-    List<Shift> findByCalendar(Calendar calendarId);
+    List<Shift> findByCalendar(Calendar calendarId);//this method is used to find all shifts by calendar it is created by the jpa framework using method name conventions
 
-    Shift findByTimeBlock(TimeBlock timeBlock);
+    Shift findByTimeBlock(TimeBlock timeBlock);//this method is used to find a shift by time block it is created by the jpa framework using method name conventions
 
 }

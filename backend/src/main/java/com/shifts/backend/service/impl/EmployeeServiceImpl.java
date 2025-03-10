@@ -6,7 +6,6 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shifts.backend.model.Calendar;
 import com.shifts.backend.model.Employee;
 import com.shifts.backend.model.Shift;
 import com.shifts.backend.model.TimeOffRequest;
@@ -15,7 +14,9 @@ import com.shifts.backend.repository.EmployeeRepo;
 import com.shifts.backend.service.service.EmployeeService;
 
 @Service
-///Crud operations for the Employee class as well as some extra data found through 
+///Crud operations for the Employee class. 
+///This class will also handle adding employees to a shift and adding time off requests.
+///It will also handl some analytics the front end will use to display some flags for employees working over hours and outside of their availability.
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
@@ -35,12 +36,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeById(Long id) {
-        return employeeRepo.findById(id).get();
+        return employeeRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
     }
 
     @Override
     public List<Employee> getAllEmployeesByCalendarId(Long calendarId) {
-        return employeeRepo.findByCalendar(calendarRepo.findById(calendarId).get());
+        return calendarRepo.findById(calendarId)
+                .map(calendar -> employeeRepo.findByCalendar(calendar))
+                .orElseThrow(() -> new RuntimeException("Calendar not found with id: " + calendarId));
     }
 
     @Override
@@ -99,18 +103,4 @@ public class EmployeeServiceImpl implements EmployeeService {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'removeShift'");
     }
-
-    @Override
-    public Employee addTimeOffRequest(Long id, TimeOffRequest timeOffRequest) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addTimeOffRequest'");
-    }
-
-    @Override
-    public Employee removeTimeOffRequest(Long id, TimeOffRequest timeOffRequest) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeTimeOffRequest'");
-    }
-
-
 }

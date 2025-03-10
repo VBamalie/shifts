@@ -22,17 +22,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//Shift is a class that represents a shift. It contains what timeblock belongs to this table, the first date of this shift's week, the calendar that the shift belongs to, and the employees that are working the shift.
+//Shift is a class that represents a shift.
+//One entity will contain the timeblock that it was created from, the first date of this shift's week, the calendar that the shift belongs to, and the employees that are working the shift.
+//This class also has a many to many relationship with the employee class.
 public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)//timeblock will persist even if the shift entity is deleted. it is required for every shift to have a timeblock
     private TimeBlock timeBlock;
     private int date;//first day of the this shifts week, will have the format of yyyymmdd
-    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)//calendar will persist even if the shift entity is deleted. it is required for every shift to have a calendar
     private Calendar calendar;
-    @ManyToMany(mappedBy = "shifts")
+    @ManyToMany(mappedBy = "shifts")//many to many relationship will be referenced in a table called employee_shift
     List<Employee> employeesWorking;
 
 

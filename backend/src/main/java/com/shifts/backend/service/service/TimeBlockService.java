@@ -11,6 +11,6 @@ public interface TimeBlockService {
     TimeBlock getTimeBlockById(Long id);
     List<TimeBlock> getAllTimeBlocksByCalendarId(Long calendarId);
     TimeBlock updateTimeBlock(TimeBlock timeBlock, Long id);
-    void deleteTimeBlock(Long id);
+    String deleteTimeBlock(Long id);
 
 }

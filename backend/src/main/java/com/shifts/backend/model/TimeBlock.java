@@ -24,14 +24,13 @@ public class TimeBlock {
     private double startTime;
     private double endTime;
     private int shiftsRequired;
-    private weekDayEnum weekDayEnum;
-    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+    private WeekDayEnum weekDayEnum;
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)//calendar will persist even if the timeblock entity is deleted. it is required for every timeblock to have a calendar
     private Calendar calendar;
 
 
 
     //Methods
-    //FIXME: Refactor these methods into a service layer?
     public Shift createShift(String Date){
         //TODO: Creates an empty shift based on the time block with the given date
         return null;

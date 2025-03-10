@@ -11,7 +11,7 @@ import com.shifts.backend.repository.AvailabilityRepo;
 import com.shifts.backend.service.service.AvailabilityService;
 
 @Service
-//Crud operations for the Availability class
+//Crud operations for the Availability class. Deleting an availability will be handled by the Employee class.
 public class AvailabilityServiceImpl implements AvailabilityService {
     @Autowired
     private  AvailabilityRepo availabilityRepo;

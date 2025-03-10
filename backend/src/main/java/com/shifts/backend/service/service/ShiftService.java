@@ -11,6 +11,6 @@ public interface ShiftService {
     Shift getShiftById(Long id);
     List<Shift> getAllShiftsByCalendarId(Long calendarId);
     Shift getShiftByTimeBlockId(Long timeBlockId);
-    void deleteShift(Long id);
+    String deleteShift(Long id);
     boolean hasFilledShifts(Long id);
 }

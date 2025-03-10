@@ -27,9 +27,10 @@ public class Availability {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToOne
-    @JsonIgnore
+    @JsonIgnore//This prevents a circular reference error when the employee object is serialized.
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
-    private Employee employee;//this table will have a foreign key of the employee id. the employee table will not have an availability id.
+    private Employee employee;
+    
     private double mon_start;
     private double mon_end;
     private double tue_start;

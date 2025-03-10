@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -38,10 +37,10 @@ public class Employee {
     private Long id;
     private String firstName;
     private String lastName;
-    private String email;
-    private String password;
+    private String email;//TODO: make email unique
+    private String password;//TODO: encrypt password
 
-    @ManyToOne( cascade = CascadeType.PERSIST)
+    @ManyToOne( cascade = CascadeType.PERSIST, optional = false)//calendar will persist even if the employee entity is deleted. it is required for every employee to have a calendar
     private Calendar calendar;
 
     @ManyToMany
@@ -49,19 +48,19 @@ public class Employee {
         name = "employee_shift",
         joinColumns = @JoinColumn(name = "employee_id"),
         inverseJoinColumns = @JoinColumn(name = "shift_id")
-    )
-    @JsonIgnore
-    private Set<Shift> shifts;//the employee table will be responsible for the joined table
+    )//many to many relationship will be referenced in a table called employee_shift
+    @JsonIgnore//this is to prevent infinite recursion when serializing the employee object to json
+    private Set<Shift> shifts;
 
     @OneToOne(mappedBy = "employee",  cascade = CascadeType.ALL, orphanRemoval = true)//this makes it so that the availability entity related to the employee will be deleted when the employee is deleted.
-    private Availability availability;//the employee table will not have an availability id.
+    private Availability availability;
     
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)//time off requests will be deleted when the employee is deleted.
-    private List<TimeOffRequest> timeOffRequests;//the employee table will not have a timeOffRequest id.
+    private List<TimeOffRequest> timeOffRequests;
     
 
                                                 /*METHODS*/
-    public boolean isAvailable(int date, Enum<weekDayEnum> day, double startTime, double endTime){
+    public boolean isAvailable(int date, Enum<WeekDayEnum> day, double startTime, double endTime){
             return false;
         //TODO: Checks if the employee is available for the given date, day, startTime, and endTime.
     }
@@ -70,7 +69,7 @@ public class Employee {
         //TODO: filter the shifts with the given date and return the sum of the shifts hours
         return 0;
     }
-    public double hoursWorkedToday(int date, Enum<weekDayEnum> day){
+    public double hoursWorkedToday(int date, Enum<WeekDayEnum> day){
         //TODO: filter the shifts with the given date and day and return the sum of the shifts hours
         return 0;
     }
@@ -79,12 +78,6 @@ public class Employee {
     }
     public void removeShift( Shift shift){
         //TODO: Removes the shift from the shifts ArrayList
-    }
-    public void addTimeOffRequest(TimeOffRequest timeOffRequest){
-        //TODO: Adds the timeOffRequest to the timeOffRequests ArrayList
-    }
-    public void removeTimeOffRequest(TimeOffRequest timeOffRequest){
-        //TODO: Removes the timeOffRequest from the timeOffRequests ArrayList
     }
     public boolean workingAShiftTheyAreUnavailableFor(int date){
         //TODO: Checks if the employee is working a shift they are unavailable for

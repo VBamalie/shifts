@@ -43,8 +43,9 @@ public class ShiftServiceImpl implements ShiftService{
     }
 
     @Override
-    public void deleteShift(Long id) {
+    public String deleteShift(Long id) {
         shiftRepo.deleteById(id);
+        return "Shift deleted with id: " + id;
     }
 
     @Override

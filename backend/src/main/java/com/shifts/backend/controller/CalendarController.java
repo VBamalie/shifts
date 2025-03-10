@@ -19,8 +19,12 @@ import com.shifts.backend.service.service.CalendarService;
 @RestController
 @RequestMapping("/api/calendar")
 public class CalendarController {
-    @Autowired
-    private CalendarService calendarService;
+
+    private final CalendarService calendarService;
+    CalendarController(CalendarService calendarService) {
+        this.calendarService = calendarService;
+    }
+    
     @PostMapping("/")
     public Calendar saveCalendar(@RequestBody Calendar calendar) {
         calendarService.saveCalendar(calendar);

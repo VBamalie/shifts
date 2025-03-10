@@ -1,26 +1,23 @@
 package com.shifts.backend.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
-//Calendar is a class that represents the business's calendar. It contains all employees that work for this company as well as all shifts that have been created and all timeblocks for the weekly schedule.
+//Calendar is a class that represents the business's calendar. 
+//It contains all employees that work for this company as well as all shifts that have been created and all timeblocks for the weekly schedule.
+//Employee, timeblocks, and shifts will only be accessble in the server side for the autocreate function. client side will access all Employees, TimeBlocks, and Shifts through their respective controllers
 @Entity
 @Data
 @NoArgsConstructor

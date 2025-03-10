@@ -21,10 +21,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 @RequestMapping("/api/availability")
 public class AvailabilityController {
-    @Autowired
-    private AvailabilityService availabilityService;
-    @Autowired
-    private EmployeeService employeeService;
+    private final AvailabilityService availabilityService;
+
+    private final EmployeeService employeeService;
+
+    public AvailabilityController(AvailabilityService availabilityService, EmployeeService employeeService) {
+        this.availabilityService = availabilityService;
+        this.employeeService = employeeService;
+    }
 
     @PostMapping("/{id}")
     public Availability saveAvailability(@RequestBody Availability availability, @PathVariable("id") Long id) {

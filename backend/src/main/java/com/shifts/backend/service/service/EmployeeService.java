@@ -16,8 +16,6 @@ public interface EmployeeService {
     String deleteEmployee(Long id);
     Employee addShift(Long id, Shift shift);
     Employee removeShift(Long id, Shift shift);
-    Employee addTimeOffRequest(Long id, TimeOffRequest timeOffRequest);
-    Employee removeTimeOffRequest(Long id, TimeOffRequest timeOffRequest);
     boolean isAvailable(Long id);
     int hoursWorkedThisWeek(Long id);
     int hoursWorkdToday(Long id);

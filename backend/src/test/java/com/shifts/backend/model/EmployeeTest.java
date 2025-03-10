@@ -19,9 +19,9 @@ public class EmployeeTest {
         employees.add(employee);
         calendar.setEmployees(employees);
         //create a time blocks
-        TimeBlock timeBlock1 = new TimeBlock(1L, 1.0, 2.0, 1, weekDayEnum.mon, calendar);
-        TimeBlock timeBlock2 = new TimeBlock(2L, 3.0, 4.0, 2, weekDayEnum.tue, calendar);
-        TimeBlock timeBlock3 = new TimeBlock(3L, 5.0, 6.0, 3, weekDayEnum.wed, calendar);
+        TimeBlock timeBlock1 = new TimeBlock(1L, 1.0, 2.0, 1, WeekDayEnum.MON, calendar);
+        TimeBlock timeBlock2 = new TimeBlock(2L, 3.0, 4.0, 2, WeekDayEnum.TUE, calendar);
+        TimeBlock timeBlock3 = new TimeBlock(3L, 5.0, 6.0, 3, WeekDayEnum.WED, calendar);
         List<TimeBlock> timeBlocks = new ArrayList<>();
         timeBlocks.add(timeBlock1);
         timeBlocks.add(timeBlock2);
@@ -55,13 +55,13 @@ public class EmployeeTest {
     @Test
     void testHoursWorkedToday() {
         Calendar calendar = makeCalendar();
-        assert calendar.getEmployees().get(0).hoursWorkedToday(01012020,weekDayEnum.mon) == 1.0;
+        assert calendar.getEmployees().get(0).hoursWorkedToday(01012020,WeekDayEnum.MON) == 1.0;
     }
 
     @Test
     void testIsAvailable() {
         Calendar calendar = makeCalendar();
-        assert calendar.getEmployees().get(0).isAvailable(01012020,weekDayEnum.mon, 1.0, 2.0);
+        assert calendar.getEmployees().get(0).isAvailable(01012020,WeekDayEnum.MON, 1.0, 2.0);
     }
 
     @Test

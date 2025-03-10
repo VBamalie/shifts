@@ -56,7 +56,8 @@ public class TimeOffRequestServiceImpl implements TimeOffRequestService {
     }
 
     @Override
-    public void deleteTimeOffRequest(Long id) {
+    public String deleteTimeOffRequest(Long id) {
         timeOffRequestRepo.deleteById(id);
+        return "TimeOffRequest deleted successfully";
     }
 }
