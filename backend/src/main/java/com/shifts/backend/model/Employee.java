@@ -53,7 +53,7 @@ public class Employee {
     private Set<Shift> shifts;
 
     @OneToOne(mappedBy = "employee",  cascade = CascadeType.ALL, orphanRemoval = true)//this makes it so that the availability entity related to the employee will be deleted when the employee is deleted.
-    private Availability availability;
+    private EmployeeAvailability availability;
     
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)//time off requests will be deleted when the employee is deleted.
     private List<TimeOffRequest> timeOffRequests;

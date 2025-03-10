@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 //Availability is a class that represents a single employee's availability. It contains the employee's availability for each day of the week. it has a one to one relationship with the employee class.
-public class Availability {
+public class EmployeeAvailability {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

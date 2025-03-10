@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shifts.backend.model.Availability;
-import com.shifts.backend.service.service.AvailabilityService;
+import com.shifts.backend.model.EmployeeAvailability;
+import com.shifts.backend.service.service.EmployeeAvailabilityService;
 import com.shifts.backend.service.service.EmployeeService;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,32 +20,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 @RequestMapping("/api/availability")
 public class AvailabilityController {
-    private final AvailabilityService availabilityService;
+    private final EmployeeAvailabilityService availabilityService;
 
     private final EmployeeService employeeService;
 
-    public AvailabilityController(AvailabilityService availabilityService, EmployeeService employeeService) {
+    public AvailabilityController(EmployeeAvailabilityService availabilityService, EmployeeService employeeService) {
         this.availabilityService = availabilityService;
         this.employeeService = employeeService;
     }
 
     @PostMapping("/{id}")
-    public Availability saveAvailability(@RequestBody Availability availability, @PathVariable("id") Long id) {
+    public EmployeeAvailability saveAvailability(@RequestBody EmployeeAvailability availability, @PathVariable("id") Long id) {
         availability.setEmployee(employeeService.getEmployeeById(id));
         availabilityService.saveAvailability(availability);
         return availability;
     }
 
     @GetMapping("/")
-    public List<Availability> getAllAvailabilities() {
+    public List<EmployeeAvailability> getAllAvailabilities() {
         return availabilityService.getAllAvailabilities();
     }
     @GetMapping("/{id}")
-    public Availability getAvailabilityById(@PathVariable("id") Long id) {
+    public EmployeeAvailability getAvailabilityById(@PathVariable("id") Long id) {
         return availabilityService.getAvailabilityById(id);
     }
     @PutMapping("/{id}")
-    public Availability updateAvailability(@RequestBody Availability availability, @PathVariable("id") Long id) {
+    public EmployeeAvailability updateAvailability(@RequestBody EmployeeAvailability availability, @PathVariable("id") Long id) {
         return availabilityService.updateAvailability(availability, id);
     }
 

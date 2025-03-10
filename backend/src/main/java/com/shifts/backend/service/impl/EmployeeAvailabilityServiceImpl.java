@@ -5,37 +5,37 @@ import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
-import com.shifts.backend.model.Availability;
+import com.shifts.backend.model.EmployeeAvailability;
 import com.shifts.backend.repository.AvailabilityRepo;
-import com.shifts.backend.service.service.AvailabilityService;
+import com.shifts.backend.service.service.EmployeeAvailabilityService;
 
 @Service
 //Crud operations for the Availability class. Deleting an availability will be handled by the Employee class.
-public class AvailabilityServiceImpl implements AvailabilityService {
+public class EmployeeAvailabilityServiceImpl implements EmployeeAvailabilityService {
     private final AvailabilityRepo availabilityRepo;
 
-    AvailabilityServiceImpl(AvailabilityRepo availabilityRepo){
+    EmployeeAvailabilityServiceImpl(AvailabilityRepo availabilityRepo){
         this.availabilityRepo = availabilityRepo;
     }
 
     @Override
-    public Availability saveAvailability(Availability availability) {
+    public EmployeeAvailability saveAvailability(EmployeeAvailability availability) {
         return availabilityRepo.save(availability);
     }
 
     @Override
-    public List<Availability> getAllAvailabilities() {
+    public List<EmployeeAvailability> getAllAvailabilities() {
         return availabilityRepo.findAll();
     }
 
     @Override
-    public Availability getAvailabilityById(Long id) {
+    public EmployeeAvailability getAvailabilityById(Long id) {
         return availabilityRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Availability not found with id: " + id));
     }
 
     @Override
-    public Availability updateAvailability(Availability availability, Long id) {
+    public EmployeeAvailability updateAvailability(EmployeeAvailability availability, Long id) {
         return availabilityRepo.findById(id)
         .map(db -> {
             if(Objects.nonNull(availability.getMon_start())){
