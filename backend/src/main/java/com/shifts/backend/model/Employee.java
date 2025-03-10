@@ -1,7 +1,6 @@
 package com.shifts.backend.model;
 
 import java.util.List;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -50,7 +49,7 @@ public class Employee {
         inverseJoinColumns = @JoinColumn(name = "shift_id")
     )//many to many relationship will be referenced in a table called employee_shift
     @JsonIgnore//this is to prevent infinite recursion when serializing the employee object to json
-    private Set<Shift> shifts;
+    private List<Shift> shifts;
 
     @OneToOne(mappedBy = "employee",  cascade = CascadeType.ALL, orphanRemoval = true)//this makes it so that the availability entity related to the employee will be deleted when the employee is deleted.
     private Availability availability;

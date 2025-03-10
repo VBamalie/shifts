@@ -48,8 +48,8 @@ public class TimeOffRequestServiceImpl implements TimeOffRequestService {
     public TimeOffRequest updateTimeOffRequest(TimeOffRequest timeOffRequest, Long id) {
         return timeOffRequestRepo.findById(id)
         .map(db -> {
-            if(Objects.nonNull(timeOffRequest.getDate())){
-                db.setDate(timeOffRequest.getDate());
+            if(Objects.nonNull(timeOffRequest.getFirstDate())){
+                db.setFirstDate(timeOffRequest.getFirstDate());
             }
             if(Objects.nonNull(timeOffRequest.getWeekDayEnum())){
                 db.setWeekDayEnum(timeOffRequest.getWeekDayEnum());

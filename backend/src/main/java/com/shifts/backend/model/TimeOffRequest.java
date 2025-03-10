@@ -27,6 +27,6 @@ public class TimeOffRequest {
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)//employee will persist even when the time off request is deleted
     @JsonIgnore//This prevents a circular reference error when the employee object is serialized.
     private Employee employee;
-    private int date;
+    private int firstDate;
     private WeekDayEnum weekDayEnum;
 }
