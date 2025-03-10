@@ -33,7 +33,7 @@ public class Calendar {
 
     private String businessName;
     @OneToMany(mappedBy = "calendar")
-    @JsonBackReference
+    @JsonIgnore
     private List<Employee> employees;
     @OneToMany(mappedBy = "calendar")
     @JsonIgnore

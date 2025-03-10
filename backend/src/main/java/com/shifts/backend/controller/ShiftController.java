@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shifts.backend.model.Shift;
+import com.shifts.backend.service.service.TimeBlockService;
 import com.shifts.backend.service.service.ShiftService;
 
 @RestController
@@ -20,9 +21,13 @@ import com.shifts.backend.service.service.ShiftService;
 public class ShiftController {
     @Autowired
     private ShiftService shiftService;
+    @Autowired
+    private TimeBlockService timeBlockService;
 
-    @PostMapping("/")
-    public Shift saveShift(Shift shift) {
+    @PostMapping("/{id}")
+    public Shift saveShift(@RequestBody Shift shift, @PathVariable("id") Long id) {
+        shift.setTimeBlock(timeBlockService.getTimeBlockById(id));
+        shift.setCalendar(shift.getTimeBlock().getCalendar());
         return shiftService.saveShift(shift);
     }
     @GetMapping("/")
@@ -33,17 +38,20 @@ public class ShiftController {
     public Shift getShiftById(@PathVariable("id") Long id) {
         return shiftService.getShiftById(id);
     }
-    @PutMapping("/{id}")
-    public Shift updateShift(@RequestBody Shift shift, @PathVariable("id") Long id) {
-        return shiftService.updateShift(shift, id);
-    }
+
+    //No Put method because employees will be added from the employee controller. Every other field is final
+
     @DeleteMapping("/{id}")
     public void deleteShift(@PathVariable Long id) {
         shiftService.deleteShift(id);
     }
     @GetMapping("/calendar/{id}")
-    public List<Shift> getAllShiftsByCalendarId(Long calendarId) {
+    public List<Shift> getAllShiftsByCalendarId(@PathVariable("id") Long calendarId) {
         return shiftService.getAllShiftsByCalendarId(calendarId);
+    }
+    @GetMapping("/timeblock/{id}")
+    public Shift getShiftByTimeBlockID(@PathVariable("id") Long timeBlockId) {
+        return shiftService.getShiftByTimeBlockId(timeBlockId);
     }
     @GetMapping("/filled/{id}")
     public boolean hasFilledShifts(Long id) {

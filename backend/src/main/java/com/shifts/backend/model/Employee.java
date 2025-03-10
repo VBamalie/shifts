@@ -3,6 +3,7 @@ package com.shifts.backend.model;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -41,7 +42,6 @@ public class Employee {
     private String password;
 
     @ManyToOne( cascade = CascadeType.PERSIST)
-    @JsonManagedReference
     private Calendar calendar;
 
     @ManyToMany
@@ -50,10 +50,10 @@ public class Employee {
         joinColumns = @JoinColumn(name = "employee_id"),
         inverseJoinColumns = @JoinColumn(name = "shift_id")
     )
+    @JsonIgnore
     private Set<Shift> shifts;//the employee table will be responsible for the joined table
 
     @OneToOne(mappedBy = "employee",  cascade = CascadeType.ALL, orphanRemoval = true)//this makes it so that the availability entity related to the employee will be deleted when the employee is deleted.
-    @JsonManagedReference
     private Availability availability;//the employee table will not have an availability id.
     
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)//time off requests will be deleted when the employee is deleted.

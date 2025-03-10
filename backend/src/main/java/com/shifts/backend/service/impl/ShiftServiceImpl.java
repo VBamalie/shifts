@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shifts.backend.model.Shift;
+import com.shifts.backend.repository.CalendarRepo;
 import com.shifts.backend.repository.ShiftRepo;
+import com.shifts.backend.repository.TimeBlockRepo;
 import com.shifts.backend.service.service.ShiftService;
 
 //Crud operations for the Shift class
@@ -15,6 +17,10 @@ public class ShiftServiceImpl implements ShiftService{
 
     @Autowired
     private ShiftRepo shiftRepo;
+    @Autowired
+    private CalendarRepo calendarRepo;
+    @Autowired
+    private TimeBlockRepo timeBlockRepo;
 
     @Override
     public Shift saveShift(Shift shift) {
@@ -33,7 +39,7 @@ public class ShiftServiceImpl implements ShiftService{
 
     @Override
     public List<Shift> getAllShiftsByCalendarId(Long calendarId) {
-        return shiftRepo.findByCalendar(calendarId);
+        return shiftRepo.findByCalendar(calendarRepo.findById(calendarId).get());
     }
 
     @Override
@@ -42,15 +48,14 @@ public class ShiftServiceImpl implements ShiftService{
     }
 
     @Override
-    public Shift updateShift(Shift shift, Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateShift'");
-    }
-
-    @Override
     public boolean hasFilledShifts(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'filledShifts'");
+    }
+
+    @Override
+    public Shift getShiftByTimeBlockId(Long timeBlockId) {
+        return shiftRepo.findByTimeBlock(timeBlockRepo.findById(timeBlockId).get());
     }
 
 
