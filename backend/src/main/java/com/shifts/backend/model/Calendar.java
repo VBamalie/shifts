@@ -35,7 +35,9 @@ public class Calendar {
     @JsonIgnore//may change this to @JsonManagedReference
     private List<Employee> employees;
     @OneToMany(mappedBy = "calendar")
+    @JsonIgnore
     private List<TimeBlock> timeBlocks;
+    @JsonIgnore
     @OneToMany(mappedBy = "calendar")
     private List<Shift> shifts;
 
