@@ -3,7 +3,6 @@ package com.shifts.backend.service.impl;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shifts.backend.model.Availability;
@@ -13,8 +12,11 @@ import com.shifts.backend.service.service.AvailabilityService;
 @Service
 //Crud operations for the Availability class. Deleting an availability will be handled by the Employee class.
 public class AvailabilityServiceImpl implements AvailabilityService {
-    @Autowired
-    private  AvailabilityRepo availabilityRepo;
+    private final AvailabilityRepo availabilityRepo;
+
+    AvailabilityServiceImpl(AvailabilityRepo availabilityRepo){
+        this.availabilityRepo = availabilityRepo;
+    }
 
     @Override
     public Availability saveAvailability(Availability availability) {
@@ -28,7 +30,8 @@ public class AvailabilityServiceImpl implements AvailabilityService {
 
     @Override
     public Availability getAvailabilityById(Long id) {
-        return availabilityRepo.findById(id).get();
+        return availabilityRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Availability not found with id: " + id));
     }
 
     @Override
@@ -80,6 +83,4 @@ public class AvailabilityServiceImpl implements AvailabilityService {
             return availabilityRepo.save(db);
         }).orElseThrow(() -> new RuntimeException("Availability not found with id: " + id));    
     }
-
-
 }

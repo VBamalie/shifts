@@ -2,7 +2,6 @@ package com.shifts.backend.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +19,13 @@ import com.shifts.backend.service.service.EmployeeService;
 @RestController
 @RequestMapping("/api/employee")
 public class EmployeeController {
-    @Autowired
-    private EmployeeService employeeService;
-    @Autowired
-    private CalendarService calendarService;
+    private final EmployeeService employeeService;
+    private final CalendarService calendarService;
+
+    EmployeeController(EmployeeService employeeService, CalendarService calendarService) {
+        this.employeeService = employeeService;
+        this.calendarService = calendarService;
+    }
     
     @PostMapping("/{id}")
     public Employee saveEmployee(@RequestBody Employee employee, @PathVariable("id") Long id) {

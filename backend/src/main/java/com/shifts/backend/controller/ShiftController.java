@@ -2,12 +2,10 @@ package com.shifts.backend.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,10 +17,13 @@ import com.shifts.backend.service.service.ShiftService;
 @RestController
 @RequestMapping("/api/shift")
 public class ShiftController {
-    @Autowired
-    private ShiftService shiftService;
-    @Autowired
-    private TimeBlockService timeBlockService;
+    private final ShiftService shiftService;
+    private final TimeBlockService timeBlockService;
+
+    ShiftController(ShiftService shiftService, TimeBlockService timeBlockService) {
+        this.shiftService = shiftService;
+        this.timeBlockService = timeBlockService;
+    }
 
     @PostMapping("/{id}")
     public Shift saveShift(@RequestBody Shift shift, @PathVariable("id") Long id) {
@@ -54,7 +55,7 @@ public class ShiftController {
         return shiftService.getShiftByTimeBlockId(timeBlockId);
     }
     @GetMapping("/filled/{id}")
-    public boolean hasFilledShifts(Long id) {
+    public boolean hasFilledShifts(@PathVariable Long id) {
         return shiftService.hasFilledShifts(id);
     }
 }

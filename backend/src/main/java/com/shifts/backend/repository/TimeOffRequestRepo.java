@@ -12,7 +12,7 @@ import com.shifts.backend.model.TimeOffRequest;
 @Repository
 public interface TimeOffRequestRepo extends JpaRepository<TimeOffRequest, Long> {
 
-    List<TimeOffRequest> findByEmployee(Employee employee);
+    List<TimeOffRequest> findByEmployee(Employee employee);//finds all timeoffrequests that belong to a specific employee
 
     
 } 

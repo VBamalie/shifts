@@ -3,7 +3,6 @@ package com.shifts.backend.service.impl;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shifts.backend.model.TimeBlock;
@@ -15,10 +14,13 @@ import com.shifts.backend.service.service.TimeBlockService;
 @Service
 public class TimeBlockServiceImpl implements TimeBlockService {
 
-    @Autowired
     private TimeBlockRepo timeBlockRepo;
-    @Autowired
     private CalendarRepo calendarRepo;
+
+    TimeBlockServiceImpl(TimeBlockRepo timeBlockRepo, CalendarRepo calendarRepo){
+        this.timeBlockRepo = timeBlockRepo;
+        this.calendarRepo = calendarRepo;
+    }
 
     @Override
     public TimeBlock saveTimeBlock(TimeBlock timeBlock) {

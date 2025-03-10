@@ -12,6 +12,6 @@ import com.shifts.backend.model.TimeBlock;
 @Repository
 public interface TimeBlockRepo extends JpaRepository<TimeBlock, Long> {
 
-    List<TimeBlock> findByCalendar(Calendar calendar);
+    List<TimeBlock> findByCalendar(Calendar calendar);//finds all timeblocks that belong to a specific calendar
 
 }

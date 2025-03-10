@@ -31,7 +31,7 @@ public class TimeBlock {
 
 
     //Methods
-    public Shift createShift(String Date){
+    public Shift createShift(String date){
         //TODO: Creates an empty shift based on the time block with the given date
         return null;
     }

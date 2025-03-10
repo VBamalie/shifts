@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.shifts.backend.model.Employee;
 import com.shifts.backend.model.Shift;
-import com.shifts.backend.model.TimeOffRequest;
 
 //this is the interface used for employee service impl
 public interface EmployeeService {

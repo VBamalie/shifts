@@ -2,7 +2,6 @@ package com.shifts.backend.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +19,13 @@ import com.shifts.backend.service.service.TimeOffRequestService;
 @RestController
 @RequestMapping("/api/timeOffRequest")
 public class TimeOffRequestController {
-    @Autowired
-    private TimeOffRequestService timeOffRequestService;
-    @Autowired
-    private EmployeeService employeeService;
+    private final TimeOffRequestService timeOffRequestService;
+    private final EmployeeService employeeService;
+
+    TimeOffRequestController(TimeOffRequestService timeOffRequestService, EmployeeService employeeService) {
+        this.timeOffRequestService = timeOffRequestService;
+        this.employeeService = employeeService;
+    }
 
     @PostMapping("/{id}")
     public TimeOffRequest saveTimeOffRequest(@RequestBody TimeOffRequest timeOffRequest, @PathVariable("id") Long id) {

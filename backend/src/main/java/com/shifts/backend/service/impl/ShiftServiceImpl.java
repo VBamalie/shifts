@@ -2,7 +2,6 @@ package com.shifts.backend.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shifts.backend.model.Shift;
@@ -15,12 +14,15 @@ import com.shifts.backend.service.service.ShiftService;
 @Service
 public class ShiftServiceImpl implements ShiftService{
 
-    @Autowired
-    private ShiftRepo shiftRepo;
-    @Autowired
-    private CalendarRepo calendarRepo;
-    @Autowired
-    private TimeBlockRepo timeBlockRepo;
+    private final ShiftRepo shiftRepo;
+    private final CalendarRepo calendarRepo;
+    private final TimeBlockRepo timeBlockRepo;
+
+    ShiftServiceImpl(ShiftRepo shiftRepo, CalendarRepo calendarRepo, TimeBlockRepo timeBlockRepo){
+        this.shiftRepo = shiftRepo;
+        this.calendarRepo = calendarRepo;
+        this.timeBlockRepo = timeBlockRepo;
+    }
 
     @Override
     public Shift saveShift(Shift shift) {

@@ -1,5 +1,5 @@
 package com.shifts.backend.model;
-
+//FIXME: Unable to delete calendar when there are any shifts, employees or timeblocks associated with it.
 import java.util.ArrayList;
 import java.util.List;
 

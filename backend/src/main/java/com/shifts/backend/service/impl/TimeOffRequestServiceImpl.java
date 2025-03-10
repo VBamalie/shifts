@@ -3,7 +3,6 @@ package com.shifts.backend.service.impl;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shifts.backend.model.TimeOffRequest;
@@ -15,10 +14,13 @@ import com.shifts.backend.service.service.TimeOffRequestService;
 @Service
 public class TimeOffRequestServiceImpl implements TimeOffRequestService {
 
-    @Autowired
-    private TimeOffRequestRepo timeOffRequestRepo;
-    @Autowired
-    private EmployeeRepo employeeRepo;
+    private final TimeOffRequestRepo timeOffRequestRepo;
+    private final EmployeeRepo employeeRepo;
+
+    TimeOffRequestServiceImpl(TimeOffRequestRepo timeOffRequestRepo, EmployeeRepo employeeRepo){
+        this.timeOffRequestRepo = timeOffRequestRepo;
+        this.employeeRepo = employeeRepo;
+    }
 
     @Override
     public TimeOffRequest saveTimeOffRequest(TimeOffRequest timeOffRequest) {
@@ -32,12 +34,14 @@ public class TimeOffRequestServiceImpl implements TimeOffRequestService {
 
     @Override
     public TimeOffRequest getTimeOffRequestById(Long id) {
-        return timeOffRequestRepo.findById(id).get();
+        return timeOffRequestRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("TimeOffRequest not found with id: " + id));
     }
 
     @Override
     public List<TimeOffRequest> getAllTimeOffRequestsByEmployeeId(Long employeeId) {
-        return timeOffRequestRepo.findByEmployee(employeeRepo.findById(employeeId).get());
+        return employeeRepo.findById(employeeId)
+                .map(timeOffRequestRepo::findByEmployee)                .orElseThrow(() -> new RuntimeException("Employee not found with id: " + employeeId));
     }
 
     @Override
