@@ -2,7 +2,7 @@
 function ManagersButtons(){
     return(
         <div>
-            <p>Managers Buttons</p>
+            <button onClick={()=> alert("you have clicked!")}>Press me</button>
         </div>
     )
 }

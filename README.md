@@ -1,0 +1,19 @@
+todo:
+- [ ] seeded employees don't have emails or passwords, figure out why it doesn't like those
+- [ ] add the manager boolean to the employee table
+- [ ] create the auth for the backend
+- [ ] create the auth for the frontend
+- [ ] add another calendar seed
+- [ ] create the context that a logged in user can see their calendar info
+- [ ] research front end date mechanics to decide if we should change the date types on shift and time off request tables
+- [ ] create the skeleton for the calendar
+- [ ] create the component where all employees are listed
+- [ ] create buttons that only a manager can see
+- [ ] create pages for editing calendar info
+- [ ] create pages for editing employee info
+- [ ] create pages for editing shift info
+- [ ] create new calendar page
+- [ ] create pagination for other week information
+- [ ] create functionality for autocreate
+- [ ] make things prettier
+- [ ]vercel deploy?

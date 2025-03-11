@@ -3,6 +3,7 @@ import ManagersButtons from './components/ManagersButtons';
 import WeekSchedule from './components/WeekSchedule';
 import OtherWeeks from './components/OtherWeeks';
 import CalendarApi from '../api/CalendarApi';
+import TestFetch from '../api/testFetch';
 
 //this will be the main page that an employee will see their schedule. Managers will have buttons that allow them to move to the edit schedule page
 //TODO: build out a weekly schedule graphic or find one online
@@ -13,16 +14,17 @@ import CalendarApi from '../api/CalendarApi';
 function Dashboard () {
     const [data, setData] = useState(null);
 
-  useEffect(() => {
-    fetch('http://localhost:8080/api/calendar/')
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => console.error(error));
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://localhost:8080/api/calendar/')
+  //     .then(response => response.json())
+  //     .then(json => setData(json))
+  //     .catch(error => console.error(error));
+  // }, []);
     return (
         <div>
             <p>Main Page</p>
             {data ? <p>{JSON.stringify(data, null, 2)}</p> : <p>Loading...</p>}
+            <TestFetch />
             <ManagersButtons/>
             <WeekSchedule />
             <OtherWeeks />
