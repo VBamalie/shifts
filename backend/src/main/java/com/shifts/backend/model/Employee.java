@@ -38,7 +38,7 @@ public class Employee {
     private String lastName;
     private String email;//TODO: make email unique
     private String password;//TODO: encrypt password
-
+    private Boolean isManager;
     @ManyToOne( cascade = CascadeType.PERSIST, optional = false)//calendar will persist even if the employee entity is deleted. it is required for every employee to have a calendar
     private Calendar calendar;
 

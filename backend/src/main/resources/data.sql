@@ -1,7 +1,57 @@
-INSERT INTO CALENDAR (ID, BUSINESS_NAME) VALUES (1, 'Business 1');
-INSERT INTO EMPLOYEES (ID, CALENDAR_ID, FIRST_NAME, LAST_NAME) VALUES (1, 1, 'John1', 'Doe');
-INSERT INTO EMPLOYEES (ID, CALENDAR_ID, FIRST_NAME, LAST_NAME) VALUES (2, 1, 'Jane2', 'Smith');
-INSERT INTO EMPLOYEES (ID, CALENDAR_ID, FIRST_NAME, LAST_NAME) VALUES (3, 1, 'Bob3', 'Johnson');
+INSERT INTO CALENDAR (ID,
+    BUSINESS_NAME
+    ) VALUES (
+        1,
+        'Business 1');
+INSERT INTO CALENDAR (
+    ID,
+    BUSINESS_NAME
+    ) VALUES (
+        2,
+        'Business 2');
+
+
+INSERT INTO EMPLOYEES (
+    ID,
+    CALENDAR_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    IS_MANAGER
+    ) VALUES 
+        (1,
+        1, 
+        'John1', 
+        'Doe',
+        True);
+
+INSERT INTO EMPLOYEES (
+    ID, 
+    CALENDAR_ID, 
+    FIRST_NAME, 
+    LAST_NAME,
+    IS_MANAGER
+    ) VALUES (
+        2, 
+        1, 
+        'Jane2', 
+        'Smith',
+        False);
+
+INSERT INTO EMPLOYEES (
+    ID, 
+    CALENDAR_ID, 
+    FIRST_NAME, 
+    LAST_NAME,
+    IS_MANAGER
+    ) VALUES (
+        3, 
+        1, 
+        'Bob3', 
+        'Johnson',
+        False);
+
+
+
 INSERT INTO TIME_BLOCK(START_TIME, END_TIME, SHIFTS_REQUIRED, WEEK_DAY_ENUM, ID, CALENDAR_ID) VALUES(1.0,3.0,2,0,1,1);
 INSERT INTO TIME_BLOCK(
     START_TIME,

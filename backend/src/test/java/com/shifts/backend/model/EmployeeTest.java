@@ -12,7 +12,7 @@ public class EmployeeTest {
         //create a calendar
         Calendar calendar = new Calendar(1L, "Test Business", null, null, null);
         //create an employee
-        Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com", "password", calendar, null, null, null);
+        Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com", "password", true, calendar, null, null, null);
         Availability availability = new Availability(1L, employee, 1.0, 2.0, 3.0,4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0);
         employee.setAvailability(availability);
         List<Employee> employees = new ArrayList<>();
@@ -37,7 +37,7 @@ public class EmployeeTest {
     @Test
     void testAddShift() {
         Calendar calendar = makeCalendar();
-        Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com", "password", calendar, null, null, null);
+        Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com", "password", true, calendar, null, null, null);
         List<Employee> employees = new ArrayList<>();
         employees.add(employee);
         
@@ -67,7 +67,7 @@ public class EmployeeTest {
     @Test
     void testRemoveShift() {
         Calendar calendar = makeCalendar();
-        Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com", "password", calendar, null, null, null);
+        Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com", "password", true, calendar, null, null, null);
         List<Employee> employees = new ArrayList<>();
         employees.add(employee);
         Shift shift = new Shift(2L, calendar.getTimeBlocks().get(0), 01012020, calendar, employees);
@@ -79,7 +79,7 @@ public class EmployeeTest {
     @Test
     void testWorkingAShiftTheyAreUnavailableFor() {
         Calendar calendar = makeCalendar();
-        Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com", "password", calendar, null, null, null);
+        Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com", "password", true, calendar, null, null, null);
         List<Employee> employees = new ArrayList<>();
         employees.add(employee);
         Shift shift = new Shift(2L, calendar.getTimeBlocks().get(0), 01012020, calendar, employees);
