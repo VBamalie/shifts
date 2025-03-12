@@ -22,21 +22,15 @@ import { useEffect, useState } from "react";
 //}
 //difference between type and interface is that interface can be extended and type cannot
 
-export default function TestFetch() {//potentially the final product will either use context or pass context
-  const [calendar, setCalendar] = useState([]);
+export default function TestFetch() {
+  const [calendar, setCalendar] = useState<{ businessName?: string }>({});
   useEffect(() => {
-    fetch("http://localhost:8080/api/calendar/")
+    fetch("http://localhost:8080/api/calendar/1")
       .then((response) => response.json())
       .then((data) => setCalendar(data));
   }, []);
 
   return(
-    <div>
-      {calendar.map((calendar: { id: number, businessName: string }) => (
-        <div key={calendar.id}>
-          {calendar.businessName}
-        </div>
-      ))}
-    </div>
+      <div><h1>{calendar.businessName}</h1></div>
   )
 }
