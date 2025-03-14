@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from "./pages/LoginPage";
 import NewBusiness from "./pages/NewBusiness";
 import EditSchedule from "./pages/EditSchedule";

@@ -18,7 +18,7 @@ import com.shifts.backend.service.service.CalendarService;
 //basic CRUD Controller for the Calendar class
 @RestController
 @RequestMapping("/api/calendar")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class CalendarController {
 
     private final CalendarService calendarService;

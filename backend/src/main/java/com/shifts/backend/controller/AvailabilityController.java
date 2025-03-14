@@ -12,6 +12,7 @@ import com.shifts.backend.service.service.EmployeeService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 //Basic Create, Read and Update Controller for Availability Class
 @RestController
 @RequestMapping("/api/availability")
+@CrossOrigin(origins = "*")
 public class AvailabilityController {
     private final AvailabilityService availabilityService;
 

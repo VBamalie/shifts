@@ -2,6 +2,7 @@ package com.shifts.backend.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.shifts.backend.service.service.TimeBlockService;
 
 @RestController
 @RequestMapping("/api/timeblock")
+@CrossOrigin(origins = "*")
 public class TimeBlockController {
     private final TimeBlockService timeBlockService;
     private final CalendarService calendarService;

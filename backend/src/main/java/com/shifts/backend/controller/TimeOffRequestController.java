@@ -2,6 +2,7 @@ package com.shifts.backend.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.shifts.backend.service.service.TimeOffRequestService;
 //basic CRUD operations for TimeOffRequest class
 @RestController
 @RequestMapping("/api/timeOffRequest")
+@CrossOrigin(origins = "*")
 public class TimeOffRequestController {
     private final TimeOffRequestService timeOffRequestService;
     private final EmployeeService employeeService;

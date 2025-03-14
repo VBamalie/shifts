@@ -23,11 +23,10 @@ function Dashboard () {
   // }, []);
     return (
         <div>
-            <p>Main Page</p>
+            <ManagersButtons />
             <TestFetch />
             <WeekSchedule />
             <EmployeeList/>
-            <ManagersButtons/>
             <WeekSchedule />
             <OtherWeeks />
         </div>

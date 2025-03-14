@@ -17,7 +17,7 @@ import com.shifts.backend.service.service.ShiftService;
 
 @RestController
 @RequestMapping("/api/shift")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class ShiftController {
     private final ShiftService shiftService;
     private final TimeBlockService timeBlockService;

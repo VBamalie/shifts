@@ -19,7 +19,7 @@ import com.shifts.backend.service.service.EmployeeService;
 //Crud operations for the Employee class as well as a method to get all employees by calendar id, find out the employees's availability, and get how many hours they have worked in a day and week
 @RestController
 @RequestMapping("/api/employee")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class EmployeeController {
     private final EmployeeService employeeService;
     private final CalendarService calendarService;
