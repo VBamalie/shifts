@@ -26,7 +26,7 @@ INSERT INTO EMPLOYEES (
         'Doe',
         True,
         'email1@email.com',
-        'password1');
+        '$2a$12$kQcCpwbpjnPimcRYHrpcp.kcX1e1.pK4VjeW63OKiODWyuVqVujxK');
 
 INSERT INTO EMPLOYEES (
     ID, 

@@ -29,7 +29,7 @@ public class EmployeeController {
         this.calendarService = calendarService;
     }
     
-    @PostMapping("/{id}")
+    @PostMapping("/register/{id}")
     public Employee saveEmployee(@RequestBody Employee employee, @PathVariable("id") Long id) {
         employee.setCalendar(calendarService.getCalendarById(id));
         employeeService.saveEmployee(employee);

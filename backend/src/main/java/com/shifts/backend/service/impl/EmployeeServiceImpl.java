@@ -3,6 +3,7 @@ package com.shifts.backend.service.impl;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.shifts.backend.model.Employee;
@@ -19,14 +20,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepo employeeRepo;
     private final CalendarRepo calendarRepo;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    EmployeeServiceImpl(EmployeeRepo employeeRepo, CalendarRepo calendarRepo){
+    EmployeeServiceImpl(EmployeeRepo employeeRepo, CalendarRepo calendarRepo , BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.employeeRepo = employeeRepo;
         this.calendarRepo = calendarRepo;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        
+
     }
 
     @Override
     public Employee saveEmployee(Employee employee) {
+        employee.setPassword(bCryptPasswordEncoder.encode(employee.getPassword()));
         return employeeRepo.save(employee);
     }
 
