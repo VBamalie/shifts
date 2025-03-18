@@ -16,39 +16,52 @@ INSERT INTO EMPLOYEES (
     CALENDAR_ID,
     FIRST_NAME,
     LAST_NAME,
-    IS_MANAGER
+    IS_MANAGER,
+    EMAIL,
+    PASSWORD
     ) VALUES 
         (1,
         1, 
         'John1', 
         'Doe',
-        True);
+        True,
+        'email1@email.com',
+        'password1');
 
 INSERT INTO EMPLOYEES (
     ID, 
     CALENDAR_ID, 
     FIRST_NAME, 
     LAST_NAME,
-    IS_MANAGER
+    IS_MANAGER,
+    EMAIL,
+    PASSWORD
     ) VALUES (
         2, 
         1, 
         'Jane2', 
         'Smith',
-        False);
+        False,
+        'email2@email.com',
+        'password2'
+        );
 
 INSERT INTO EMPLOYEES (
     ID, 
     CALENDAR_ID, 
     FIRST_NAME, 
     LAST_NAME,
-    IS_MANAGER
+    IS_MANAGER,
+    EMAIL,
+    PASSWORD
     ) VALUES (
         3, 
         1, 
         'Bob3', 
         'Johnson',
-        False);
+        False,
+        'email3@email.com',
+        'password3');
 
 
 
