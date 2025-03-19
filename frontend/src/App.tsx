@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import EmployeeRegistration from "./pages/EmployeeRegistration";
 import { AuthProvider} from "./pages/components/AuthContext";
 import NewCalendar from './pages/NewCalendar';
+import HorizontalLinearStepper from './pages/demoStepper';
 
 
 
@@ -12,6 +13,7 @@ export default function App() {
     <AuthProvider>
     <Router>
       <Routes>
+        <Route path="/demo" element={<HorizontalLinearStepper/>}/>
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/login" element={<LoginPage />} />
         {localStorage.getItem('employee') ? (
