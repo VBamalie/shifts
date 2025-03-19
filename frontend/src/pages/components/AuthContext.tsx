@@ -24,7 +24,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [employee, setEmployee] = useState<Employee | null>(() => {
-        const storedUser = localStorage.getItem('user');
+        const storedUser = localStorage.getItem('employee');
         return storedUser ? JSON.parse(storedUser) : null;
     });
 

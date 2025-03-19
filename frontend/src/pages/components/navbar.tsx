@@ -5,11 +5,13 @@ import { Button } from '@mui/material';
 const Navbar = () => {
     const { employee, logout } = useAuth();
 
+    console.log(employee);
+
     return (
         <nav>
             {employee ? (
                 <>
-                    <span>Welcome, {employee.firstName} ({employee.isManager})</span>
+                    <span>Welcome, {employee.firstName} {employee.isManager ?"yes": "no"}</span>
                     <Button onClick={logout} variant="contained" color="secondary">
                         Logout
                     </Button>

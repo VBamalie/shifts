@@ -2,6 +2,8 @@ package com.shifts.backend.model;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -38,6 +40,7 @@ public class Employee {
     private String lastName;
     private String email;//TODO: make email unique
     private String password;
+    @Value("false")
     private Boolean isManager;
     private String passwordHash;// this is to compare the password with the password hash
     @ManyToOne( cascade = CascadeType.PERSIST, optional = false)//calendar will persist even if the employee entity is deleted. it is required for every employee to have a calendar

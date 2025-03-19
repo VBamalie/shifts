@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react';
-import ManagersButtons from './components/navbar';
+import Navbar from './components/navbar';
 
 import EmployeeList from './components/EmployeeList';
 
@@ -20,7 +20,7 @@ function Dashboard () {
   // }, []);
     return (
         <div>
-            <ManagersButtons />
+            <Navbar />
             <EmployeeList/>
 
         </div>
