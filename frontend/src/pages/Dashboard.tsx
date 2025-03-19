@@ -1,9 +1,6 @@
 import React, {useState, useEffect } from 'react';
-import ManagersButtons from './components/ManagersButtons';
-import WeekSchedule from './components/WeekSchedule';
-import OtherWeeks from './components/OtherWeeks';
-import CalendarApi from '../api/CalendarApi';
-import TestFetch from '../api/TestFetch';
+import ManagersButtons from './components/navbar';
+
 import EmployeeList from './components/EmployeeList';
 
 //this will be the main page that an employee will see their schedule. Managers will have buttons that allow them to move to the edit schedule page
@@ -24,11 +21,8 @@ function Dashboard () {
     return (
         <div>
             <ManagersButtons />
-            <TestFetch />
-            <WeekSchedule />
             <EmployeeList/>
-            <WeekSchedule />
-            <OtherWeeks />
+
         </div>
     );
 }

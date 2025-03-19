@@ -1,9 +1,13 @@
 package com.shifts.backend.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +24,6 @@ import com.shifts.backend.model.Shift;
 import com.shifts.backend.service.service.CalendarService;
 import com.shifts.backend.service.service.EmployeeService;
 
-import jakarta.servlet.http.HttpSession;
 
 //Crud operations for the Employee class as well as a method to get all employees by calendar id, find out the employees's availability, and get how many hours they have worked in a day and week
 @RestController
@@ -29,6 +32,9 @@ import jakarta.servlet.http.HttpSession;
 public class EmployeeController {
     private final EmployeeService employeeService;
     private final CalendarService calendarService;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     EmployeeController(EmployeeService employeeService, CalendarService calendarService) {
         this.employeeService = employeeService;
@@ -93,18 +99,18 @@ public class EmployeeController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
-        try {
-            boolean isAuthenticated = employeeService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
-            if (isAuthenticated) {
-                session.setAttribute("employee", loginRequest.getEmail());
-                return ResponseEntity.ok("Login successful");
-            } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("invalid credentials");
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An error occurred while processing your request.");
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+       Employee employee = employeeService.findByEmail(loginRequest.getEmail());
+        if (passwordEncoder.matches(loginRequest.getPassword(), employee.getPassword())){
+            Map<String, Object> response = new HashMap<>();
+            response.put("id", employee.getId());
+            response.put("firstName", employee.getFirstName());
+            response.put("lastName", employee.getLastName());
+            response.put("isManager", employee.getIsManager());
+            response.put("calendar", employee.getCalendar().getId());
+
+            return ResponseEntity.ok(response);
         }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
     }
 }

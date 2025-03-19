@@ -18,6 +18,6 @@ public interface EmployeeService {
     boolean isAvailable(Long id);
     int hoursWorkedThisWeek(Long id);
     int hoursWorkdToday(Long id);
-    boolean authenticate(String email, String password);
+    Employee findByEmail(String email);
 
 }

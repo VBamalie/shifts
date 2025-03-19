@@ -5,7 +5,6 @@ import NewBusiness from "./pages/NewBusiness";
 import EditSchedule from "./pages/EditSchedule";
 import Dashboard from "./pages/Dashboard";
 import EmployeeRegistration from "./pages/components/EmployeeRegistration";
-import ProtectedRoute from "./pages/components/ProtectedRoute";
 import { AuthProvider } from "./pages/components/AuthContext";
 
 

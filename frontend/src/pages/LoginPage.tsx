@@ -18,6 +18,8 @@ import axios from 'axios';
 import { useAuth } from './components/AuthContext';
 
 export default function Login() {
+
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -36,7 +38,8 @@ export default function Login() {
         try {
             const response = await axios.post('http://localhost:8080/api/employee/login', loginData);
             if (response.status === 200){
-                login();
+              const employeeData = response.data;
+                login(employeeData);
                 navigate('/dashboard')
             } else {
                 setError(response.data.message || 'Login failed for user. Please retry!')
