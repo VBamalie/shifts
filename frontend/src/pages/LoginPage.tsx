@@ -40,8 +40,9 @@ export default function Login() {
             if (response.status === 200){
               const employeeData = response.data;
                 login(employeeData);
-                navigate('/dashboard')
-            } else {
+                window.location.reload();
+                window.location.href = '/';
+              } else {
                 setError(response.data.message || 'Login failed for user. Please retry!')
             }
         } catch(error) {

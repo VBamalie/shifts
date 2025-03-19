@@ -1,36 +1,26 @@
-import axios from "axios";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from "./pages/LoginPage";
-import NewBusiness from "./pages/NewBusiness";
-import EditSchedule from "./pages/EditSchedule";
 import Dashboard from "./pages/Dashboard";
-import EmployeeRegistration from "./pages/components/EmployeeRegistration";
-import { AuthProvider } from "./pages/components/AuthContext";
+import EmployeeRegistration from "./pages/EmployeeRegistration";
+import { AuthProvider} from "./pages/components/AuthContext";
+import NewCalendar from './pages/NewCalendar';
 
 
-// import TestFetch from "./testFetch";
-
-// function App() {
-//   const getData=()=>{
-//       axios
-//           .get("localhost:8080/api/calendar")
-//           .then(data => console.log(data.data))
-//           .catch(error => console.log(error));
-//   };
-//   getData();
 
 export default function App() {
   return (
     <AuthProvider>
     <Router>
       <Routes>
-        {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
+        <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/login" element={<LoginPage />} />
+        {localStorage.getItem('employee') ? (
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/newbusiness" element={<NewBusiness />} />
-        <Route path="/editschedule" element={<EditSchedule />} />
+      ) : (
+        <Route path="/dashboard" element={<Navigate to="/login" />} />
+      )}
+      <Route path="/new-calendar" element={<NewCalendar/>}/>
         <Route path="/registration" element={<EmployeeRegistration />} />
-
       </Routes>
     </Router>
     </AuthProvider>

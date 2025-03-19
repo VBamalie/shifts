@@ -12,7 +12,7 @@ import {
     CardHeader,
     CardContent
 } from '@mui/material';
-import axiosInstance from '../../axiosConfig';
+import axiosInstance from '../axiosConfig';
 //TODO: make this page look better
 //TODO: add context where the manager's calendar is the one that the employee is registering for
 /* This is the page to register a new employee. The manager will be doing this */

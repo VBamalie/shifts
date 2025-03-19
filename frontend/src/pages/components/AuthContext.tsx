@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const logout = () => {
         setEmployee(null);
         localStorage.removeItem('employee');
+        window.location.href = '/login';
     };
 
     return (

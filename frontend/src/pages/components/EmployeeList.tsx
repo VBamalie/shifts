@@ -34,20 +34,20 @@ function Row(props: { row: any }) {
                     </TableHead>
                     <TableBody>
                       <TableRow>
-                      <TableCell>Monday: {row.availability.mon_start} - {row.availability.mon_end}</TableCell>
-                      <TableCell>Friday: {row.availability.fri_start} - {row.availability.fri_end}</TableCell>
+                      <TableCell>Monday: {row.availability.mon_start|| "Not Available"} - {row.availability.mon_end|| "Not Available"}</TableCell>
+                      <TableCell>Friday: {row.availability.fri_start|| "Not Available"} - {row.availability.fri_end|| "Not Available"}</TableCell>
                     </TableRow>
                     <TableRow>
                       
-                      <TableCell>Tuesday: {row.availability.tue_start} - {row.availability.tue_end}</TableCell>
-                      <TableCell>Saturday: {row.availability.sat_start} - {row.availability.sat_end}</TableCell>
+                      <TableCell>Tuesday: {row.availability.tue_start|| "Not Available"} - {row.availability.tue_end|| "Not Available"}</TableCell>
+                      <TableCell>Saturday: {row.availability.sat_start|| "Not Available"} - {row.availability.sat_end|| "Not Available"}</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>Wednesday: {row.availability.wed_start} - {row.availability.wed_end}</TableCell>
-                      <TableCell>Sunday: {row.availability.sun_start} - {row.availability.sun_end}</TableCell>
+                      <TableCell>Wednesday: {row.availability.wed_start|| "Not Available"} - {row.availability.wed_end|| "Not Available"}</TableCell>
+                      <TableCell>Sunday: {row.availability.sun_start|| "Not Available"} - {row.availability.sun_end|| "Not Available"}</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>Thursday: {row.availability.thu_start} - {row.availability.thu_end}</TableCell>
+                      <TableCell>Thursday: {row.availability.thu_start|| "Not Available"} - {row.availability.thu_end|| "Not Available"}</TableCell>
                       <TableCell/>
                     </TableRow>
                     <TableHead>
