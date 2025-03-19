@@ -10,6 +10,7 @@ import com.shifts.backend.model.Employee;
 import com.shifts.backend.model.Shift;
 import com.shifts.backend.repository.CalendarRepo;
 import com.shifts.backend.repository.EmployeeRepo;
+import com.shifts.backend.repository.ShiftRepo;
 import com.shifts.backend.service.service.EmployeeService;
 
 @Service
@@ -20,14 +21,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepo employeeRepo;
     private final CalendarRepo calendarRepo;
+    private final ShiftRepo shiftRepo;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    EmployeeServiceImpl(EmployeeRepo employeeRepo, CalendarRepo calendarRepo , BCryptPasswordEncoder bCryptPasswordEncoder) {
+    EmployeeServiceImpl(EmployeeRepo employeeRepo, CalendarRepo calendarRepo , BCryptPasswordEncoder bCryptPasswordEncoder, ShiftRepo shiftRepo) {
         this.employeeRepo = employeeRepo;
         this.calendarRepo = calendarRepo;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        
-
+        this.shiftRepo = shiftRepo;
     }
 
     @Override
@@ -100,14 +101,24 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee addShift(Long id, Shift shift) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addShift'");
+    public Shift removeShift(Long id, Long shiftId) {
+        Shift shift = shiftRepo.findById(shiftId)
+       .orElseThrow(() -> new RuntimeException("Shift not found with id: " + shiftId));
+       Employee employee = employeeRepo.findById(id)
+       .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
+       employee.getShifts().remove(shift);
+       employeeRepo.save(employee);
+       return shift;
     }
 
     @Override
-    public Employee removeShift(Long id, Shift shift) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeShift'");
+    public Shift addShift(Long id, Long shiftId) {
+       Shift shift = shiftRepo.findById(shiftId)
+       .orElseThrow(() -> new RuntimeException("Shift not found with id: " + shiftId));
+       Employee employee = employeeRepo.findById(id)
+       .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
+       employee.getShifts().add(shift);
+       employeeRepo.save(employee);
+       return shift;
     }
 }

@@ -34,17 +34,7 @@ public class EmployeeTest {
         calendar.setShifts(shifts);
         return calendar;
     }
-    @Test
-    void testAddShift() {
-        Calendar calendar = makeCalendar();
-        Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com", "password", true, calendar, null, null, null);
-        List<Employee> employees = new ArrayList<>();
-        employees.add(employee);
-        
-        Shift shift = new Shift(2L, calendar.getTimeBlocks().get(0), 01012020, calendar, employees);
-        employee.addShift(shift);
-        assert employee.getShifts().contains(shift);
-    }
+    
 
     @Test
     void testHoursWorkedThisWeek() {
@@ -65,25 +55,13 @@ public class EmployeeTest {
     }
 
     @Test
-    void testRemoveShift() {
-        Calendar calendar = makeCalendar();
-        Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com", "password", true, calendar, null, null, null);
-        List<Employee> employees = new ArrayList<>();
-        employees.add(employee);
-        Shift shift = new Shift(2L, calendar.getTimeBlocks().get(0), 01012020, calendar, employees);
-        employee.addShift(shift);
-        employee.removeShift(shift);
-        assert !employee.getShifts().contains(shift);
-    }
-
-    @Test
     void testWorkingAShiftTheyAreUnavailableFor() {
         Calendar calendar = makeCalendar();
         Employee employee = new Employee(1L, "John", "Doe", "john.doe@example.com", "password", true, calendar, null, null, null);
         List<Employee> employees = new ArrayList<>();
         employees.add(employee);
         Shift shift = new Shift(2L, calendar.getTimeBlocks().get(0), 01012020, calendar, employees);
-        employee.addShift(shift);
+        employee.getShifts().add(shift);
         //assert that the employee is unavailable for the shift
     }
 }

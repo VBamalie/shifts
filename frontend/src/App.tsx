@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import NewBusiness from "./pages/NewBusiness";
 import EditSchedule from "./pages/EditSchedule";
 import Dashboard from "./pages/Dashboard";
+import EmployeeRegistration from "./pages/components/EmployeeRegistration";
 
 
 // import TestFetch from "./testFetch";
@@ -23,9 +24,10 @@ export default function App() {
       <Routes>
         {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/newbusiness" element={<NewBusiness />} />
         <Route path="/editschedule" element={<EditSchedule />} />
+        <Route path="/registration" element={<EmployeeRegistration />} />
 
       </Routes>
     </Router>

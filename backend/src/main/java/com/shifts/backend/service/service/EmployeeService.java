@@ -13,8 +13,8 @@ public interface EmployeeService {
     List<Employee> getAllEmployeesByCalendarId(Long calendarId);
     Employee updateEmployee(Employee employee, Long id);
     String deleteEmployee(Long id);
-    Employee addShift(Long id, Shift shift);
-    Employee removeShift(Long id, Shift shift);
+    Shift addShift(Long id, Long shiftId);
+    Shift removeShift(Long id, Long shiftId);
     boolean isAvailable(Long id);
     int hoursWorkedThisWeek(Long id);
     int hoursWorkdToday(Long id);

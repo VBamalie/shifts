@@ -72,12 +72,6 @@ public class Employee {
         //TODO: filter the shifts with the given date and day and return the sum of the shifts hours
         return 0;
     }
-    public void addShift(Shift shift){
-        //TODO: Adds the shift to the shifts ArrayList
-    }
-    public void removeShift( Shift shift){
-        //TODO: Removes the shift from the shifts ArrayList
-    }
     public boolean workingAShiftTheyAreUnavailableFor(int date){
         //TODO: Checks if the employee is working a shift they are unavailable for
         return false;

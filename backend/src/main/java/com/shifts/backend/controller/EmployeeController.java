@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shifts.backend.model.Employee;
+import com.shifts.backend.model.Shift;
 import com.shifts.backend.service.service.CalendarService;
 import com.shifts.backend.service.service.EmployeeService;
 
@@ -35,6 +36,7 @@ public class EmployeeController {
         employeeService.saveEmployee(employee);
         return employee;
         }
+       
     @GetMapping("/")
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
@@ -47,6 +49,15 @@ public class EmployeeController {
     public List<Employee> getAllEmployeesByCalendarId(@PathVariable("id") Long calendarId) {
         return employeeService.getAllEmployeesByCalendarId(calendarId);
     }
+    @PutMapping("/addShift/{id}")
+    public Shift addShift(@RequestBody Long shiftId, @PathVariable("id") Long id) {
+        return employeeService.addShift(id, shiftId);
+    }
+    @PutMapping("/removeShift/{id}")
+    public Shift putMethodName(@PathVariable Long id, @RequestBody Long shiftId) {
+        return employeeService.removeShift(id, shiftId);
+    }
+    
     @PutMapping("/{id}")
     public Employee updateEmployee(@RequestBody Employee employee , @PathVariable("id") Long id) {
         return employeeService.updateEmployee(employee, id);
