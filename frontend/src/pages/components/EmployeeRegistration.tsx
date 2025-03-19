@@ -18,7 +18,7 @@ import axiosInstance from '../../axiosConfig';
 /* This is the page to register a new employee. The manager will be doing this */
 export default function Registration() {
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState({//these are the fields that will be used to create a new employee and their availability
         firstName: '',
         lastName: '',
         email: '',
@@ -51,8 +51,47 @@ export default function Registration() {
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        const employeeData: { firstName:string, lastName:string, email:string, password:string } = {firstName:formData.firstName, lastName:formData.lastName, email:formData.email, password:formData.password};
-        const availabilityData: {mon_start:number, mon_end:number, tue_start:number, tue_end:number, wed_start:number, wed_end:number, thu_start:number, thu_end:number, fri_start:number, fri_end:number, sat_start:number, sat_end:number, sun_start:number, sun_end:number} = {mon_start:parseInt(formData.mon_start), mon_end:parseInt(formData.mon_end), tue_start:parseInt(formData.tue_start), tue_end:parseInt(formData.tue_end), wed_start:parseInt(formData.wed_start), wed_end:parseInt(formData.wed_end), thu_start:parseInt(formData.thu_start), thu_end:parseInt(formData.thu_end), fri_start:parseInt(formData.fri_start), fri_end:parseInt(formData.fri_end), sat_start:parseInt(formData.sat_start), sat_end:parseInt(formData.sat_end), sun_start:parseInt(formData.sun_start), sun_end:parseInt(formData.sun_end)}
+        const employeeData: { 
+            firstName:string, 
+            lastName:string, 
+            email:string, 
+            password:string } = {
+                firstName:formData.firstName, 
+                lastName:formData.lastName, 
+                email:formData.email, 
+                password:formData.password};
+
+                
+        const availabilityData: {
+            mon_start:number, 
+            mon_end:number, 
+            tue_start:number, 
+            tue_end:number, 
+            wed_start:number, 
+            wed_end:number, 
+            thu_start:number, 
+            thu_end:number, 
+            fri_start:number, 
+            fri_end:number, 
+            sat_start:number, 
+            sat_end:number, 
+            sun_start:number, 
+            sun_end:number} = {
+                mon_start:parseInt(formData.mon_start), 
+                mon_end:parseInt(formData.mon_end), 
+                tue_start:parseInt(formData.tue_start), 
+                tue_end:parseInt(formData.tue_end), 
+                wed_start:parseInt(formData.wed_start), 
+                wed_end:parseInt(formData.wed_end), 
+                thu_start:parseInt(formData.thu_start), 
+                thu_end:parseInt(formData.thu_end), 
+                fri_start:parseInt(formData.fri_start), 
+                fri_end:parseInt(formData.fri_end), 
+                sat_start:parseInt(formData.sat_start), 
+                sat_end:parseInt(formData.sat_end), 
+                sun_start:parseInt(formData.sun_start), 
+                sun_end:parseInt(formData.sun_end)}
+
         const employeeUrl = 'http://localhost:8080/api/employee/register/1';
 
 

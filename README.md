@@ -1,7 +1,7 @@
 todo:
 - [x] seeded employees don't have emails or passwords, figure out why it doesn't like those(sort of fixed. it's the seeding that's the problem but I can just use the seeding for display prototyping and then use the actual data from the database for the actual app)
 - [x] add the manager boolean to the employee table
-- [ ] create the auth for the backend
+- [x] create the auth for the backend
 - [ ] create the auth for the frontend
 - [ ] add another calendar seed
 - [ ] create the context that a logged in user can see their calendar info

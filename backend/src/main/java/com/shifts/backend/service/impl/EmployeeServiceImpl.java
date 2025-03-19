@@ -121,4 +121,17 @@ public class EmployeeServiceImpl implements EmployeeService {
        employeeRepo.save(employee);
        return shift;
     }
+
+    @Override
+    public boolean authenticate(String email, String password) {
+        Employee employee = employeeRepo.findByEmail(email);
+        if(!employee.getEmail().equals(email)){
+            throw new RuntimeException("Employee not found with email: " + email);
+        }
+
+        if(!bCryptPasswordEncoder.matches(password, employee.getPassword())){
+            throw new RuntimeException("Password is incorrect");
+        }
+        return true;
+    }
 }
