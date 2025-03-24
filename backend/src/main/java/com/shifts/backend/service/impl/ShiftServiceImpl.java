@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.shifts.backend.model.Shift;
+import com.shifts.backend.model.TimeBlock;
 import com.shifts.backend.repository.CalendarRepo;
 import com.shifts.backend.repository.ShiftRepo;
 import com.shifts.backend.repository.TimeBlockRepo;
@@ -59,6 +60,25 @@ public class ShiftServiceImpl implements ShiftService{
     @Override
     public Shift getShiftByTimeBlockId(Long timeBlockId) {
         return shiftRepo.findByTimeBlock(timeBlockRepo.findById(timeBlockId).get());
+    }
+
+    @Override
+    public List<Shift> getShiftsByFirstDat(Long calenderId, String firstDate) {
+        return shiftRepo.findByCalendarAndFirstDate(calendarRepo.findById(calenderId).get(), firstDate);
+    }
+
+    @Override
+    public String createShifts(Long calendarId, String date) {
+        List<TimeBlock> timeBlockList = timeBlockRepo.findByCalendar(calendarRepo.findById(calendarId).get());
+        timeBlockList.forEach(timeBlock -> {
+            for(int i = 0; i < timeBlock.getShiftsRequired(); i++) {
+                Shift shift = new Shift();
+                shift.setTimeBlock(timeBlock);
+                shift.setFirstDate(date);
+                shiftRepo.save(shift);
+            }
+        });
+        return "Shifts created";
     }
 
 

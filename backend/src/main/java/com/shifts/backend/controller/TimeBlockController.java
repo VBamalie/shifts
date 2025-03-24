@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shifts.backend.model.Shift;
 import com.shifts.backend.model.TimeBlock;
 import com.shifts.backend.service.service.CalendarService;
 import com.shifts.backend.service.service.TimeBlockService;
@@ -46,6 +47,8 @@ public class TimeBlockController {
     public List<TimeBlock> getAllTimeBlocksByCalendarId(@PathVariable("id") Long calendarId) {
         return timeBlockService.getAllTimeBlocksByCalendarId(calendarId);
     }
+
+
     @PutMapping("/{id}")
     public TimeBlock updateTimeBlock(@RequestBody TimeBlock timeBlock , @PathVariable("id") Long id) {
         return timeBlockService.updateTimeBlock(timeBlock, id);

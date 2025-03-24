@@ -102,7 +102,6 @@ export default function Registration() {
             if (response.status === 201||response.status === 200) {
                 const employeeId:number = response.data.id;
                 const availabilityUrl=`http://localhost:8080/api/availability/${employeeId}`;
-                console.log(availabilityUrl);
                 try {
                     const response = await axiosInstance.post(availabilityUrl, availabilityData);
                     if (response.status === 201||response.status === 200) {

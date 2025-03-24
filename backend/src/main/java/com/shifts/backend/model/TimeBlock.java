@@ -28,12 +28,5 @@ public class TimeBlock {
     @ManyToOne(cascade = CascadeType.PERSIST, optional = false)//calendar will persist even if the timeblock entity is deleted. it is required for every timeblock to have a calendar
     private Calendar calendar;
 
-
-
-    //Methods
-    public Shift createShift(String date){
-        //TODO: Creates an empty shift based on the time block with the given date
-        return null;
-    }
 }
 

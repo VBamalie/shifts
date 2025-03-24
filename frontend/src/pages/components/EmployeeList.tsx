@@ -77,11 +77,6 @@ function EmployeeList() {
   const [employees, setEmployees] = useState([]);
   const [open, setOpen] = React.useState(false);
   useEffect(() => {
-    // fetch(
-    //   "http://localhost:8080/api/employee/calendar/1")
-    //   .then((response) => response.json())
-    //   .then((data) => setEmployees(data))
-
     axiosInstance.get("http://localhost:8080/api/employee/calendar/1").then((response) => {
       setEmployees(response.data)
     }).catch((error) => {

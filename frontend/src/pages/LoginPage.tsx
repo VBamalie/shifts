@@ -98,8 +98,8 @@ export default function Login() {
           </Container>
       </CardContent>
       <CardActions>
-        <Link to="/dashboard" color="primary">
-          Back Home
+        <Link to="/demo" color="primary">
+          Register a New Business
         </Link>
       </CardActions>
     </Card>

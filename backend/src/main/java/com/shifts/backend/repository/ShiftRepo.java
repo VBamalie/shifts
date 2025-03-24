@@ -18,4 +18,6 @@ public interface ShiftRepo extends JpaRepository<Shift, Long> {
 
     Shift findByTimeBlock(TimeBlock timeBlock);//this method is used to find a shift by time block it is created by the jpa framework using method name conventions
 
+    List<Shift> findByCalendarAndFirstDate(Calendar calendarId, String firstDate);//this method is used to find all shifts by calendar and first date it is created by the jpa framework using method name conventions
+
 }

@@ -29,7 +29,7 @@ public class Shift {
     private Long id;
     @ManyToOne(cascade = CascadeType.PERSIST, optional = false)//timeblock will persist even if the shift entity is deleted. it is required for every shift to have a timeblock
     private TimeBlock timeBlock;
-    private int firstDate;//first day of the this shifts week, will have the format of yyyymmdd
+    private String firstDate;//first day of the this shifts week, will have the format of yyyymmdd
     @ManyToOne(cascade = CascadeType.PERSIST, optional = false)//calendar will persist even if the shift entity is deleted. it is required for every shift to have a calendar
     private Calendar calendar;
     @ManyToMany(mappedBy = "shifts")//many to many relationship will be referenced in a table called employee_shift

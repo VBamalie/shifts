@@ -38,8 +38,9 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/employee/register/**").permitAll()
                 .requestMatchers("/api/employee/login/**").permitAll()
+                .requestMatchers("api/calendar/**").permitAll()
                 .requestMatchers("/login/**").permitAll()
-                .requestMatchers("h2-console/**").permitAll()
+                .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             )
             .httpBasic(Customizer.withDefaults())

@@ -5,8 +5,10 @@ import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
+import com.shifts.backend.model.Shift;
 import com.shifts.backend.model.TimeBlock;
 import com.shifts.backend.repository.CalendarRepo;
+import com.shifts.backend.repository.ShiftRepo;
 import com.shifts.backend.repository.TimeBlockRepo;
 import com.shifts.backend.service.service.TimeBlockService;
 
@@ -16,10 +18,12 @@ public class TimeBlockServiceImpl implements TimeBlockService {
 
     private TimeBlockRepo timeBlockRepo;
     private CalendarRepo calendarRepo;
+    private ShiftRepo shiftRepo;
 
-    TimeBlockServiceImpl(TimeBlockRepo timeBlockRepo, CalendarRepo calendarRepo){
+    TimeBlockServiceImpl(TimeBlockRepo timeBlockRepo, CalendarRepo calendarRepo, ShiftRepo shiftRepo) {
         this.timeBlockRepo = timeBlockRepo;
         this.calendarRepo = calendarRepo;
+        this.shiftRepo = shiftRepo;
     }
 
     @Override
@@ -69,4 +73,6 @@ public class TimeBlockServiceImpl implements TimeBlockService {
         timeBlockRepo.deleteById(id);
         return "TimeBlock deleted with id: " + id;
     }
+
+    
 }

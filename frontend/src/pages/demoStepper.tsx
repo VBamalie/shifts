@@ -7,19 +7,132 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Card, CardContent, CardHeader, Container, TextField } from '@mui/material';
 import React from 'react';
+import axiosInstance from '../axiosConfig';
+import axios from 'axios';
+import { useAuth } from './components/AuthContext';
 export default function HorizontalLinearStepper() {
+        const {login} = useAuth();
+    const [newBusinessData, setNewBusinessData] = useState({
+        businessName: ''
+    })
+    const [newManagerData, setNewManagerData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        isManager: true,
+        mon_start: '',
+        mon_end: '',
+        tue_start: '',
+        tue_end: '',
+        wed_start: '',
+        wed_end: '',
+        thu_start: '',
+        thu_end: '',
+        fri_start: '',
+        fri_end: '',
+        sat_start: '',
+        sat_end: '',
+        sun_start: '',
+        sun_end: ''
 
+    })
+
+    const [error, setError] = useState('');
+    const [newTimeBlockData, setNewTimeBlockData] = useState({
+        startTime: "",
+        endTime: '',
+        shiftsRequired: "",
+        weekDayEnum: ""
+    })
 
     const handleBusinesssubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
+        const employeeData: {
+            firstName: string,
+            lastName: string,
+            email: string,
+            password: string,
+            isManager: boolean
+        } = {
+            firstName: newManagerData.firstName,
+            lastName: newManagerData.lastName,
+            email: newManagerData.email,
+            password: newManagerData.password,
+            isManager: true
+        };
+
+
+
+        const availabilityData: {
+            mon_start: number,
+            mon_end: number,
+            tue_start: number,
+            tue_end: number,
+            wed_start: number,
+            wed_end: number,
+            thu_start: number,
+            thu_end: number,
+            fri_start: number,
+            fri_end: number,
+            sat_start: number,
+            sat_end: number,
+            sun_start: number,
+            sun_end: number
+        } = {
+            mon_start: parseInt(newManagerData.mon_start),
+            mon_end: parseInt(newManagerData.mon_end),
+            tue_start: parseInt(newManagerData.tue_start),
+            tue_end: parseInt(newManagerData.tue_end),
+            wed_start: parseInt(newManagerData.wed_start),
+            wed_end: parseInt(newManagerData.wed_end),
+            thu_start: parseInt(newManagerData.thu_start),
+            thu_end: parseInt(newManagerData.thu_end),
+            fri_start: parseInt(newManagerData.fri_start),
+            fri_end: parseInt(newManagerData.fri_end),
+            sat_start: parseInt(newManagerData.sat_start),
+            sat_end: parseInt(newManagerData.sat_end),
+            sun_start: parseInt(newManagerData.sun_start),
+            sun_end: parseInt(newManagerData.sun_end)
+        }
+        const response = await axios.post('http://localhost:8080/api/calendar/', newBusinessData);
+        try {
+            const businessId = response.data.id;
+            const managerUrl = `http://localhost:8080/api/employee/register/${businessId}`;
+            const managerResponse = await axios.post(managerUrl, employeeData)
+            try {
+                const managerId = managerResponse.data.id;
+                const availabilityUrl = `http://localhost:8080/api/availability/${managerId}`;
+                const availabilityResponse = await axiosInstance.post(availabilityUrl, availabilityData);
+                if (response.status === 200 || response.status === 201) {
+                    const loginData = {
+                        email: newManagerData.email,
+                        password: newManagerData.password
+                    };
+                    const response = await axios.post('http://localhost:8080/api/employee/login', loginData);
+                    if (response.status === 200) {
+                        const employeeData = response.data;
+                        login(employeeData);
+                        window.location.reload();
+                        window.location.href = '/';
+                    } else {
+                        setError(response.data.message || 'Login failed for user. Please retry!')
+                    }
+                } else {
+                    console.error(response.data.message || 'An error occurred in availability');
+                }
+            } catch (error) {
+                console.error('Error creating manager:', error);
+            }
+
+        } catch (error) {
+            console.error('Error creating business:', error);
+        }
     }
 
 
     function createNewBusiness() {
         const [error, setError] = useState('');
-        const [newBusinessData, setNewBusinessData] = useState({
-            businessName: ''
-        })
         return (
             <Card sx={{ maxWidth: 900, margin: '30x,auto', border: '3px solid #356' }}>
                 <CardHeader>
@@ -58,28 +171,6 @@ export default function HorizontalLinearStepper() {
 
     function createManager() {
         const [error, setError] = useState('');
-        const [newManagerData, setNewManagerData] = useState({
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            isManager: true,
-            mon_start: '',
-            mon_end: '',
-            tue_start: '',
-            tue_end: '',
-            wed_start: '',
-            wed_end: '',
-            thu_start: '',
-            thu_end: '',
-            fri_start: '',
-            fri_end: '',
-            sat_start: '',
-            sat_end: '',
-            sun_start: '',
-            sun_end: ''
-
-        })
         return (
             <Card sx={{ maxWidth: 900, margin: '30x,auto', border: '3px solid #356' }}>
                 <CardHeader>
@@ -279,13 +370,6 @@ export default function HorizontalLinearStepper() {
     }
 
     function createTimeBlocks() {
-        const [error, setError] = useState('');
-        const [newTimeBlockData, setNewTimeBlockData] = useState({
-            startTime: "",
-            endTime: '',
-            shiftsRequired: "",
-            weekDayEnum: ""
-        })
         return (
             <Card>
                 <CardContent>
@@ -340,6 +424,12 @@ export default function HorizontalLinearStepper() {
     const handleReset = () => {
         setActiveStep(0);
     };
+    const handleSubmit = () => {
+        console.log(newManagerData);
+        console.log(newBusinessData);
+        console.log(newTimeBlockData);
+        // Add your form submission logic here
+    };
 
     return (
         <>
@@ -362,6 +452,7 @@ export default function HorizontalLinearStepper() {
                 </Stepper>
                 {activeStep === headerSteps.length ? (
                     <React.Fragment>
+                        <Button onClick={handleBusinesssubmit}>Submit Business</Button>
                         <Typography sx={{ mt: 2, mb: 1 }}>
                             All steps completed - you&apos;re finished
                         </Typography>
