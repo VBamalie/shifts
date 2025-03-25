@@ -2,17 +2,17 @@ todo:
 - [x] seeded employees don't have emails or passwords, figure out why it doesn't like those(sort of fixed. it's the seeding that's the problem but I can just use the seeding for display prototyping and then use the actual data from the database for the actual app)
 - [x] add the manager boolean to the employee table
 - [x] create the auth for the backend
-- [ ] create the auth for the frontend
-- [ ] add another calendar seed
-- [ ] create the context that a logged in user can see their calendar info
-- [ ] research front end date mechanics to decide if we should change the date types on shift and time off request tables
-- [ ] create the skeleton for the calendar
-- [ ] create the component where all employees are listed
+- [x] create the auth for the frontend
+- [x] add another calendar seed
+- [x] create the context that a logged in user can see their calendar info
+- [x] research front end date mechanics to decide if we should change the date types on shift and time off request tables
+- [1/2] create the skeleton for the calendar
+- [x] create the component where all employees are listed
 - [ ] create buttons that only a manager can see
 - [ ] create pages for editing calendar info
 - [ ] create pages for editing employee info
 - [ ] create pages for editing shift info
-- [ ] create new calendar page
+- [x] create new calendar page
 - [ ] create pagination for other week information
 - [ ] create functionality for autocreate
 - [ ] make things prettier
