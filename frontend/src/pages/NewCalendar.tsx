@@ -4,85 +4,12 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from './components/AuthContext';
 
+//TODO: currently the demoStepper is the way to make new calendars. we need to clean that up and add it to this file.
+//TODO: demoStepper also doesnt have the right logic for creating a timeblock. We'll need to make a component specifically for editing and addding timeblocks 
+//This page is how we create a new business. We will take in the business name, the manager, and the timeblocks for each day.
 export default function NewCalendar() {
-     
-        const [error, setError] = useState('');
-        const navigate = useNavigate()
-    
-        const {login} = useAuth();
-    
-        const handleLogin = async (e: { preventDefault: () => void; }) => {
-            e.preventDefault()
-            setError('')
-    
-            
-            try {
-                const response = await axios.post('http://localhost:8080/api/employee/login', loginData);
-                if (response.status === 200){
-                    const employeeData = response.data;
-                    login(employeeData);
-                    window.location.reload();
-                    window.location.href = '/';
-                  } else {
-                    setError(response.data.message || 'Login failed for user. Please retry!')
-                }
-            } catch(error) {
-                setError('An error occurred. please retry')
-            }
-    
-        }
-    return (
-        <Card sx={{ maxWidth: 900, margin: '30px auto', border: '3px solid #356' }}>
-          <CardHeader>
-            Login
-          </CardHeader>
-          <CardContent>
-              <Container maxWidth="xs">
-              <Box
-                component="form"
-                onSubmit={handleLogin}
-                sx={{ mt: 4, display: 'flex', flexDirection: 'column', gap: 2 }}
-              >
-                <Typography variant="h5" component="h1" align="center">
-                  Login
-                </Typography>
-    
-                {error && (
-                  <Typography variant="body2" color="error" align="center">
-                    {error}
-                  </Typography>
-                )}
-    
-                <TextField
-                  label="email"
-                  variant="outlined"
-                  fullWidth
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-    
-                <TextField
-                  label="Password"
-                  variant="outlined"
-                  type="password"
-                  fullWidth
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-    
-                <Button type="submit" variant="contained" color="primary" fullWidth>
-                  Login
-                </Button>
-              </Box>
-              </Container>
-          </CardContent>
-          <CardActions>
-            <Link to="/dashboard" color="primary">
-              Back Home
-            </Link>
-          </CardActions>
-        </Card>
-    )
+     return(
+      <>
+      </>
+     );
 }

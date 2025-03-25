@@ -9,16 +9,14 @@ import WeekSchedule from './components/WeekSchedule';
 //TODO: add a paginated fetch request that will display the shifts on a schedule
 //TODO: add conditionals for managers to see edit schedule links
 //TODO: add a pagination that allows users to click other weeks schedules. this will be connected to the controller display weekly
-//TODO: add a logout button
 function Dashboard () {
     return (
         <div>
             <Navbar />
-            <WeekSchedule />
+            <WeekSchedule date={"01-01-20202"} />
             <EmployeeList/>
 
         </div>
     );
 }
-
 export default Dashboard;
