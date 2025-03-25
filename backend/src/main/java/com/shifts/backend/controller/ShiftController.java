@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shifts.backend.model.Shift;
+import com.shifts.backend.model.TimeBlock;
 import com.shifts.backend.service.service.TimeBlockService;
 import com.shifts.backend.service.service.ShiftService;
 
@@ -48,7 +49,15 @@ public class ShiftController {
     
     @PostMapping("/calendar/addShifts/{date}")//this is the endpoint for adding a shift to a calendar week
     public String createShifts(@RequestBody Long calendarId, @PathVariable("date") String date) {
-        return shiftService.createShifts(calendarId, date);
+        List<TimeBlock> timeBlocks = timeBlockService.getAllTimeBlocksByCalendarId(calendarId);
+        timeBlocks.forEach(timeBlock -> {
+            Shift shift = new Shift();
+            shift.setFirstDate(date);
+            shift.setTimeBlock(timeBlock);
+            shift.setCalendar(timeBlock.getCalendar());
+            shiftService.saveShift(shift);
+        });
+        return "Shifts created for calendar: " + calendarId + " on date: " + date;
     }
 
     //No Put method because employees will be added from the employee controller. Every other field is final

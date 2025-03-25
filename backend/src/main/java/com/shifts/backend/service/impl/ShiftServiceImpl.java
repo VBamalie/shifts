@@ -69,15 +69,8 @@ public class ShiftServiceImpl implements ShiftService{
 
     @Override
     public String createShifts(Long calendarId, String date) {
-        List<TimeBlock> timeBlockList = timeBlockRepo.findByCalendar(calendarRepo.findById(calendarId).get());
-        timeBlockList.forEach(timeBlock -> {
-            for(int i = 0; i < timeBlock.getShiftsRequired(); i++) {
-                Shift shift = new Shift();
-                shift.setTimeBlock(timeBlock);
-                shift.setFirstDate(date);
-                shiftRepo.save(shift);
-            }
-        });
+        
+        
         return "Shifts created";
     }
 
