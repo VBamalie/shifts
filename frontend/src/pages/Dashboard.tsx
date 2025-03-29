@@ -1,8 +1,9 @@
 import React, {useState, useEffect } from 'react';
-import Navbar from './components/navbar';
+import Navbar from './components/Navbar';
 
 import EmployeeList from './components/EmployeeList';
 import WeekSchedule from './components/WeekSchedule';
+
 
 //this will be the main page that an employee will see their schedule. Managers will have buttons that allow them to move to the edit schedule page
 //TODO: build out a weekly schedule graphic or find one online
@@ -13,6 +14,7 @@ function Dashboard () {
     return (
         <div>
             <Navbar />
+            <h1>Dashboard</h1>
             <WeekSchedule date={"01-01-20202"} />
             <EmployeeList/>
 

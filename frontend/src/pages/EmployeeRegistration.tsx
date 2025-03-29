@@ -121,11 +121,9 @@ export default function Registration() {
         } catch (err) {
             setError('An error occured during employee registration')
         }
-
-        
-        
-
     }
+
+    const ManagerDataEnum = [{name: 'firstName', label: 'First Name'}, {name: 'lastName', label: 'Last Name'}, {name: 'email', label: 'Email'}, {name: 'password', label: 'Password'}, {name: 'mon_start', label: 'Monday Start Time'}, {name: 'mon_end', label: 'Monday End Time'}, {name: 'tue_start', label: 'Tuesday Start Time'}, {name: 'tue_end', label: 'Tuesday End Time'}, {name: 'wed_start', label: 'Wednesday Start Time'}, {name: 'wed_end', label: 'Wednesday End Time'}, {name: 'thu_start', label: 'Thursday Start Time'}, {name: 'thu_end', label: 'Thursday End Time'}, {name: 'fri_start', label: 'Friday Start Time'}, {name: 'fri_end', label: 'Friday End Time'}, {name: 'sat_start', label: 'Saturday Start Time'}, {name: 'sat_end', label: 'Saturday End Time'}, {name: 'sun_start', label: 'Sunday Start Time'}, {name: 'sun_end', label: 'Sunday End Time'}];
     return (
         <Card sx={{ maxWidth: 700, margin: '30px auto', border: '3px solid #356' }}>
             <CardHeader>
@@ -140,202 +138,19 @@ export default function Registration() {
 
                         <form onSubmit={handleSubmit}>
                             <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="First Name"
-                                        name="firstName"
-                                        fullWidth
-                                        value={formData.firstName}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Last Name"
-                                        name="lastName"
-                                        fullWidth
-                                        value={formData.lastName}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Email"
-                                        name="email"
-                                        fullWidth
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Password"
-                                        name="password"
-                                        type="password"
-                                        fullWidth
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Monday Start Time"
-                                        name="mon_start"
-                                        type="mon_start"
-                                        fullWidth
-                                        value={formData.mon_start}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Monday End Time"
-                                        name="mon_end"
-                                        type="mon_end"
-                                        fullWidth
-                                        value={formData.mon_end}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Tuesday Start Time"
-                                        name="tue_start"
-                                        type="tue_start"
-                                        fullWidth
-                                        value={formData.tue_start}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Tuesday End Time"
-                                        name="tue_end"
-                                        type="tue_end"
-                                        fullWidth
-                                        value={formData.tue_end}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Wednesday Start Time"
-                                        name="wed_start"
-                                        type="wed_start"
-                                        fullWidth
-                                        value={formData.wed_start}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Wednesday End Time"
-                                        name="wed_end"
-                                        type="wed_end"
-                                        fullWidth
-                                        value={formData.wed_end}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Thursday Start Time"
-                                        name="thu_start"
-                                        type="thu_start"
-                                        fullWidth
-                                        value={formData.thu_start}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Thursday End Time"
-                                        name="thu_end"
-                                        type="thu_end"
-                                        fullWidth
-                                        value={formData.thu_end}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Friday Start Time"
-                                        name="fri_start"
-                                        type="fri_start"
-                                        fullWidth
-                                        value={formData.fri_start}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Friday End Time"
-                                        name="fri_end"
-                                        type="fri_end"
-                                        fullWidth
-                                        value={formData.fri_end}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Saturday Start Time"
-                                        name="sat_start"
-                                        type="sat_start"
-                                        fullWidth
-                                        value={formData.sat_start}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Saturday End Time"
-                                        name="sat_end"
-                                        type="sat_end"
-                                        fullWidth
-                                        value={formData.sat_end}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Sunday Start Time"
-                                        name="sun_start"
-                                        type="sun_start"
-                                        fullWidth
-                                        value={formData.sun_start}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        label="Sunday End Time"
-                                        name="sun_end"
-                                        type="sun_end"
-                                        fullWidth
-                                        value={formData.sun_end}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </Grid>
-
+                            {ManagerDataEnum.map((field) => (//maps through all the form fields for better readability
+                                <Grid item xs={12} key={field.name}>
+                                        <TextField
+                                            key={field.name}
+                                            label={field.label}
+                                            name={field.name}
+                                            fullWidth
+                                            value={formData[field.name as keyof typeof formData]}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                        </Grid>
+                                    ))}                               
                                 {error && (
                                     <Grid item xs={12}>
                                         <Typography color="error" variant="body2">
