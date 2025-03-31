@@ -60,12 +60,6 @@ export default function HorizontalLinearStepper() {
     })
 
     const [error, setError] = useState('');
-    const [newTimeBlockData, setNewTimeBlockData] = useState({
-        startTime: "",
-        endTime: '',
-        shiftsRequired: "",
-        weekDayEnum: ""
-    })
 
     const handleBusinesssubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -249,51 +243,10 @@ export default function HorizontalLinearStepper() {
                 </CardContent>
             </Card>
         )
-    }    function createTimeBlocks() {
-        return (
-            <Card>
-                <CardContent>
-                    <Container maxWidth="sm">
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                            <Typography variant="h6" gutterBottom>
-                                Create Time Blocks
-                            </Typography>
-                            <TextField
-                                label="Start Time"
-                                name="startTime"
-                                value={newTimeBlockData.startTime}
-                                onChange={(e) => setNewTimeBlockData({ ...newTimeBlockData, startTime: e.target.value })}
-                                required
-                                fullWidth
-                                variant="outlined"
-                            />
-                            <TextField
-                                label="End Time"
-                                name="endTime"
-                                value={newTimeBlockData.endTime}
-                                onChange={(e) => setNewTimeBlockData({ ...newTimeBlockData, endTime: e.target.value })}
-                                required
-                                fullWidth
-                                variant="outlined"
-                            />
-                            <TextField
-                                label="Shifts Required"
-                                name="shiftsRequired"
-                                value={newTimeBlockData.shiftsRequired}
-                                onChange={(e) => setNewTimeBlockData({ ...newTimeBlockData, shiftsRequired: e.target.value })}
-                                required
-                                fullWidth
-                                variant="outlined"
-                            />
-                        </Box>
-                    </Container>
-                </CardContent>
-            </Card>
-        )
-    }
+    } 
 
-    const headerSteps = ['Create New Business', 'Create a Manager', 'Create Manager Availability', 'Create Time Blocks'];
-    const formSteps = [createNewBusiness(), createManager(), createAvailabilty(), createTimeBlocks()];
+    const headerSteps = ['Create New Business', 'Create a Manager', 'Create Manager Availability'];
+    const formSteps = [createNewBusiness(), createManager(), createAvailabilty()];
     const [activeStep, setActiveStep] = React.useState(0);
     const handleNext = () => {
         setActiveStep((prevActiveStep: number) => prevActiveStep + 1);

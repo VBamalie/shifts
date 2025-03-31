@@ -5,6 +5,7 @@ import EmployeeRegistration from "./pages/EmployeeRegistration";
 import { AuthProvider} from "./pages/components/AuthContext";
 import NewCalendar from './pages/NewCalendar';
 import HorizontalLinearStepper from './pages/demoStepper';
+import DemoTimeBlock from './pages/DemoTimeBlock';
 
 
 
@@ -13,6 +14,7 @@ export default function App() {
     <AuthProvider>
     <Router>
       <Routes>
+        <Route path="/demo-time" element={<DemoTimeBlock/>}/>
         <Route path="/demo" element={<HorizontalLinearStepper/>}/>
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/login" element={<LoginPage />} />
