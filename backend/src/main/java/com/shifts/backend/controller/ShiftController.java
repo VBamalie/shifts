@@ -42,8 +42,8 @@ public class ShiftController {
     public Shift getShiftById(@PathVariable("id") Long id) {
         return shiftService.getShiftById(id);
     }
-    @GetMapping("/calendar/date/{dateString}")
-    public List<Shift> getAllShiftsByDate(@RequestBody Long calendarId, @PathVariable("dateString") String dateString) {
+    @GetMapping("/calendar/date/{dateString}/{calender}")//this is the endpoint for getting all shifts by date
+    public List<Shift> getAllShiftsByDate(@PathVariable("calender") Long calendarId, @PathVariable("dateString") String dateString) {
         return shiftService.getShiftsByFirstDat(calendarId, dateString);
     }
     

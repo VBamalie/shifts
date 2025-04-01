@@ -4,12 +4,15 @@ import { useAuth } from "./AuthContext";
 
 //this will be a component of solely the week's worth of schedules.
 function WeekSchedule(props: any) {
+     console.log(props.date);
      const { employee } = useAuth();
     const [shift, setShift] = useState<any>([]);
     useEffect(() => {
-          const calendarId:number = employee?.calendar;
-         axiosInstance.get(`http://localhost:8080/api/shift/calendar/${calendarId}`).then((response) => {//TODO: change this to be get shifts by date. we'll need to pass in a date in the body. figure out how to do that.
-              setShift(response.data);
+         const calendarId:number = employee?.calendar;
+         axiosInstance.get(`http://localhost:8080/api/shift/calendar/date/${props.date}/${calendarId}`).then((response) => {
+          console.log(props.date);
+          console.log(response.data);
+          setShift(response.data);
           }).catch((error) => {
               console.log("error fetching shift", error);
           });

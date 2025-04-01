@@ -3,6 +3,8 @@ import Navbar from './components/Navbar';
 
 import EmployeeList from './components/EmployeeList';
 import WeekSchedule from './components/WeekSchedule';
+import WeeklyDatePicker from './components/WeeklyDatePicker';
+import dayjs from 'dayjs';
 
 
 //this will be the main page that an employee will see their schedule. Managers will have buttons that allow them to move to the edit schedule page
@@ -11,11 +13,19 @@ import WeekSchedule from './components/WeekSchedule';
 //TODO: add conditionals for managers to see edit schedule links
 //TODO: add a pagination that allows users to click other weeks schedules. this will be connected to the controller display weekly
 function Dashboard () {
+    const [selectedDate, setSelectedDate] = useState("03-30-2025");
+
+    
+    const updateDate = (date:string)=>{
+        setSelectedDate(date);
+        console.log("dashboard" + date);
+    }
     return (
         <div>
             <Navbar />
             <h1>Dashboard</h1>
-            <WeekSchedule date={"01-01-20202"} />
+            <WeeklyDatePicker onDateUpdate={updateDate} selectedDate={selectedDate}/>
+            <WeekSchedule date={selectedDate} />
             <EmployeeList/>
 
         </div>

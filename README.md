@@ -8,6 +8,7 @@ todo:
 - [x] research front end date mechanics to decide if we should change the date types on shift and time off request tables
 - [1/2] create the skeleton for the calendar
 - [x] create the component where all employees are listed
+- [ ] make the dashboard only show this week's shift info
 - [ ] create buttons that only a manager can see
 - [ ] create pages for editing calendar info
 - [ ] create pages for editing employee info
