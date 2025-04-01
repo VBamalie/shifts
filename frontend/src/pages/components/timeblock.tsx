@@ -41,15 +41,15 @@ function EditToolbar(props: GridSlotProps['toolbar']) {
   const { setRows, setRowModesModel } = props;
 
   const handleClick = () => {
-    const id = randomId();
-    setRows((oldRows) => [
-      ...oldRows,
-      { id, name: '', age: '', role: '', isNew: true },
-    ]);
-    setRowModesModel((oldModel) => ({
-      ...oldModel,
-      [id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
-    }));
+     axiosInstance.post(`http://localhost:8080/api/timeblock/1`, {}).then((response)=>{
+      setRows((oldRows) => [...oldRows, response.data]);
+      setRowModesModel((oldModel) => ({
+        ...oldModel,
+        [response.data.id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
+      }));
+    }).catch((error)=>{
+        console.log("error creating timeblock")
+    })
   };
 
   return (
@@ -88,8 +88,15 @@ export default function TimeBlock() {
   };
 
   const handleDeleteClick = (id: GridRowId) => () => {
-    setRows(rows.filter((row) => row.id !== id));
-  };
+    rows.map((row) => row.id !== id ? 
+      axiosInstance.delete(`http://localhost:8080/api/timeblock/${id}`).then((response)=>{
+        console.log('deleted timeblock', response.data);
+        setRows(rows.filter((row) => row.id !== id));
+      }).catch((error)=>{
+        console.log("error deleting timeblocks")
+      })
+      : null
+    )  };
 
   const handleCancelClick = (id: GridRowId) => () => {
     setRowModesModel({
@@ -105,7 +112,15 @@ export default function TimeBlock() {
 
   const processRowUpdate = (newRow: GridRowModel) => {
     const updatedRow = { ...newRow, isNew: false };
-    setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
+    rows.map((row) => (row.id === newRow.id?
+      axiosInstance.put(`http://localhost:8080/api/timeblock/${newRow.id}`, newRow).then((response)=>{
+        console.log('updated timeblock', response.data);
+    }).catch((error)=>{
+        console.log("error updating timeblocks")
+    })
+    :
+    updatedRow 
+  ));
     return updatedRow;
   };
 
@@ -118,7 +133,8 @@ export default function TimeBlock() {
     headerName: 'Day',
     width: 180, 
     editable: true,
-    valueOptions: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    type: 'singleSelect',
+    valueOptions: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
  },
     {
       field: 'startTime',
@@ -216,10 +232,7 @@ export default function TimeBlock() {
         onRowModesModelChange={handleRowModesModelChange}
         onRowEditStop={handleRowEditStop}
         processRowUpdate={processRowUpdate}
-        slots={{ toolbar: EditToolbar }}
-        slotProps={{
-          toolbar: { setRows, setRowModesModel },
-        }}
+        slots={{ toolbar: EditToolbar }}        
       />
     </Box>
   );
