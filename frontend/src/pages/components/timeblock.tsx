@@ -20,13 +20,8 @@ import {
   GridRowEditStopReasons,
   GridSlotProps,
 } from '@mui/x-data-grid';
-import {
-  randomCreatedDate,
-  randomTraderName,
-  randomId,
-  randomArrayItem,
-} from '@mui/x-data-grid-generator';
 import axiosInstance from '../../axiosConfig';
+import { useAuth } from './AuthContext';
 
 declare module '@mui/x-data-grid' {
   interface ToolbarPropsOverrides {
@@ -38,10 +33,11 @@ declare module '@mui/x-data-grid' {
 }
 
 function EditToolbar(props: GridSlotProps['toolbar']) {
-  const { setRows, setRowModesModel } = props;
+  const {employee} = useAuth();
 
+  const { setRows, setRowModesModel } = props;
   const handleClick = () => {
-     axiosInstance.post(`http://localhost:8080/api/timeblock/1`, {}).then((response)=>{
+     axiosInstance.post(`http://localhost:8080/api/timeblock/${employee?.calendar}`, {}).then((response)=>{
       setRows((oldRows) => [...oldRows, response.data]);
       setRowModesModel((oldModel) => ({
         ...oldModel,
@@ -64,9 +60,9 @@ function EditToolbar(props: GridSlotProps['toolbar']) {
 export default function TimeBlock() {
   const [rows, setRows] = React.useState<GridRowModel[]>([]);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
-
+  const {employee} = useAuth();
   React.useEffect(()=>{
-    axiosInstance.get("http://localhost:8080/api/timeblock/calendar/1").then((response)=>{
+    axiosInstance.get(`http://localhost:8080/api/timeblock/calendar/${employee?.calendar}`).then((response)=>{
         setRows(response.data);
     }).catch((error)=>{
         console.log("error fetching timeblocks")

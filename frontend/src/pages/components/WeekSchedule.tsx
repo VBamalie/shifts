@@ -8,8 +8,7 @@ function WeekSchedule(props: any) {
     const [shift, setShift] = useState<any>([]);
     useEffect(() => {
           const calendarId:number = employee?.calendar;
-          console.log("calender: " + calendarId);
-         axiosInstance.get(`http://localhost:8080/api/shift/calendar/1`).then((response) => {//TODO: change this to be get shifts by date. we'll need to pass in a date in the body. figure out how to do that.
+         axiosInstance.get(`http://localhost:8080/api/shift/calendar/${calendarId}`).then((response) => {//TODO: change this to be get shifts by date. we'll need to pass in a date in the body. figure out how to do that.
               setShift(response.data);
           }).catch((error) => {
               console.log("error fetching shift", error);
