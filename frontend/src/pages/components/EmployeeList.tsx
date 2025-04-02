@@ -1,3 +1,4 @@
+//this will be a list of the employees that are connected with the Calendar. It will display the name of the employees and have some meta data within each employee for their availability and their time off requests. When a manager tries to add an employe to a shift they are unavailable for. it will put a small alert on the employee's name that will say they are scheduled for a shift they are unavailable for.
 import { TableContainer, Paper, Table, TableBody, TableRow, TableCell, IconButton, Collapse, TableHead, Typography } from "@mui/material";
 import React from "react";
 import { useState, useEffect } from "react";
@@ -5,12 +6,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import axiosInstance from "../../axiosConfig";
 import { useAuth } from "./AuthContext";
-
-
-//this will be a list of the employees that are connected with the Calendar. It will display the name of the employees and have some meta data within each employee for their availability and their time off requests. When a manager tries to add an employe to a shift they are unavailable for. it will put a small alert on the employee's name that will say they are scheduled for a shift they are unavailable for.
-
 //TODO: Add functionality to show the employee is over hours or working outside of their availability.
-/* This is the individual row for each employee. It will display the employee's name and their availability. It will also have a button that will show the employee's time off requests. */
 function Row(props: { row: any }) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);

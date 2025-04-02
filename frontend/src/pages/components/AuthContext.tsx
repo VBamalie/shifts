@@ -1,3 +1,4 @@
+//this file is used to create a context for logged in employees. We grab the employee's name, id, the calendar they belong to and whether or not they are a manager
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
 interface Employee {

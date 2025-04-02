@@ -1,3 +1,4 @@
+//This is the main file for the frontend of the application. It contains the routes for the different pages of the application.
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
@@ -31,8 +32,13 @@ export default function App() {
       ) : (
         <Route path="/login" element={<Navigate to="/login" />} />
       )}
-      <Route path="/new-calendar" element={<NewCalendar/>}/>
+      {localStorage.getItem('employee') ? (
         <Route path="/registration" element={<EmployeeRegistration />} />
+      ) : (
+        <Route path="/registration" element={<Navigate to="/login" />} />
+      )}
+      <Route path="/new-calendar" element={<NewCalendar/>}/>
+        
       </Routes>
     </Router>
     </AuthProvider>

@@ -1,6 +1,7 @@
+/* This is the page to register a new employee. The manager will be doing this */
 import axios from 'axios'
 import React, { useState } from 'react'
-import { redirect, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
     Typography,
     Button,
@@ -13,11 +14,10 @@ import {
     CardContent
 } from '@mui/material';
 import axiosInstance from '../axiosConfig';
+import { useAuth } from './components/AuthContext';
 //TODO: make this page look better
-//TODO: add context where the manager's calendar is the one that the employee is registering for
-/* This is the page to register a new employee. The manager will be doing this */
+//TODO: Redo this
 export default function Registration() {
-
     const [formData, setFormData] = useState({//these are the fields that will be used to create a new employee and their availability
         firstName: '',
         lastName: '',
@@ -91,12 +91,9 @@ export default function Registration() {
                 sat_end:parseInt(formData.sat_end), 
                 sun_start:parseInt(formData.sun_start), 
                 sun_end:parseInt(formData.sun_end)}
-
-        const employeeUrl = 'http://localhost:8080/api/employee/register/1';
-
-
+        const {employee} = useAuth();
+        const employeeUrl = `http://localhost:8080/api/employee/register/${employee?.calendar}`;
         setError('')
-
         try {
             const response = await axiosInstance.post(employeeUrl, employeeData);
             if (response.status === 201||response.status === 200) {
@@ -113,7 +110,6 @@ export default function Registration() {
                 } catch (err) {
                     setError('An error occured during availability registration')
                 }
-        
             } else {
                 const errorText = response.data;
                 setError(errorText)

@@ -1,3 +1,4 @@
+//this is the component that displays the current week's schedule. it will display the day and hours of each timeblock as well as how many shifts are required and which employees are currently scheduled to work this shift.
 import { useEffect, useState } from "react";
 import axiosInstance from "../../axiosConfig";
 import { useAuth } from "./AuthContext";
@@ -32,11 +33,11 @@ function WeekSchedule(props: any) {
               console.log("error fetching shift", error);
           });
     }, [props.date, employee, refreshTrigger ]);
-    const weekDayEnumList = [{weekDayEnum: "MON", name: "Monday"}, {weekDayEnum: "TUE", name: "Tuesday"}, {weekDayEnum: "WED", name: "Wednesday"}, {weekDayEnum: "THU", name: "Thursday"}, {weekDayEnum: "FRI", name: "Friday"}, {weekDayEnum: "SAT", name: "Saturday"}, {weekDayEnum: "SUN", name: "Sunday"}];
+    const weekDayEnumList = [{weekDayEnum: "MON", name: "Monday"}, {weekDayEnum: "TUE", name: "Tuesday"}, {weekDayEnum: "WED", name: "Wednesday"}, {weekDayEnum: "THU", name: "Thursday"}, {weekDayEnum: "FRI", name: "Friday"}, {weekDayEnum: "SAT", name: "Saturday"}, {weekDayEnum: "SUN", name: "Sunday"}];//an enum to create more readable code
     return (
 
      <div id="weekSchedule">
-          {weekDayEnumList.map((day)=>(
+          {weekDayEnumList.map((day)=>(//this will map over our enum to render each day of the week and what shifts are scheduled for that day
                <div key={day.weekDayEnum} id={day.weekDayEnum} className="weekDay">
                     <h1>{day.name}</h1>
                     {Array.isArray(shift) ? shift

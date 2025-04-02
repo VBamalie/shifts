@@ -1,13 +1,9 @@
-//This will be where all the options that are only available if the employee that is logged in is a manager. otherwise this section displays a blank space.
-
-import * as React from 'react';
+//This is the navbar. for managers it displays buttons to edit an employee, create a new employee, and edit the business's timeblocks. for employees it displays the company name and a logout button.
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { useAuth } from './AuthContext';
 import axiosInstance from '../../axiosConfig';
 import { useEffect, useState } from 'react';
@@ -16,7 +12,8 @@ import { ButtonGroup } from '@mui/material';
 const Navbar = () => {
     const { employee, logout } = useAuth();
     const [businessName, setBusinessName]= useState('');
-    useEffect(() => {
+    
+    useEffect(() => {//this grabs the current employee's business name
         const calendarId:number = employee?.calendar;
         axiosInstance.get(`http://localhost:8080/api/calendar/${calendarId}`).then((response) => {
             setBusinessName(response.data.businessName);
@@ -30,31 +27,28 @@ const Navbar = () => {
         <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            {employee ?(
+            {employee ?(//if the employee is logged in then this will display the business name and the logout button
                 <>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Shifts App</Typography>
+                    <Button color="inherit" href="/">Shifts App</Button>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     {businessName}
                     </Typography>
+                    {/* TODO: add conditional for if the employee is a manager} */}
                     <ButtonGroup variant="contained" aria-label="Basic button group">
-                        <Button>New Employee</Button>
+                        <Button href='/registration'>New Employee</Button>
                         <Button>Edit Employee</Button>
+                        <Button>Edit Timeblocks</Button>
                     </ButtonGroup>
                     <Button onClick={logout} variant="contained" color="secondary">
                     Logout
                     </Button>
                 </>
-            )
-            :(
+            ):(//if the employee is not logged in then this will display the login button
             <Button href='/login' color="inherit">Login</Button>
-            )
-        }
-            
+            )}  
           </Toolbar>
         </AppBar>
       </Box>
-        
     );
 };
 

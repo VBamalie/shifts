@@ -1,3 +1,5 @@
+//this is the component to add, edit, and remove timeblocks.
+//TODO: Decide if this should have it's own page or if it should be a modal
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -22,6 +24,9 @@ import {
 } from '@mui/x-data-grid';
 import axiosInstance from '../../axiosConfig';
 import { useAuth } from './AuthContext';
+//this uses a MUI X Data Grid to display the timeblocks.
+//it also uses a MUI X Data Grid Toolbar to add, edit, and delete timeblocks.
+//Documentation found at https://mui.com/x/react-data-grid/
 
 declare module '@mui/x-data-grid' {
   interface ToolbarPropsOverrides {
@@ -34,9 +39,9 @@ declare module '@mui/x-data-grid' {
 
 function EditToolbar(props: GridSlotProps['toolbar']) {
   const {employee} = useAuth();
-
   const { setRows, setRowModesModel } = props;
-  const handleClick = () => {
+
+  const handleClick = () => {//this is for adding a new timeblock
      axiosInstance.post(`http://localhost:8080/api/timeblock/${employee?.calendar}`, {}).then((response)=>{
       setRows((oldRows) => [...oldRows, response.data]);
       setRowModesModel((oldModel) => ({
@@ -83,7 +88,7 @@ export default function TimeBlock() {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
   };
 
-  const handleDeleteClick = (id: GridRowId) => () => {
+  const handleDeleteClick = (id: GridRowId) => () => {//handles deleting a timeblock
     rows.map((row) => row.id !== id ? 
       axiosInstance.delete(`http://localhost:8080/api/timeblock/${id}`).then((response)=>{
         console.log('deleted timeblock', response.data);
@@ -94,7 +99,7 @@ export default function TimeBlock() {
       : null
     )  };
 
-  const handleCancelClick = (id: GridRowId) => () => {
+  const handleCancelClick = (id: GridRowId) => () => {//handles canceling an edit
     setRowModesModel({
       ...rowModesModel,
       [id]: { mode: GridRowModes.View, ignoreModifications: true },
@@ -106,7 +111,7 @@ export default function TimeBlock() {
     }
   };
 
-  const processRowUpdate = (newRow: GridRowModel) => {
+  const processRowUpdate = (newRow: GridRowModel) => {//handles saving an edit
     const updatedRow = { ...newRow, isNew: false };
     rows.map((row) => (row.id === newRow.id?
       axiosInstance.put(`http://localhost:8080/api/timeblock/${newRow.id}`, newRow).then((response)=>{
@@ -120,7 +125,7 @@ export default function TimeBlock() {
     return updatedRow;
   };
 
-  const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {
+  const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {//this is the collumns for each row
     setRowModesModel(newRowModesModel);
   };
 
