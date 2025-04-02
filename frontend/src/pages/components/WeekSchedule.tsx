@@ -42,7 +42,7 @@ function WeekSchedule(props: any) {
                     {Array.isArray(shift) ? shift
                         .filter(shiftItem => shiftItem.timeBlock.weekDayEnum === day.weekDayEnum)
                         .map((shiftItem) => (
-                            <div key={shiftItem.id}>
+                            <div className='time-block'key={shiftItem.id}>
                                 <p>Hours: {shiftItem.timeBlock.startTime} - {shiftItem.timeBlock.endTime}</p>
                                 <p>Employees required for shift: {shiftItem.timeBlock.shiftsRequired}</p>
                                 <p>Employees working the shift:</p>

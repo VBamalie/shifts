@@ -1,9 +1,5 @@
 import React, {useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
 import './components/dashboard.css';
-
-
-import EmployeeList from './components/EmployeeList';
 import WeekSchedule from './components/WeekSchedule';
 import WeeklyDatePicker from './components/WeeklyDatePicker';
 import dayjs from 'dayjs';
@@ -21,13 +17,9 @@ function Dashboard () {
         setSelectedDate(date);
     }
     return (
-        <div>
-            <Navbar />
-            <h1>Dashboard</h1>
+        <div id='dashboard'>
             <WeeklyDatePicker onDateUpdate={updateDate} selectedDate={selectedDate}/>
             <WeekSchedule date={selectedDate} />
-            <EmployeeList/>
-
         </div>
     );
 }

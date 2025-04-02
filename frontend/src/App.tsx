@@ -6,12 +6,15 @@ import { AuthProvider} from "./pages/components/AuthContext";
 import NewCalendar from './pages/NewCalendar';
 import HorizontalLinearStepper from './pages/demoStepper';
 import DemoTimeBlock from './pages/DemoTimeBlock';
+import Navbar from './pages/components/navbar';
+import EditWeeklySchedule from './pages/EditWeeklySchedule';
 
 
 
 export default function App() {
   return (
     <AuthProvider>
+      <Navbar/>
     <Router>
       <Routes>
         <Route path="/demo-time" element={<DemoTimeBlock/>}/>
@@ -22,6 +25,11 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
       ) : (
         <Route path="/dashboard" element={<Navigate to="/login" />} />
+      )}
+      {localStorage.getItem('employee') ? (
+        <Route path="/edit-schedule/:date" element={< EditWeeklySchedule />} />
+      ) : (
+        <Route path="/login" element={<Navigate to="/login" />} />
       )}
       <Route path="/new-calendar" element={<NewCalendar/>}/>
         <Route path="/registration" element={<EmployeeRegistration />} />
