@@ -17,16 +17,18 @@ export default function WeeklyDatePicker(props: any) {
     const prevWeek = dayjs(selectedWeek).subtract(7, 'day').format('MM-DD-YYYY')
     const thisWeek = dayjs().subtract(dayjs().day(), 'day').format('MM-DD-YYYY')
   return (
-    <>
-    <ButtonGroup variant="text" aria-label="Basic button group" orientation='vertical'>
-  <Button
+    <div className='datePicker'>
+    <ButtonGroup variant="text" aria-label="Basic button group" >
+  <Button id='prevWeek' className='weekpicker'
   onClick={()=>{handleSelect(prevWeek)}}>{prevWeek}</Button>
-  <Button onClick={()=>handleSelect(selectedWeek)}>{selectedWeek}</Button>
-  <Button onClick={()=>handleSelect(nextWeek)}>{nextWeek}</Button>
-  <Button>This Week: </Button>
-  <Button onClick={()=>handleSelect(thisWeek)}>{thisWeek}</Button>
+  <Button  id='selected-week' className='weekpicker' onClick={()=>handleSelect(selectedWeek)}>{selectedWeek}</Button>
+  <Button id='prevWeek' className='weekpicker' onClick={()=>handleSelect(nextWeek)}>{nextWeek}</Button>
+  
 </ButtonGroup>
+<div>
+<Button onClick={()=>handleSelect(thisWeek)}>{thisWeek}</Button>
+</div>
 
-    </>
+    </div>
   );
 }

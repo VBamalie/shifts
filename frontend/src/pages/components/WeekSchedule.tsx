@@ -35,9 +35,9 @@ function WeekSchedule(props: any) {
     const weekDayEnumList = [{weekDayEnum: "MON", name: "Monday"}, {weekDayEnum: "TUE", name: "Tuesday"}, {weekDayEnum: "WED", name: "Wednesday"}, {weekDayEnum: "THU", name: "Thursday"}, {weekDayEnum: "FRI", name: "Friday"}, {weekDayEnum: "SAT", name: "Saturday"}, {weekDayEnum: "SUN", name: "Sunday"}];
     return (
 
-     <div>
+     <div id="weekSchedule">
           {weekDayEnumList.map((day)=>(
-               <div key={day.weekDayEnum}>
+               <div key={day.weekDayEnum} id={day.weekDayEnum} className="weekDay">
                     <h1>{day.name}</h1>
                     {Array.isArray(shift) ? shift
                         .filter(shiftItem => shiftItem.timeBlock.weekDayEnum === day.weekDayEnum)

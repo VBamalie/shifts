@@ -1,0 +1,15 @@
+#weekSchedule{
+    display: flex;
+    align-content: space-around;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: solid 2px;
+}
+.datePicker{
+    display: flex;
+    justify-content: space-around;
+    border: solid 2px;
+}
+.weekDay{
+}

@@ -1,5 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import './components/dashboard.css';
+
 
 import EmployeeList from './components/EmployeeList';
 import WeekSchedule from './components/WeekSchedule';
