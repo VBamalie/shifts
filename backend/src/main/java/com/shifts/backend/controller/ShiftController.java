@@ -49,6 +49,9 @@ public class ShiftController {
     
     @PostMapping("/calendar/addShifts/{date}")//this is the endpoint for adding a shift to a calendar week
     public String createShifts(@RequestBody Long calendarId, @PathVariable("date") String date) {
+        if (shiftService.getShiftsByFirstDat(calendarId, date).size() > 0) {
+            return "Shifts already exist for calendar: " + calendarId + " on date: " + date;
+        } else {
         List<TimeBlock> timeBlocks = timeBlockService.getAllTimeBlocksByCalendarId(calendarId);
         timeBlocks.forEach(timeBlock -> {
             Shift shift = new Shift();
@@ -58,6 +61,7 @@ public class ShiftController {
             shiftService.saveShift(shift);
         });
         return "Shifts created for calendar: " + calendarId + " on date: " + date;
+    }
     }
 
     //No Put method because employees will be added from the employee controller. Every other field is final
