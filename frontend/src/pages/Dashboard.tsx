@@ -13,7 +13,7 @@ import dayjs from 'dayjs';
 //TODO: add conditionals for managers to see edit schedule links
 //TODO: add a pagination that allows users to click other weeks schedules. this will be connected to the controller display weekly
 function Dashboard () {
-    const [selectedDate, setSelectedDate] = useState("03-30-2025");
+    const [selectedDate, setSelectedDate] = useState(dayjs().subtract(dayjs().day(), 'day').format('YYYY-MM-DD'));
 
     
     const updateDate = (date:string)=>{

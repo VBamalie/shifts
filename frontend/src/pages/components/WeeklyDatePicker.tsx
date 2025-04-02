@@ -16,7 +16,7 @@ export default function WeeklyDatePicker(props: any) {
     const selectedWeek = dayjs(selectedDate).subtract(dayjs(selectedDate).day(), 'day').format('MM-DD-YYYY')
     const nextWeek = dayjs(selectedWeek).add(7, 'day').format('MM-DD-YYYY')
     const prevWeek = dayjs(selectedWeek).subtract(7, 'day').format('MM-DD-YYYY')
-    const thisWeek = dayjs().subtract(dayjs().day()).format('MM-DD-YYYY')
+    const thisWeek = dayjs().subtract(dayjs().day(), 'day').format('YYYY-MM-DD')
   return (
     <>
     <ButtonGroup variant="text" aria-label="Basic button group" orientation='vertical'>
