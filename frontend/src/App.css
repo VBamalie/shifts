@@ -33,8 +33,10 @@
 #edit-schedule{
   display:flex;
   flex-direction: row;
+  min-height: 100vh;
 
 }
 #employee-list{
   width: 33%;
+  max-height: 50%;
 }

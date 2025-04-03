@@ -131,17 +131,9 @@ INSERT INTO TIME_BLOCK(
          'John1', 
          'Doe',
          True,
-         'email@email.com',         '$2a$12$czxz3NL0rPwCcBaVn7ZUFuEcC6NnvlxVYpYyix1Pb74NHE7/Xz9Mq');
-
- INSERT INTO EMPLOYEES (
-     ID, 
-     CALENDAR_ID, 
-     FIRST_NAME, 
-     LAST_NAME,
-     IS_MANAGER,
-     EMAIL,
-     PASSWORD
-     ) VALUES (
+         'email@email.com',         
+         '$2a$12$czxz3NL0rPwCcBaVn7ZUFuEcC6NnvlxVYpYyix1Pb74NHE7/Xz9Mq'),
+         (
          2, 
          1, 
          'Jane2', 
@@ -149,24 +141,64 @@ INSERT INTO TIME_BLOCK(
          False,
          'email2@email.com',
          '$2a$12$czxz3NL0rPwCcBaVn7ZUFuEcC6NnvlxVYpYyix1Pb74NHE7/Xz9Mq'
-         );
-
- INSERT INTO EMPLOYEES (
-     ID, 
-     CALENDAR_ID, 
-     FIRST_NAME, 
-     LAST_NAME,
-     IS_MANAGER,
-     EMAIL,
-     PASSWORD
-     ) VALUES (
+         ),
+         (
          3, 
          1, 
          'Bob3', 
          'Johnson',
          False,
          'email3@email.com',
-         '$2a$12$czxz3NL0rPwCcBaVn7ZUFuEcC6NnvlxVYpYyix1Pb74NHE7/Xz9Mq');
+         '$2a$12$czxz3NL0rPwCcBaVn7ZUFuEcC6NnvlxVYpYyix1Pb74NHE7/Xz9Mq'
+         ),(
+            4,
+            1,
+            'Alice4',
+            'Williams',
+            False,
+            'emaill4@email.com',
+            '$2a$12$czxz3NL0rPwCcBaVn7ZUFuEcC6NnvlxVYpYyix1Pb74NHE7/Xz9Mq'
+         ),(
+            5,
+            1,
+            'David',
+            'Brown',
+            False,
+            'email5@email.com',
+            '$2a$12$czxz3NL0rPwCcBaVn7ZUFuEcC6NnvlxVYpYyix1Pb74NHE7/Xz9Mq'
+         ),(
+            6,
+            1,
+            'Sarah',
+            'Miller',
+            False,
+            'email6@email.com',
+            '$2a$12$czxz3NL0rPwCcBaVn7ZUFuEcC6NnvlxVYpYyix1Pb74NHE7/Xz9Mq'
+         ),(
+            7,
+            1,
+            'Michael',
+            'Davis',
+            False,
+            'email7@email.com',
+            '$2a$12$czxz3NL0rPwCcBaVn7ZUFuEcC6NnvlxVYpYyix1Pb74NHE7/Xz9Mq'
+         ),(
+            8,
+            1,
+            'Emily',
+            'Wilson',
+            False,
+            'email8@email.com',
+            '$2a$12$czxz3NL0rPwCcBaVn7ZUFuEcC6NnvlxVYpYyix1Pb74NHE7/Xz9Mq'
+         ),(
+            9,
+            1,
+            'Daniel',
+            'Taylor',
+            False,
+            'email9@email.com',
+            '$2a$12$czxz3NL0rPwCcBaVn7ZUFuEcC6NnvlxVYpYyix1Pb74NHE7/Xz9Mq'
+         );
 
 
  INSERT INTO AVAILABILITY(
@@ -203,25 +235,7 @@ INSERT INTO TIME_BLOCK(
      24.0,
      1.0,
      24.0
- );
- INSERT INTO AVAILABILITY(
-     ID,
-     EMPLOYEE_ID,
-     MON_START,
-     MON_END,
-     TUE_START,
-     TUE_END,
-     WED_START,
-     WED_END,
-     THU_START,
-     THU_END,
-     FRI_START,
-     FRI_END,
-     SAT_START,
-     SAT_END,
-     SUN_START,
-     SUN_END
- ) VALUES(
+ ),(
      2,
      2,
      1.0,
@@ -238,25 +252,7 @@ INSERT INTO TIME_BLOCK(
      24.0,
      1.0,
      24.0
- );
- INSERT INTO AVAILABILITY(
-     ID,
-     EMPLOYEE_ID,
-     MON_START,
-     MON_END,
-     TUE_START,
-     TUE_END,
-     WED_START,
-     WED_END,
-     THU_START,
-     THU_END,
-     FRI_START,
-     FRI_END,
-     SAT_START,
-     SAT_END,
-     SUN_START,
-     SUN_END
- ) VALUES(
+ ),(
      3,
      3,
      1.0,
@@ -273,7 +269,110 @@ INSERT INTO TIME_BLOCK(
      24.0,
      1.0,
      24.0
+ ),(
+    4,
+    4,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0
+ ),(
+    5,
+    5,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0
+ ),(
+    6,
+    6,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0
+ ),(
+    7,
+    7,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0
+ ),(
+    8,
+    8,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0
+ ),(
+    9,
+    9,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0,
+    1.0,
+    24.0
  );
+
 --  INSERT INTO TIME_OFF_REQUEST(
 --      ID,
 --      EMPLOYEE_ID, 

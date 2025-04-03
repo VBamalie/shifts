@@ -9,6 +9,7 @@ import HorizontalLinearStepper from './pages/demoStepper';
 import DemoTimeBlock from './pages/DemoTimeBlock';
 import Navbar from './pages/components/navbar';
 import EditWeeklySchedule from './pages/EditWeeklySchedule';
+import"./App.css"
 
 
 

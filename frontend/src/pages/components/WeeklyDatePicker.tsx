@@ -24,7 +24,7 @@ export default function WeeklyDatePicker(props: any) {//props is the date that i
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {selectedWeek}
           </Typography>
-          <Button href="#"id="edit-schedule-button" variant="contained">Edit Schedule</Button>
+          <Button href={`./edit-schedule/${selectedWeek}`}id="edit-schedule-button" variant="contained">Edit Schedule</Button>
         </Box>
         <Box>
           <Button onClick={() => handleSelect(thisWeek)}>{thisWeek}</Button>

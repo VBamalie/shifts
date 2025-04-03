@@ -4,6 +4,7 @@ import axiosInstance from "../../axiosConfig";
 import { useAuth } from "./AuthContext";
 
 //this will be a component of solely the week's worth of schedules.
+//TODO: https://mui.com/x/react-data-grid/row-spanning/ do week schedule like the demo maybe?
 function WeekSchedule(props: any) {
      const { employee } = useAuth();
     const [shift, setShift] = useState<any>([]);
