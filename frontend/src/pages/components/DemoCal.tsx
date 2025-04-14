@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../axiosConfig";
 import { useAuth } from "./AuthContext";
 
-export default function WeeklyCalendar(props: any) {
+export default function WeeklyCalendar(props:{ date: any , onShiftSelection : { onShiftSelection: (shift: any) => void }}) {
     const { employee } = useAuth();
     const [shifts, setShifts] = useState<any[]>([]);
+    const [selectedShiftCell, setSelectedShiftCell] = useState<any>(null);
 
     const [refreshTrigger, setRefreshTrigger] = useState(0); // Trigger for re-fetching
 
@@ -125,13 +126,13 @@ export default function WeeklyCalendar(props: any) {
                         columns={makeColumns(day.enum)}
                         rows={makeRows(day.enum)}
                         // unstable_rowSpanning
-                        disableRowSelectionOnClick
                         hideFooter
                         showCellVerticalBorder
                         showColumnVerticalBorder
-                        // slots={{
-                        //     columnHeaders: () => null,
-                        // }}
+                        onRowSelectionModelChange={(newSelection) => {
+                            const selectedRow = shifts.find((row: any) => row.id === newSelection[0]);
+                            props.onShiftSelection.onShiftSelection(selectedRow);
+                        }}
                     />
                 </Box>
             ))}

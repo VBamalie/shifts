@@ -11,9 +11,11 @@ export default function EmployeeAvailability(selectedEmployee: any) {
     { field: 'end', headerName: 'End', width: 150 },
   ];
   return (<>
-    <Box style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+    <Box >
+      <Box>
         <Typography variant='h5'>{selectedEmployee.selectedEmployee.firstName} {selectedEmployee.selectedEmployee.lastName}'s Availability</Typography>
         </Box>
+    </Box>
     <DataGrid
     columns={columns}
     rows={rows}
@@ -25,6 +27,7 @@ export default function EmployeeAvailability(selectedEmployee: any) {
           [`& .course-instructor--cell`]: {
             textAlign: 'center',
             fontWeight: 'bold',
+            height:'50vh'
           },
         }}
     />

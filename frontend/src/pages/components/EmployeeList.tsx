@@ -26,7 +26,7 @@ function EmployeeList({ onEmployeeSelection }: { onEmployeeSelection: (employee:
   }, []);
 
   return (
-    <Box>
+    <Box sx={{ height: '40vh', width: '100%' }}>
       <Typography variant="h5">Employees</Typography>
     <DataGrid
       columns={[
@@ -40,6 +40,7 @@ function EmployeeList({ onEmployeeSelection }: { onEmployeeSelection: (employee:
 
         }
       ]}
+      hideFooter
       rows={employees}
       onRowSelectionModelChange={(newSelection) => {
         const selectedRow = employees.find((row: any) => row.id === newSelection[0]);
