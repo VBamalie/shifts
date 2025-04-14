@@ -40,3 +40,8 @@
   width: 33%;
   max-height: 50%;
 }
+.edit-schedule-grid{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

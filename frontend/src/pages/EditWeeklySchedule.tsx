@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import EmployeeList from "./components/EmployeeList";
 import { useState } from "react";
 import EmployeeAvailability from "./components/EmployeeAvailability";
+import WeeklyCalendar from "./components/DemoCal";
 
 export default function EditWeeklySchedule() {
     const params = useParams();
@@ -15,7 +16,8 @@ export default function EditWeeklySchedule() {
 
   return (
     <Box id='edit-schedule'>
-    <WeekSchedule date={params.date}/>
+    {/* <WeekSchedule date={params.date}/> */}
+    <WeeklyCalendar date={params.date} />
     <Box id="employee-list">
     <EmployeeList onEmployeeSelection={handleEmployeeSelection}/>
     {selectedEmployee? <EmployeeAvailability selectedEmployee={selectedEmployee}/>: null}
