@@ -77,11 +77,6 @@ export default function HorizontalLinearStepper() {
             isManager: true
         };
 
-
-
-
-       
-
         const response = await axios.post('http://localhost:8080/api/calendar/', newBusinessData);
         try {
             const businessId = response.data.id;
