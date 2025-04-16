@@ -43,16 +43,15 @@ export default function EditWeeklySchedule() {
 
   return (
     <Box>
-    
-    
+    <Box id='edit-box'>
+    <AddShiftBox selectedEmployee={selectedEmployee} selectedShift={selectedShift} addShift={handleAddShift} />
+    <EmployeeList onEmployeeSelection={handleEmployeeSelection}/>
+    {selectedEmployee ? <EmployeeAvailability selectedEmployee={selectedEmployee}/>: <Box/>}
+    </Box>
     <Box id='edit-schedule'>
     {/* <WeekSchedule date={params.date}/> */}
     <WeeklyCalendar shifts={shifts} onShiftSelection={{onShiftSelection: handleShiftSelection}} />
-    <Box id="employee-list" >
-    <AddShiftBox selectedEmployee={selectedEmployee} selectedShift={selectedShift} addShift={handleAddShift} />
-    <EmployeeList onEmployeeSelection={handleEmployeeSelection}/>
-    {selectedEmployee? <EmployeeAvailability selectedEmployee={selectedEmployee}/>: null}
-    </Box>
+    
     </Box>
     </Box>
   )

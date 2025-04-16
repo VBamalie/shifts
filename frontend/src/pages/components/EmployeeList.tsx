@@ -26,17 +26,19 @@ function EmployeeList({ onEmployeeSelection }: { onEmployeeSelection: (employee:
   }, []);
 
   return (
-    <Box sx={{ height: '40vh', width: '100%' }}>
+    <Box id='employee-list'>
       <Typography variant="h5">Employees</Typography>
     <DataGrid
       columns={[
         {
           field: 'firstName',
           headerName: 'First Name',
+          headerClassName: 'data-grid-header'
         },
         {
           field: 'lastName',
           headerName: 'Last Name',
+          headerClassName: 'data-grid-header'
 
         }
       ]}
@@ -46,7 +48,13 @@ function EmployeeList({ onEmployeeSelection }: { onEmployeeSelection: (employee:
         const selectedRow = employees.find((row: any) => row.id === newSelection[0]);
         setSelectedEmployee(selectedRow || null);
         onEmployeeSelection(selectedRow || null);
-      }}    />
+      }} 
+      sx={{
+        '& .data-grid-header': {
+          backgroundColor: 'antiquewhite',
+        }
+    }}
+         />
     </Box>
   );
 }

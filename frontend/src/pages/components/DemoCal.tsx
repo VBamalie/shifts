@@ -5,60 +5,24 @@ import axiosInstance from "../../axiosConfig";
 import { useAuth } from "./AuthContext";
 
 export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelection: (shift: any) => void }, shifts: any[]}) {
-    const { employee } = useAuth();
     const shifts = props.shifts;
-    const [selectedShiftCell, setSelectedShiftCell] = useState<any>(null);
-
-    const [refreshTrigger, setRefreshTrigger] = useState(0); // Trigger for re-fetching
-
-
-    // function addShifts() {
-    //     axiosInstance.post(`http://localhost:8080/api/shift/calendar/addShifts/${props.date}`, employee?.calendar)
-    //         .then(() => {
-    //             setRefreshTrigger(prev => prev + 1); // Trigger a re-fetch
-    //         })
-    //         .catch(error => {
-    //             console.error("Error creating shifts", error);
-    //         });
-    // }
-    
-    
+  
 
     const weekDayEnum = [{ name: 'Monday', enum: "MON" }, { name: 'Tuesday', enum: "TUE" }, { name: 'Wednesday', enum: "WED" }, { name: 'Thursday', enum: "THU" }, { name: 'Friday', enum: "FRI" }, { name: 'Saturday', enum: "SAT" }, { name: 'Sunday', enum: "SUN" }];
-    
-    const demoColumns = [
-        { field: 'hours', headerName: '', width: 100 },
-        { field: 'employeeWorking1', headerName: '', width: 100 },
-        { field: 'employeeWorking2', headerName: '', width: 100 }
-    ]
-
-    const demoRows = [
-        {
-            id: 0,
-            hours: "10-11",
-            employeeWorking1: shifts[0]?.firstDate || '',
-            employeeWorking2: "Jane Doe"
-        },
-        {
-            id: 1,
-            hours: "12-24",
-            employeeWorking1: "John Doe",
-            employeeWorking2: null
-        },
-    ]
 
     function makeColumns(day: any): GridColDef[] {
         const column: GridColDef[] = [];
         //filter the shifts to only include the shifts for the day
+        column.push({ field: 'hours', headerName: 'Open Hours', width: 100 });
         const dayShifts = shifts?.length
     ? shifts.filter((shiftItem: { timeBlock: { weekDayEnum: any } }) => shiftItem.timeBlock.weekDayEnum === day)
     : [];
     const columnAmount = determineEmployeeColumn(dayShifts);
     for (let i = 0; i < columnAmount; i++) {
-        column.push({ field: `employeeWorking${i + 1}`, headerName: `employee ${i+1}`, width: 170 });
+        column.push({ field: `employeeWorking${i + 1}`, headerName: `employee ${i+1}`, width: 100 });
     }
     
-    column.push({ field: 'hours', headerName: 'Open Hours', width: 100 });
+    
         return column;
     }
 
@@ -98,7 +62,7 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
             
             for(let i = 0; i < employeeColumnAmount; i++) {
                 item.employeesWorking[i]?
-                row[`employeeWorking${i + 1}`] = item.employeesWorking[i]?.firstName + " " + item.employeesWorking[i]?.lastName || 'Add an Employee': row[`employeeWorking${i + 1}`] = `Add an Employee `;
+                row[`employeeWorking${i + 1}`] = item.employeesWorking[i]?.firstName + " " + item.employeesWorking[i]?.lastName || 'Add an Employee': row[`employeeWorking${i + 1}`] = ` `;
             }
             return row;
         });
@@ -112,9 +76,11 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
                 <Box key={day.enum} id={day.enum} className="weekDay">
                     <Typography variant="h4">{day.name}</Typography>
                     <DataGrid
-                        
                         columns={makeColumns(day.enum)}
                         rows={makeRows(day.enum)}
+                        sx={{
+                            height: 'fit-content',
+                        }}
                         // unstable_rowSpanning
                         hideFooter
                         showCellVerticalBorder

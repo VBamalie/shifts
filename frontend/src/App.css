@@ -33,18 +33,34 @@
 #edit-schedule{
   display:flex;
   flex-direction: row;
-  min-height: 100vh;
+  
 
 }
 #employee-list{
-  width: 45%;
+  width: 245px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
+}
+#employee-availability{
+  height: 95%;
+  width: 225px;
+}
+#edit-box{
+  display: flex;
+  height: 46vh;
+  justify-content: space-between;
+  padding: 3% 0;
+  background-color: antiquewhite;
 }
 .edit-schedule-grid{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
+  padding: 3% 0;
+}
+.weekDay{
+
 }
