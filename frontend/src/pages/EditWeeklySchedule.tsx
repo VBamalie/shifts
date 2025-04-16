@@ -22,12 +22,17 @@ export default function EditWeeklySchedule() {
     const handleShiftSelection = (shift: any) => {
       setSelectedShift(shift);
     };
+    const handleAddShift = (shift: { id: number }) => {
+      setShifts((prevShifts: { id: number }[]) => {
+        const filteredShifts = prevShifts.filter((s) => s.id !== shift.id);
+        return [...filteredShifts, shift];
+      });
+    };
 
     useEffect(() => {
       const calendarId: number = employee?.calendar;
 
       axiosInstance.get(`http://localhost:8080/api/shift/calendar/date/${params.date}/${calendarId}`).then((response) => {
-          console.log(response.data);
               setShifts(response.data); // Update state with fetched shifts
               console.log(shifts);
       }).catch((error) => {
@@ -44,7 +49,7 @@ export default function EditWeeklySchedule() {
     {/* <WeekSchedule date={params.date}/> */}
     <WeeklyCalendar shifts={shifts} onShiftSelection={{onShiftSelection: handleShiftSelection}} />
     <Box id="employee-list" >
-    <AddShiftBox selectedEmployee={selectedEmployee} selectedShift={selectedShift} />
+    <AddShiftBox selectedEmployee={selectedEmployee} selectedShift={selectedShift} addShift={handleAddShift} />
     <EmployeeList onEmployeeSelection={handleEmployeeSelection}/>
     {selectedEmployee? <EmployeeAvailability selectedEmployee={selectedEmployee}/>: null}
     </Box>

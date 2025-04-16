@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../axiosConfig";
 
 //This is the box that allows managers to add employees to shifts and remove them from shifts. The manager selects a shift and an employee and adds them to the shift.
-export default function AddShiftBox(props: { selectedEmployee: any, selectedShift: any }) {
+export default function AddShiftBox(props: { selectedEmployee: any, selectedShift: any, addShift: (shift: any) => void }) {
   const selectedEmployee = props.selectedEmployee;
   const selectedShift = props.selectedShift;
   const [selectedWorkingEmployee, setWorkingEmployee] = useState(props.selectedEmployee);
@@ -12,24 +12,30 @@ export default function AddShiftBox(props: { selectedEmployee: any, selectedShif
 
   const handleAddEmployeeToShift = async(e: {preventDefault:()=> void;}) => {
     // e.preventDefault();
-    console.log(`current selected employee: ${currentlySelectedEmployee?.id}`)
     if(currentlySelectedEmployee){
     const response = await axiosInstance.put(`http://localhost:8080/api/employee/addShift/${currentlySelectedEmployee.id}`, selectedShift.id);
     try{
-      console.log("response", response);
+      props.addShift(response.data);
     }catch(error){
       console.log("error", error);
     }
   }
-  };
-  
+  };  
   const handleSelectWorkingEmployee = (employee: any) => {
     console.log("Selected Employee:", employee);
     setWorkingEmployee(employee);
     setCurrentlySelectedEmployee(employee);
   }
-  const handleRemoveEmployeeFromShift = () => {
-    console.log("Removing employee from shift:", selectedEmployee, selectedShift);
+  const handleRemoveEmployeeFromShift = async(e:{preventDefault:()=> void;}) => {
+    // e.preventDefault();
+    if(currentlySelectedEmployee){
+      const response = await axiosInstance.put(`http://localhost:8080/api/employee/removeShift/${currentlySelectedEmployee.id}`, selectedShift.id);
+      try{
+        props.addShift(response.data);
+      }catch(error){
+        console.log("error", error);
+      }
+    }
   }
   useEffect(() => {
     setCurrentlySelectedEmployee(selectedEmployee);
