@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../axiosConfig";
 import { useAuth } from "./AuthContext";
 
-export default function WeeklyCalendar(props:{ date: any , onShiftSelection : { onShiftSelection: (shift: any) => void }}) {
+export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelection: (shift: any) => void }, shifts: any[]}) {
     const { employee } = useAuth();
-    const [shifts, setShifts] = useState<any[]>([]);
+    const shifts = props.shifts;
     const [selectedShiftCell, setSelectedShiftCell] = useState<any>(null);
 
     const [refreshTrigger, setRefreshTrigger] = useState(0); // Trigger for re-fetching
@@ -21,17 +21,7 @@ export default function WeeklyCalendar(props:{ date: any , onShiftSelection : { 
     //             console.error("Error creating shifts", error);
     //         });
     // }
-    useEffect(() => {
-        const calendarId: number = employee?.calendar;
-
-        axiosInstance.get(`http://localhost:8080/api/shift/calendar/date/${props.date}/${calendarId}`).then((response) => {
-            console.log(response.data);
-                setShifts(response.data); // Update state with fetched shifts
-                console.log(shifts);
-        }).catch((error) => {
-            console.log("error fetching shift", error);
-        });
-    }, [refreshTrigger, props.date, employee?.calendar]);
+    
     
 
     const weekDayEnum = [{ name: 'Monday', enum: "MON" }, { name: 'Tuesday', enum: "TUE" }, { name: 'Wednesday', enum: "WED" }, { name: 'Thursday', enum: "THU" }, { name: 'Friday', enum: "FRI" }, { name: 'Saturday', enum: "SAT" }, { name: 'Sunday', enum: "SUN" }];
