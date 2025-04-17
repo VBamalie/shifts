@@ -20,6 +20,12 @@
   justify-content: space-around;
   border: solid 2px;
   align-items:center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: #effdff;
+  border-radius: 6px;
+  padding: 1%
 }
 #date-picker-header{
   display: flex;

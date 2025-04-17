@@ -4,7 +4,7 @@ import { Box, Button, Typography } from "@mui/material";
 import EmployeeList from "./components/EmployeeList";
 import { useEffect, useState } from "react";
 import EmployeeAvailability from "./components/EmployeeAvailability";
-import WeeklyCalendar from "./components/DemoCal";
+import WeeklyCalendar from "./components/WeeklyCalendar";
 import AddShiftBox from "./components/AddShiftBox";
 import axiosInstance from "../axiosConfig";
 import { useAuth } from "./components/AuthContext";
