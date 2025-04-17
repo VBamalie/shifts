@@ -40,13 +40,6 @@ public class Calendar {
     private List<Shift> shifts;
 
     /*Methods */
-    public List<Shift> createShiftFromTimeBlock(int date){
-        List<Shift> emptyShifts = new ArrayList<>();
-        //TODO: Create a method that makes every timeblockk within the Calendar's timeblock list use tthe createShift method
-        //passes date to createShift
-        //Arraylist is sorted from earliest shift to latest, monday-sunday
-        return null;
-    }
     //FIXME: Refactor this method into the service layer
     public List<Shift> autofillShifts(){
         //TODO: Calendar uses createShiftFromTimeBlock to create a list of shifts

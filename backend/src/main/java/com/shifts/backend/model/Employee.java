@@ -63,18 +63,67 @@ public class Employee {
     
 
                                                 /*METHODS*/
-    public boolean isAvailable(int date, Enum<WeekDayEnum> day, double startTime, double endTime){
-            return false;
-        //TODO: Checks if the employee is available for the given date, day, startTime, and endTime.
+    public boolean isAvailable(String date, WeekDayEnum day, double startTime, double endTime){//Checks if the employee is available for the given date, day, startTime, and endTime.
+            switch (day) {
+                case MON:
+                if(availability.getMon_start()<=startTime && availability.getMon_end()>=endTime){
+                    return true;
+                }   
+                case TUE:
+                if(availability.getTue_start()<=startTime && availability.getTue_end()>=endTime){
+                    return true;
+                }
+                return false;
+                case WED:
+                if(availability.getWed_start()<=startTime && availability.getWed_end()>=endTime){
+                    return true;
+                }
+                return false;
+                case THU:
+                if(availability.getThu_start()<=startTime && availability.getThu_end()>=endTime){
+                    return true;
+                }
+                return false;
+                case FRI:
+                if(availability.getFri_start()<=startTime && availability.getFri_end()>=endTime){
+                    return true;
+                }
+                return false;
+                case SAT:
+                if(availability.getSat_start()<=startTime && availability.getSat_end()>=endTime){
+                    return true;
+                }
+                return false;
+                case SUN:
+                if(availability.getSun_start()<=startTime && availability.getSun_end()>=endTime){
+                    return true;
+                }
+                return false;
+                default:
+                    return false;
+            }
+        
     }
-
-    public double hoursWorkedThisWeek(int date){
-        //TODO: filter the shifts with the given date and return the sum of the shifts hours
-        return 0;
+    public double hoursWorkedThisWeek(String date){//filter the shifts with the given date and return the sum of the shifts hours
+        int counter = 0;
+        for(Shift shift: shifts){
+            if(shift.getFirstDate() == date){
+                double hours = shift.getTimeBlock().getEndTime() - shift.getTimeBlock().getStartTime();
+                counter += hours;
+            }
+            
+        }
+        return counter;    
     }
-    public double hoursWorkedToday(int date, Enum<WeekDayEnum> day){
-        //TODO: filter the shifts with the given date and day and return the sum of the shifts hours
-        return 0;
+    public double hoursWorkedToday(String date, Enum<WeekDayEnum> day){
+        int counter = 0;
+        for(Shift shift: shifts){
+            if(shift.getFirstDate() == date && shift.getTimeBlock().getWeekDayEnum() == day){
+                double hours = shift.getTimeBlock().getEndTime() - shift.getTimeBlock().getStartTime();
+                counter += hours;
+            }
+        }
+        return counter;
     }
     public boolean workingAShiftTheyAreUnavailableFor(int date){
         //TODO: Checks if the employee is working a shift they are unavailable for

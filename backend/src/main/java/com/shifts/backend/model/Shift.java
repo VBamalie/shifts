@@ -1,6 +1,7 @@
 package com.shifts.backend.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -39,32 +40,41 @@ public class Shift {
 
 
     ///Methods
-    public boolean hasFilledShifts(){
-        //TODO: Checks if the shift has filled all the required employees.
-        //likely going to be: if (employeesWorking.length == timeBlock.getShiftsRequired()) then return true else return false.
-        return false;
+   
+    public List<Employee> fillEmployeesWorkingAndAlternatives(List<Employee> employees){
+        List<Employee> employeesPotentiallyWorking = new ArrayList<>();
+        for (Employee employee : employees) {//runs through the list of employees 
+            if(employee.isAvailable(firstDate, timeBlock.getWeekDayEnum(), timeBlock.getStartTime(), timeBlock.getEndTime())){// Checks if they are available to work that shift
+                employeesPotentiallyWorking.add(employee);// adds them to an array list of potential employees
+            }
+        }
+        Collections.sort(employeesPotentiallyWorking, (a,b)-> Double.compare(a.hoursWorkedThisWeek(firstDate), b.hoursWorkedThisWeek(firstDate)));//sorts the employees by the least amount of hours worked this week to the most amount
+        for(int i = timeBlock.getShiftsRequired(); i > 0; i--){//runs through the amount of employees required for the shift
+            employeesWorking.add(employeesPotentiallyWorking.get(i));//adds the employee to the employeesWorking array
+        }
+        return employeesWorking;
     }
-    public ArrayList<Integer> fillEmployeesWorkingAndAlternatives(Calendar calendar){
-        //TODO: runs through the list of employees within the calendar object.
-        //TODO: Checks if they are available to work that shift
-        //TODO: adds them to an array list of potential employees
-        //TODO: Sorts the Employees by employee with the least amount of hours worked this week to the most amount
-        //TODO: adds the correct amount of employees to the employeesWorking array
-        //TODO: adds the remaining employees to the employeesAlternatives array
-        //TODO: returns the employeesWorking array
-        return null;
-    }
-    public ArrayList<Integer> fillEmployeesWorkingAndAlternatives(ArrayList<Employee> priorityEmployees){
-        //TODO: runs through the list of employees provided.
-        //TODO: Checks if they are available to work that shift
-        //TODO: adds them to an array list of potential employees
-        //TODO: Sorts the Employees by employee with the least amount of hours worked this week to the most amount
-        //TODO: adds the correct amount of employees to the employeesWorking array
-        //TODO: adds the remaining employees to the employeesAlternatives array
-        //TODO:Checks to see if the employeesWorking array has the correct amount of employees with the hasFilledShifts method.
-        //TODO:if not, redoes this method with the entire employee pool.
-        //TODO: returns the employeesWorking array
-        return null;
+    public List<Employee> fillEmployeesWorkingAndAlternatives(List<Employee> employees, List<Employee> priorityEmployees){
+        List<Employee> employeesPotentiallyWorking = new ArrayList<>();
+        for (Employee employee : priorityEmployees) {//runs through the list of employees 
+            if(employee.isAvailable(firstDate, timeBlock.getWeekDayEnum(), timeBlock.getStartTime(), timeBlock.getEndTime())){// Checks if they are available to work that shift
+                employeesPotentiallyWorking.add(employee);// adds them to an array list of potential employees
+            }
+        }
+        Collections.sort(employeesPotentiallyWorking, (a,b)-> Double.compare(a.hoursWorkedThisWeek(firstDate), b.hoursWorkedThisWeek(firstDate)));//sorts the employees by the least amount of hours worked this week to the most amount
+        if(employeesPotentiallyWorking.size()<=timeBlock.getShiftsRequired()){
+            for(int i = timeBlock.getShiftsRequired(); i > 0; i--){//runs through the amount of employees required for the shift
+                employeesWorking.add(employeesPotentiallyWorking.get(i));//adds the employee to the employeesWorking array
+            }
+            return employeesWorking;
+        } else{
+            for(int i = employeesPotentiallyWorking.size(); i > 0; i--){//runs through the amount of employees required for the shift
+                employeesWorking.add(employeesPotentiallyWorking.get(i));//adds the employee to the employeesWorking array
+                employeesPotentiallyWorking.remove(i);//removes the employee from the employeesPotentiallyWorking array
+                employees.remove(employeesPotentiallyWorking.get(i));//removes the employee from the next sweep of potential employees working
+            }
+            return fillEmployeesWorkingAndAlternatives(employees);
+        }
     }
 }
 
