@@ -67,7 +67,6 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
         return rows;
     }
 
-    makeRows(weekDayEnum[0].enum);
     return (
         <Box className="edit-schedule-grid">
             {weekDayEnum.map((day) => (
