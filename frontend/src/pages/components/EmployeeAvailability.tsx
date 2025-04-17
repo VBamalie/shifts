@@ -12,7 +12,6 @@ export default function EmployeeAvailability(selectedEmployee: any) {
   ];
   return (
     <Box id='employee-availability'>
-      
         <Typography variant='h5'>{selectedEmployee.selectedEmployee.firstName}'s Availability</Typography>
     <DataGrid
     columns={columns}
@@ -20,7 +19,7 @@ export default function EmployeeAvailability(selectedEmployee: any) {
     hideFooter
     sx={{
         '& .data-grid-header': {
-          backgroundColor: 'antiquewhite',
+          backgroundColor: '#E5F3FD',
         },
         border: 0
     }}

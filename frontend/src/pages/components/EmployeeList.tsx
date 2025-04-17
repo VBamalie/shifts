@@ -42,6 +42,7 @@ function EmployeeList({ onEmployeeSelection }: { onEmployeeSelection: (employee:
 
         }
       ]}
+      
       hideFooter
       rows={employees}
       onRowSelectionModelChange={(newSelection) => {
@@ -51,7 +52,7 @@ function EmployeeList({ onEmployeeSelection }: { onEmployeeSelection: (employee:
       }} 
       sx={{
         '& .data-grid-header': {
-          backgroundColor: 'antiquewhite',
+          backgroundColor: '#E5F3FD',
         }
     }}
          />

@@ -19,10 +19,8 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
     : [];
     const columnAmount = determineEmployeeColumn(dayShifts);
     for (let i = 0; i < columnAmount; i++) {
-        column.push({ field: `employeeWorking${i + 1}`, headerName: `employee ${i+1}`, width: 100 });
+        column.push({ field: `employeeWorking${i + 1}`, headerName: ``, width: 150 });
     }
-    
-    
         return column;
     }
 
@@ -73,8 +71,8 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
     return (
         <Box className="edit-schedule-grid">
             {weekDayEnum.map((day) => (
-                <Box key={day.enum} id={day.enum} className="weekDay">
-                    <Typography variant="h4">{day.name}</Typography>
+                <Box key={day.enum} id={day.enum} className="week-day">
+                    <Typography className="week-day-name"variant="h4">{day.name}</Typography>
                     <DataGrid
                         columns={makeColumns(day.enum)}
                         rows={makeRows(day.enum)}

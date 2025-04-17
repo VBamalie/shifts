@@ -10,42 +10,42 @@ export default function AddShiftBox(props: { selectedEmployee: any, selectedShif
   const [currentlySelectedEmployee, setCurrentlySelectedEmployee] = useState();
 
 
-  const handleAddEmployeeToShift = async(e: {preventDefault:()=> void;}) => {
+  const handleAddEmployeeToShift = async (e: { preventDefault: () => void; }) => {
     // e.preventDefault();
-    if(currentlySelectedEmployee){
-    const response = await axiosInstance.put(`http://localhost:8080/api/employee/addShift/${currentlySelectedEmployee.id}`, selectedShift.id);
-    try{
-      props.addShift(response.data);
-    }catch(error){
-      console.log("error", error);
+    if (currentlySelectedEmployee) {
+      const response = await axiosInstance.put(`http://localhost:8080/api/employee/addShift/${currentlySelectedEmployee.id}`, selectedShift.id);
+      try {
+        props.addShift(response.data);
+      } catch (error) {
+        console.log("error", error);
+      }
     }
-  }
-  };  
+  };
   const handleSelectWorkingEmployee = (employee: any) => {
     console.log("Selected Employee:", employee);
     setWorkingEmployee(employee);
     setCurrentlySelectedEmployee(employee);
   }
-  const handleRemoveEmployeeFromShift = async(e:{preventDefault:()=> void;}) => {
+  const handleRemoveEmployeeFromShift = async (e: { preventDefault: () => void; }) => {
     // e.preventDefault();
-    if(currentlySelectedEmployee){
+    if (currentlySelectedEmployee) {
       const response = await axiosInstance.put(`http://localhost:8080/api/employee/removeShift/${currentlySelectedEmployee.id}`, selectedShift.id);
-      try{
+      try {
         props.addShift(response.data);
-      }catch(error){
+      } catch (error) {
         console.log("error", error);
       }
     }
   }
   useEffect(() => {
     setCurrentlySelectedEmployee(selectedEmployee);
-  }, [props.selectedEmployee]);
-  
+  }, [props.selectedEmployee]);//TODO: add refresh trigger
+
 
   return (
     <Box className="add-shift-container">
       <Box className="selected-shifts">
-        {selectedShift ? <Typography variant="h5">Selected Shift: {selectedShift?.timeBlock.weekDayEnum} {selectedShift?.timeBlock.startTime} - {selectedShift.timeBlock.endTime}</Typography> : <Typography variant="h5">No Shift Selected</Typography>}
+        {selectedShift ? <Typography variant="h4">Selected Shift: {selectedShift?.timeBlock.weekDayEnum} {selectedShift?.timeBlock.startTime} - {selectedShift.timeBlock.endTime}</Typography> : <Typography variant="h5">No Shift Selected</Typography>}
         {selectedShift?.employeesWorking.length > 0 ? (<>
           <Typography variant="h6"> Employees Working:</Typography>
           {selectedShift?.employeesWorking.map((employee: any) => (
@@ -56,18 +56,20 @@ export default function AddShiftBox(props: { selectedEmployee: any, selectedShif
         </>) : <Typography variant="h6">No Employees Working</Typography>}
       </Box>
       <Box className="selected-employee">
-        {selectedEmployee ? <Typography variant="h6">Selected Employee: {currentlySelectedEmployee?.firstName + " " + currentlySelectedEmployee?.lastName}</Typography> : <Typography variant="h6">No Employee Selected</Typography>}
-      </Box >
-      <Box className="button-box">
-        {currentlySelectedEmployee === selectedWorkingEmployee && currentlySelectedEmployee !== null ? <Button onClick={() => {
-          handleRemoveEmployeeFromShift();
-        }}>
-          Remove Employee From Shift
-        </Button>
+        {selectedEmployee ? 
+          <Typography variant="h4">Selected Employee: {currentlySelectedEmployee?.firstName + " " + currentlySelectedEmployee?.lastName}</Typography> : <Typography variant="h6">No Employee Selected</Typography>}   
+        {currentlySelectedEmployee === selectedWorkingEmployee && currentlySelectedEmployee !== null ?
+          <Button
+            onClick={() => { handleRemoveEmployeeFromShift(); }}
+            variant="contained"
+          >
+            Remove Employee From Shift
+          </Button>
           :
-          currentlySelectedEmployee === selectedEmployee && selectedShift && <Button onClick={() => {
-            handleAddEmployeeToShift();
-          }}>
+          currentlySelectedEmployee === selectedEmployee && selectedShift &&
+          <Button onClick={() => { handleAddEmployeeToShift(); }}
+            variant="contained"
+          >
             Add Employee To Shift
           </Button>
         }
