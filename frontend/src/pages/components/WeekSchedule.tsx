@@ -93,7 +93,9 @@ function makeColumns(day: any): GridColDef[] {
                 row[`employeeWorking${i + 1}`] = item.employeesWorking[i]?.firstName + " " + item.employeesWorking[i]?.lastName || 'Add an Employee': row[`employeeWorking${i + 1}`] = ` `;
             }
             return row;
-        });        return rows;
+        }); 
+        
+        return rows;
     }
 
     return (

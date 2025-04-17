@@ -14,7 +14,7 @@ import { LocalizationProvider, StaticTimePicker, TimePicker } from '@mui/x-date-
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 
-export default function HorizontalLinearStepper() {
+export default function RegisterBusiness() {
         const {login} = useAuth();
     const [newBusinessData, setNewBusinessData] = useState({
         businessName: ''

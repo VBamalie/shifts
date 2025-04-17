@@ -5,11 +5,12 @@ import Dashboard from "./pages/Dashboard";
 import EmployeeRegistration from "./pages/EmployeeRegistration";
 import { AuthProvider} from "./pages/components/AuthContext";
 import NewCalendar from './pages/NewCalendar';
-import HorizontalLinearStepper from './pages/demoStepper';
+import HorizontalLinearStepper from './pages/RegisterBusiness';
 import DemoTimeBlock from './pages/DemoTimeBlock';
 import Navbar from './pages/components/navbar';
 import EditWeeklySchedule from './pages/EditWeeklySchedule';
 import"./App.css"
+import RegisterBusiness from './pages/RegisterBusiness';
 
 
 
@@ -20,7 +21,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/demo-time" element={<DemoTimeBlock/>}/>
-        <Route path="/demo" element={<HorizontalLinearStepper/>}/>
+        <Route path="/register-business" element={<RegisterBusiness/>}/>
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/login" element={<LoginPage />} />
         {localStorage.getItem('employee') ? (

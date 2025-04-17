@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom";
-import WeekSchedule from "./components/WeekSchedule";
 import { Box, Button, Typography } from "@mui/material";
 import EmployeeList from "./components/EmployeeList";
 import { useEffect, useState } from "react";
 import EmployeeAvailability from "./components/EmployeeAvailability";
-import WeeklyCalendar from "./components/WeeklyCalendar";
+import WeeklyCalendar from "./components/EditWeeklyCalendar";
 import AddShiftBox from "./components/AddShiftBox";
 import axiosInstance from "../axiosConfig";
 import { useAuth } from "./components/AuthContext";
@@ -22,19 +21,22 @@ export default function EditWeeklySchedule() {
     const handleShiftSelection = (shift: any) => {
       setSelectedShift(shift);
     };
-    const handleAddShift = (shift: { id: number }) => {
-      setShifts((prevShifts: { id: number }[]) => {
-        const filteredShifts = prevShifts.filter((s) => s.id !== shift.id);
-        return [...filteredShifts, shift];
-      });
-    };
+    const handleAddShift = (shift: {
+      startTime: any; id: number 
+}) => {
+            setShifts((prevShifts: Array<{ startTime: any; id: number }>) => {
+              const filteredShifts = prevShifts.filter((s) => s.id !== shift.id);
+              const newShift = [...filteredShifts, shift];
+              newShift.sort((a, b) => a.startTime - b.startTime);
+              console.log("newShift", newShift);
+              return newShift;
+            });    };
 
     useEffect(() => {
       const calendarId: number = employee?.calendar;
 
       axiosInstance.get(`http://localhost:8080/api/shift/calendar/date/${params.date}/${calendarId}`).then((response) => {
               setShifts(response.data); // Update state with fetched shifts
-              console.log(shifts);
       }).catch((error) => {
           console.log("error fetching shift", error);
       });

@@ -64,6 +64,15 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
             }
             return row;
         });
+        rows.sort((a, b)=>{
+            if(a.startTime < b.startTime) {
+                return -1;
+            }
+            if(a.startTime > b.startTime) {
+                return 1;
+            }
+            return 0;
+        })
         return rows;
     }
 
@@ -85,6 +94,11 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
                         onRowSelectionModelChange={(newSelection) => {
                             const selectedRow = shifts.find((row: any) => row.id === newSelection[0]);
                             props.onShiftSelection.onShiftSelection(selectedRow);
+                        }}
+                        initialState={{
+                            sorting: {
+                                sortModel: [{ field: 'startTime', sort: 'asc' }],
+                            }//TODO: Currently the sort is not working, need to fix
                         }}
                     />
                 </Box>

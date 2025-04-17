@@ -43,6 +43,7 @@ function EditToolbar(props: GridSlotProps['toolbar']) {
 
   const handleClick = () => {//this is for adding a new timeblock
      axiosInstance.post(`http://localhost:8080/api/timeblock/${employee?.calendar}`, {}).then((response)=>{
+      console.log("adding new timeblock")
       setRows((oldRows) => [...oldRows, response.data]);
       setRowModesModel((oldModel) => ({
         ...oldModel,
@@ -125,7 +126,7 @@ export default function TimeBlock() {
     return updatedRow;
   };
 
-  const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {//this is the collumns for each row
+  const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {//this is the columns for each row
     setRowModesModel(newRowModesModel);
   };
 
