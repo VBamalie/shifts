@@ -46,6 +46,7 @@ public class Shift {
 
     public List<Employee> fillEmployeesWorkingAndAlternatives(List<Employee> employees) {
         List<Employee> employeesPotentiallyWorking = new ArrayList<>();
+        List<Employee> employeesToAdd = new ArrayList<>();
         for (Employee employee : employees) {// runs through the list of employees
             if (employee.isAvailable(firstDate, timeBlock.getWeekDayEnum(), timeBlock.getStartTime(),
                     timeBlock.getEndTime())) {// Checks if they are available to work that shift
@@ -55,12 +56,13 @@ public class Shift {
         Collections.sort(employeesPotentiallyWorking,
                 (a, b) -> Double.compare(a.hoursWorkedThisWeek(firstDate), b.hoursWorkedThisWeek(firstDate)));// sorts the employees based on how many hours they have worked this week
         for (int i = 0; i < timeBlock.getShiftsRequired() && i < employeesPotentiallyWorking.size(); i++) {// runs through the amount of shifts required and the amount of employees that are potentially working
-            employeesWorking.add(employeesPotentiallyWorking.get(i));// adds the employee to the employeesWorking array
+            employeesToAdd.add(employeesPotentiallyWorking.get(i));// adds the employee to the employeesWorking array
         }
-        return employeesWorking;
+        return employeesToAdd;
     }
 
     public List<Employee> fillEmployeesWorkingAndAlternatives(List<Employee> employees, List<Employee> priorityEmployees) {
+        List<Employee> employeesToAdd = new ArrayList<>();
         System.out.println("inside fillEmployeesWorkingAndAlternatives");
         List<Employee> employeesPotentiallyWorking = new ArrayList<>();
         for (Employee employee : priorityEmployees) {// runs through the list of employees
@@ -79,9 +81,9 @@ public class Shift {
             int numToFill = Math.min(timeBlock.getShiftsRequired(), employeesPotentiallyWorking.size());
             for (int i = 0; i < numToFill; i++) {
                 System.out.println("Accessing if index " + i + " out of " + employeesPotentiallyWorking.size());
-                employeesWorking.add(employeesPotentiallyWorking.get(i));
+                employeesToAdd.add(employeesPotentiallyWorking.get(i));
             }
-            return employeesWorking;
+            return employeesToAdd;
         } else {
             System.out.println(
                     "inside else statement: if the potentially working size is greater than the shifts required");
@@ -103,9 +105,9 @@ public class Shift {
                     (a, b) -> Double.compare(a.hoursWorkedThisWeek(firstDate), b.hoursWorkedThisWeek(firstDate)));// sorts the employees by the least amount of hours worked this week to the most amount
 
             for (int i = 0; i < timeBlock.getShiftsRequired() && i < employeesPotentiallyWorking.size(); i++) {// runs through the amount of employees required for the shift
-                employeesWorking.add(employeesPotentiallyWorking.get(i));// adds the employee to the employeesWorking array
+                employeesToAdd.add(employeesPotentiallyWorking.get(i));// adds the employee to the employeesWorking array
             }
-            return employeesWorking;
+            return employeesToAdd;
         }
     }
 }
