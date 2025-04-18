@@ -66,39 +66,19 @@ public class Employee {
     public boolean isAvailable(String date, WeekDayEnum day, double startTime, double endTime){//Checks if the employee is available for the given date, day, startTime, and endTime.
             switch (day) {
                 case MON:
-                if(availability.getMon_start()<=startTime && availability.getMon_end()>=endTime){
-                    return true;
-                }   
+                return availability.getMon_start() <= startTime && availability.getMon_end() >= endTime;  
                 case TUE:
-                if(availability.getTue_start()<=startTime && availability.getTue_end()>=endTime){
-                    return true;
-                }
-                return false;
+                return availability.getTue_start() <= startTime && availability.getTue_end() >= endTime;
                 case WED:
-                if(availability.getWed_start()<=startTime && availability.getWed_end()>=endTime){
-                    return true;
-                }
-                return false;
+                return availability.getWed_start() <= startTime && availability.getWed_end() >= endTime;
                 case THU:
-                if(availability.getThu_start()<=startTime && availability.getThu_end()>=endTime){
-                    return true;
-                }
-                return false;
+                return availability.getThu_start() <= startTime && availability.getThu_end() >= endTime;
                 case FRI:
-                if(availability.getFri_start()<=startTime && availability.getFri_end()>=endTime){
-                    return true;
-                }
-                return false;
+                return availability.getFri_start() <= startTime && availability.getFri_end() >= endTime;
                 case SAT:
-                if(availability.getSat_start()<=startTime && availability.getSat_end()>=endTime){
-                    return true;
-                }
-                return false;
+                return availability.getSat_start() <= startTime && availability.getSat_end() >= endTime;
                 case SUN:
-                if(availability.getSun_start()<=startTime && availability.getSun_end()>=endTime){
-                    return true;
-                }
-                return false;
+                return availability.getSun_start() <= startTime && availability.getSun_end() >= endTime;
                 default:
                     return false;
             }
@@ -107,7 +87,7 @@ public class Employee {
     public double hoursWorkedThisWeek(String date){//filter the shifts with the given date and return the sum of the shifts hours
         int counter = 0;
         for(Shift shift: shifts){
-            if(shift.getFirstDate() == date){
+            if(shift.getFirstDate().equals(date)){
                 double hours = shift.getTimeBlock().getEndTime() - shift.getTimeBlock().getStartTime();
                 counter += hours;
             }

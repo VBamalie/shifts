@@ -1,6 +1,8 @@
 package com.shifts.backend.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +32,34 @@ public class AutoCreateService {
 
 
     public List<Shift> autoCreate(long id, String date) {
+        System.out.println("autoCreating...");
         List<Shift> shifts = shiftRepo.findByCalendarAndFirstDate(calendarRepo.findById(id).get(), date);//isolate this week's shifts
+        System.out.println("Shifts: " + shifts.get(1).getFirstDate());
         List<WeekDayEnum> weekDay = List.of(WeekDayEnum.values());//have a list of days
+        System.out.println("WeekDay: " + weekDay.get(0));
         for (WeekDayEnum day : weekDay) {//for each day of the week
-                List<Shift> shiftsByDay = shifts.stream().filter( shift -> shift.getTimeBlock().getWeekDayEnum() == day).toList();//isolate the shifts for that day
-                Collections.sort(shiftsByDay, (a, b) -> Integer.compare(b.getTimeBlock().getShiftsRequired(), a.getTimeBlock().getShiftsRequired()));//sort the shifts by the most amount of employees required
+                List<Shift> shiftsByDay = new ArrayList<>(shifts.stream().filter( shift -> shift.getTimeBlock().getWeekDayEnum() == day).toList());//isolate the shifts for that day
+                System.out.println("ShiftsByDay: " + shiftsByDay.get(0).getTimeBlock().getWeekDayEnum());
+                shiftsByDay.sort(Comparator.comparingInt((Shift s) -> s.getTimeBlock().getShiftsRequired()).reversed());
+//sort the shifts by the most amount of employees required
+                System.out.println("ShiftsByDay after sort: " + shiftsByDay.get(0).getTimeBlock().getShiftsRequired());
                 Shift mostRequiredEmployeesShift = shiftsByDay.get(0);//get the shift with the most amount of employees required 
-                List<Employee> employees = employeeRepo.findByCalendar(calendarRepo.findById(id).get());//get all employees
-                List<Employee> filledEmployees = mostRequiredEmployeesShift.fillEmployeesWorkingAndAlternatives(employees);//fill the shift with employees;
-                Collections.sort(shiftsByDay, (a,b)-> Double.compare(a.getTimeBlock().getStartTime(), b.getTimeBlock().getStartTime()));//sort the shift by time block
-                for(int i = shiftsByDay.indexOf(mostRequiredEmployeesShift)- 1; i<0; i-- ){//move backwards through the day's shifts starting with the first shift filled until there are no more shifts to fill
-                 filledEmployees = shiftsByDay.get(i).fillEmployeesWorkingAndAlternatives(employees, filledEmployees);//fill the shift with a priority of the employees that are already working today
-                } 
-                for(int i = shiftsByDay.indexOf(mostRequiredEmployeesShift)+ 1; i<shiftsByDay.size(); i++ ){//move forwards through the day's shifts starting with the last shift filled until there are no more shifts to fill
+                System.out.println("MostRequiredEmployeesShift: " + mostRequiredEmployeesShift.getTimeBlock().getShiftsRequired());
+                List<Employee> employees = new ArrayList<>(employeeRepo.findByCalendar(calendarRepo.findById(id).get()));//get all employees
+                System.out.println("Employees: " + employees.get(0).getFirstName());
+                List<Employee> filledEmployees = new ArrayList<>(mostRequiredEmployeesShift.fillEmployeesWorkingAndAlternatives(employees));//fill the shift with employees;
+                System.out.println("FilledEmployees: " + filledEmployees.get(0).getFirstName());
+                shiftsByDay.sort(Comparator.comparingDouble(s -> s.getTimeBlock().getStartTime()));//sort the shift by time block
+                System.out.println("ShiftsByDay after sort: " + shiftsByDay.get(0).getTimeBlock().getStartTime());
+                for(int i = shiftsByDay.indexOf(mostRequiredEmployeesShift)- 1; i>=0; i-- ){//move backwards through the day's shifts starting with the first shift filled until there are no more shifts to fill
+                System.out.println("first for loop: " + i);
                 filledEmployees = shiftsByDay.get(i).fillEmployeesWorkingAndAlternatives(employees, filledEmployees);//fill the shift with a priority of the employees that are already working today
+                 for (Employee employee : filledEmployees) {
+                    System.out.println("FilledEmployees: " + employee.getFirstName());
+                 }
+                } 
+                for (int i = shiftsByDay.indexOf(mostRequiredEmployeesShift) + 1; i < shiftsByDay.size(); i++) {
+                    filledEmployees = shiftsByDay.get(i).fillEmployeesWorkingAndAlternatives(employees, filledEmployees);
                 }
             }
             return shifts;
