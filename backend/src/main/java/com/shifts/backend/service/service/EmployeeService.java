@@ -15,7 +15,7 @@ public interface EmployeeService {
     String deleteEmployee(Long id);
     Shift addShift(Long id, Long shiftId);
     Shift removeShift(Long id, Long shiftId);
-    boolean isAvailable(Long id);
+    boolean isAvailable(Long id, Long shiftId);
     int hoursWorkedThisWeek(Long id);
     int hoursWorkdToday(Long id);
     Employee findByEmail(String email);

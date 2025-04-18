@@ -39,16 +39,4 @@ public class Calendar {
     @OneToMany(mappedBy = "calendar")
     private List<Shift> shifts;
 
-    /*Methods */
-    //FIXME: Refactor this method into the service layer
-    public List<Shift> autofillShifts(){
-        //TODO: Calendar uses createShiftFromTimeBlock to create a list of shifts
-        //TODO: Calendar finds the shift with the most amount of employees required
-        //TODO: Calendar uses the shift's method fillEmpOnStaffandAltEmployees to fill the shift
-        //Calendar checks if there is a shift unfilled earlier than the most recently filled shift
-        //TODO: if yes, Calendar moves on to the earlier shift and fills it with the overloaded version of fillEmpOnStaffandAltEmployee that takes in the Employees that are working in the most recently filled shift
-        //TODO: if no, Calendar moves up through the shift list looking for the next shift that is unfilled. it takes the shift and fills it with the overloaded version of fillEmpOnStaffandAltEmployee that takes in the Employees that are working in the most recently filled shift
-        //TODO: if no more shifts are found, Calendar returns the list of shifts
-        return null;
-    }
 }

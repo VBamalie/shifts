@@ -83,9 +83,9 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
     }
 
-    @GetMapping("/availability/{id}")
-    public boolean isAvailability(@PathVariable("id") Long id) {
-        return employeeService.isAvailable(id);
+    @GetMapping("/availability/{id}/{shiftId}")
+    public boolean isAvailability(@PathVariable("id") Long id, @PathVariable("shiftId") Long shiftId) {
+        return employeeService.isAvailable(id, shiftId);
     }
 
     @GetMapping("/worked/week/{id}")

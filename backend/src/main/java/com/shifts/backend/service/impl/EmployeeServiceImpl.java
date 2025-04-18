@@ -83,9 +83,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public boolean isAvailable(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isAvailable'");
+    public boolean isAvailable(Long id, Long shiftId) {
+        Employee employee = employeeRepo.findById(id)
+        .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
+        Shift shift = shiftRepo.findById(shiftId)
+        .orElseThrow(() -> new RuntimeException("Shift not found with id: " + shiftId));
+        return employee.isAvailable(shift.getFirstDate(), shift.getTimeBlock().getWeekDayEnum(), shift.getTimeBlock().getStartTime(), shift.getTimeBlock().getEndTime());
     }
 
     @Override
