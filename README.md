@@ -12,12 +12,17 @@ todo:
 - [x] create buttons that only a manager can see
 - [ ] create pages for editing calendar info
 - [ ] create pages for editing employee info
-- [ ] create pages for editing shift info
+- [x] create pages for editing shift info
 - [x] create new calendar page
 - [x] create pagination for other week information
-- [ ] create functionality for autocreate
+- [1/2] create functionality for autocreate
+- [ ] make it so that autocreate can't add to shifts with employees already working
+- [ ] make it choose employees more randomly so that the shifts are not always the same
 - [ ] make things prettier
-- [ ]vercel deploy?
+- [ ] create loading for dashboard calendar
+- [ ] change the edit timeblock route and name
+- [ ] change the login to be dynamic
+- [ ] change the route for creating a new calendar
 
 ## Front End Dependencies:
 - react-router-dom
