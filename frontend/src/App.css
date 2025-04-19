@@ -52,7 +52,7 @@
 }
 #edit-box{
   display: flex;
-  height: 46vh;
+  height: 33vh;
   justify-content: space-between;
   padding: 3% 0;
   border: solid;
@@ -103,4 +103,10 @@
 }
 .week-day-name{
   padding: 6px;
+}
+.loading-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

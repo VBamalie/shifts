@@ -15,11 +15,10 @@ export default function WeeklyDatePicker(props: any) {//props is the date that i
   const thisWeek = dayjs().subtract(dayjs().day(), 'day').format('MM-DD-YYYY')//this is the current week
   return (
     <Box className='date-picker'>
-        <ButtonGroup variant="text" aria-label="Basic button group" >
-          <Button id='prev-week' className='week-picker'
-            onClick={() => { handleSelect(prevWeek) }}>{prevWeek}</Button>
-          <Button id='next-week' className='week-picker' onClick={() => handleSelect(nextWeek)}>{nextWeek}</Button>
-        </ButtonGroup>
+      <Box>
+          <Button onClick={() => handleSelect(thisWeek)}>{thisWeek}</Button>
+        </Box>
+        
         <Box id="date-picker-header" >
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {selectedWeek}
@@ -27,7 +26,11 @@ export default function WeeklyDatePicker(props: any) {//props is the date that i
           <Button href={`./edit-schedule/${selectedWeek}`}id="edit-schedule-button" variant="contained">Edit Schedule</Button>
         </Box>
         <Box>
-          <Button onClick={() => handleSelect(thisWeek)}>{thisWeek}</Button>
+        <ButtonGroup variant="text" aria-label="Basic button group" >
+          <Button id='prev-week' className='week-picker'
+            onClick={() => { handleSelect(prevWeek) }}>{prevWeek}</Button>
+          <Button id='next-week' className='week-picker' onClick={() => handleSelect(nextWeek)}>{nextWeek}</Button>
+        </ButtonGroup>
         </Box>
     </Box>
   );
