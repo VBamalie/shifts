@@ -8,6 +8,7 @@ import { useAuth } from './AuthContext';
 import axiosInstance from '../../axiosConfig';
 import { useEffect, useState } from 'react';
 import { ButtonGroup } from '@mui/material';
+import "../../../public/shift.png";
 
 const Navbar = () => {
     const { employee, logout } = useAuth();
@@ -29,20 +30,25 @@ const Navbar = () => {
           <Toolbar>
             {employee ?(//if the employee is logged in then this will display the business name and the logout button
                 <>
-                    <Button color="inherit" href="/">Shifts App</Button>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Box  sx={{  backgroundColor: 'purple', borderRadius: '15px', padding: '5px', marginRight: '10px', marginTop: '10px', marginBottom: '10px' }}>
+                  <Button href='/'>
+                    <img src="../../../public/shift.png" alt="Shift Logo" width="50" height="50" />
+                  </Button>
+                </Box>
+                <Button color="inherit" href="/">Shifts App</Button>
+                  <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     {businessName}
-                    </Typography>
+                  </Typography>
                     {employee.isManager &&(
-                      <ButtonGroup variant="contained" aria-label="Basic button group">
+                  <ButtonGroup variant="contained" aria-label="Basic button group">
                         <Button href='/registration'>New Employee</Button>
                         <Button>Edit Employee</Button>
                         <Button href='/edit-time-block'>Edit Timeblocks</Button>
-                    </ButtonGroup>)}
+                  </ButtonGroup>)}
                     
-                    <Button onClick={logout} variant="contained" color="secondary">
+                  <Button onClick={logout} variant="contained" color="secondary">
                     Logout
-                    </Button>
+                  </Button>
                 </>
             ):(//if the employee is not logged in then this will display the login button
             <Button href='/login' color="inherit">Login</Button>
