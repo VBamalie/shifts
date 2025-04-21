@@ -37,7 +37,7 @@ const Navbar = () => {
                     <ButtonGroup variant="contained" aria-label="Basic button group">
                         <Button href='/registration'>New Employee</Button>
                         <Button>Edit Employee</Button>
-                        <Button>Edit Timeblocks</Button>
+                        <Button href='/edit-time-block'>Edit Timeblocks</Button>
                     </ButtonGroup>
                     <Button onClick={logout} variant="contained" color="secondary">
                     Logout

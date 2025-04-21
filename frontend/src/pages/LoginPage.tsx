@@ -49,7 +49,6 @@ export default function Login() {
         } catch(error) {
             setError('An error occurred. please retry')
         }
-
     }
   return (
     <Card sx={{ maxWidth: 900, margin: '30px auto', border: '3px solid #356' }}>
@@ -99,7 +98,7 @@ export default function Login() {
           </Container>
       </CardContent>
       <CardActions>
-        <Link to="/demo" color="primary">
+        <Link to="/register-business" color="primary">
           Register a New Business
         </Link>
       </CardActions>

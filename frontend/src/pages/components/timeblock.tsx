@@ -1,5 +1,4 @@
 //this is the component to add, edit, and remove timeblocks.
-//TODO: Decide if this should have it's own page or if it should be a modal
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -39,17 +38,12 @@ declare module '@mui/x-data-grid' {
 
 function EditToolbar(props: GridSlotProps['toolbar']) {
   const {employee} = useAuth();
-  const { setRows, setRowModesModel } = props;
+  const { setRows, setRowModesModel, setRefreshData } = props;
 
   const handleClick = () => {//this is for adding a new timeblock
      axiosInstance.post(`http://localhost:8080/api/timeblock/${employee?.calendar}`, {}).then((response)=>{
-      console.log("adding new timeblock")
-      setRows((oldRows) => [...oldRows, response.data]);
-      setRowModesModel((oldModel) => ({
-        ...oldModel,
-        [response.data.id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
-      }));
-    }).catch((error)=>{
+      setRefreshData((prev) => prev + 1);
+    },100).catch((error)=>{
         console.log("error creating timeblock")
     })
   };
@@ -67,13 +61,14 @@ export default function TimeBlock() {
   const [rows, setRows] = React.useState<GridRowModel[]>([]);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
   const {employee} = useAuth();
+  const [refreshData, setRefreshData] = React.useState(0);
   React.useEffect(()=>{
     axiosInstance.get(`http://localhost:8080/api/timeblock/calendar/${employee?.calendar}`).then((response)=>{
         setRows(response.data);
     }).catch((error)=>{
         console.log("error fetching timeblocks")
     })
-  }, []);
+  }, [refreshData, employee]);
 
   const handleRowEditStop: GridEventListener<'rowEditStop'> = (params, event) => {
     if (params.reason === GridRowEditStopReasons.rowFocusOut) {
@@ -234,7 +229,9 @@ export default function TimeBlock() {
         onRowModesModelChange={handleRowModesModelChange}
         onRowEditStop={handleRowEditStop}
         processRowUpdate={processRowUpdate}
-        slots={{ toolbar: EditToolbar }}        
+        slots={{ toolbar: (props)=>(
+          <EditToolbar {...props} setRefreshData={setRefreshData}/>
+        ) }}        
       />
     </Box>
   );

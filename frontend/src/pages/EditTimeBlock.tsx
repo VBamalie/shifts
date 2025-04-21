@@ -1,5 +1,5 @@
 import Timeblock from "./components/timeblock";
-export default function DemoTimeBlock() {
+export default function EditTimeBlock() {
     
     return (
         <div>

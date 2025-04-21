@@ -61,6 +61,8 @@ export default function RegisterBusiness() {
 
     const [error, setError] = useState('');
 
+   
+
     const handleBusinesssubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         const employeeData: {
@@ -86,7 +88,6 @@ export default function RegisterBusiness() {
                 const managerId = managerResponse.data.id;
                 const availabilityUrl = `http://localhost:8080/api/availability/${managerId}`;
                 setAvailabilityData(times);
-                console.log(availabilityData);
                 const availabilityResponse = await axiosInstance.post(availabilityUrl, availabilityData);
                 if (response.status === 200 || response.status === 201) {
                     const loginData = {
@@ -96,9 +97,7 @@ export default function RegisterBusiness() {
                     const response = await axios.post('http://localhost:8080/api/employee/login', loginData);
                     if (response.status === 200) {
                         const employeeData = response.data;
-                        login(employeeData);
-                        window.location.reload();
-                        window.location.href = '/';
+                        window.location.href = '/login';
                     } else {
                         setError(response.data.message || 'Login failed for user. Please retry!')
                     }

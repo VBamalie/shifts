@@ -64,8 +64,6 @@ public class ShiftController {
     }
     }
 
-    //No Put method because employees will be added from the employee controller. Every other field is final
-
     @DeleteMapping("/{id}")
     public void deleteShift(@PathVariable Long id) {
         shiftService.deleteShift(id);
