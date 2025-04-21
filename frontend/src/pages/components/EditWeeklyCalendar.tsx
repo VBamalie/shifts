@@ -13,7 +13,9 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
     function makeColumns(day: any): GridColDef[] {
         const column: GridColDef[] = [];
         //filter the shifts to only include the shifts for the day
-        column.push({ field: 'hours', headerName: 'Open Hours', width: 100 });
+        column.push({ field: 'startTime', headerName: 'Start Time', width: 100 });
+        column.push({field: 'endTime', headerName: 'End Time', width: 100 });
+        column.push({field:'employeesRequired', headerName: 'Req', width: 50 });
         const dayShifts = shifts?.length
     ? shifts.filter((shiftItem: { timeBlock: { weekDayEnum: any } }) => shiftItem.timeBlock.weekDayEnum === day)
     : [];
@@ -55,7 +57,9 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
         const rows = currentDayShifts.map((item) => {
             const row: any = {
                 id: item.id,
-                hours: item.timeBlock.startTime + "-" + item.timeBlock.endTime,
+                startTime: item.timeBlock.startTime,
+                endTime: item.timeBlock.endTime,
+                employeesRequired: item.timeBlock.shiftsRequired
             };
             
             for(let i = 0; i < employeeColumnAmount; i++) {
@@ -95,11 +99,7 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
                             const selectedRow = shifts.find((row: any) => row.id === newSelection[0]);
                             props.onShiftSelection.onShiftSelection(selectedRow);
                         }}
-                        initialState={{
-                            sorting: {
-                                sortModel: [{ field: 'startTime', sort: 'asc' }],
-                            }//TODO: Currently the sort is not working, need to fix
-                        }}
+                        
                     />
                 </Box>
             ))}

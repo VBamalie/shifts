@@ -15,9 +15,9 @@ todo:
 - [x] create pages for editing shift info
 - [x] create new calendar page
 - [x] create pagination for other week information
-- [1/2] create functionality for autocreate
-- [ ] make it so that autocreate can't add to shifts with employees already working
-- [ ] make it choose employees more randomly so that the shifts are not always the same
+- [x] create functionality for autocreate
+- [x] make it so that autocreate can't add to shifts with employees already working
+- [x] make it choose employees more randomly so that the shifts are not always the same
 - [ ] make things prettier
 - [ ] create loading for dashboard calendar
 - [ ] change the edit timeblock route and name

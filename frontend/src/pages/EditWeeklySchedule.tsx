@@ -80,7 +80,6 @@ export default function EditWeeklySchedule() {
           <EmployeeList onEmployeeSelection={handleEmployeeSelection} />
           {selectedEmployee ? <EmployeeAvailability selectedEmployee={selectedEmployee} /> : <Box />}
         </Box><Box id='edit-schedule'>
-            {/* <WeekSchedule date={params.date}/> */}
             <WeeklyCalendar shifts={shifts} onShiftSelection={{ onShiftSelection: handleShiftSelection }} />
           </Box></>
     ) : (

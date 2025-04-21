@@ -39,10 +39,12 @@ function WeekSchedule(props: any) {
     const weekDayEnum = [{weekDayEnum: "MON", name: "Monday"}, {weekDayEnum: "TUE", name: "Tuesday"}, {weekDayEnum: "WED", name: "Wednesday"}, {weekDayEnum: "THU", name: "Thursday"}, {weekDayEnum: "FRI", name: "Friday"}, {weekDayEnum: "SAT", name: "Saturday"}, {weekDayEnum: "SUN", name: "Sunday"}];//an enum to create more readable code
 
 
-function makeColumns(day: any): GridColDef[] {
+    function makeColumns(day: any): GridColDef[] {
         const column: GridColDef[] = [];
         //filter the shifts to only include the shifts for the day
-        column.push({ field: 'hours', headerName: 'Open Hours', width: 100 });
+        column.push({ field: 'startTime', headerName: 'Start Time', width: 100 });
+        column.push({field: 'endTime', headerName: 'End Time', width: 100 });
+        column.push({field:'employeesRequired', headerName: 'Req', width: 50 });
         const dayShifts = shift?.length
     ? shift.filter((shiftItem: { timeBlock: { weekDayEnum: any } }) => shiftItem.timeBlock.weekDayEnum === day)
     : [];
@@ -73,7 +75,6 @@ function makeColumns(day: any): GridColDef[] {
         return maxRequiredEmployees > maxWorkingEmployees ? maxRequiredEmployees : maxWorkingEmployees;
     }
     function makeRows(day: string): any {
-
         //filter the shifts to only include the shifts for the day
         //sort the shifts by the earliest timed shift
         //create a row for each of those shifts
@@ -82,10 +83,12 @@ function makeColumns(day: any): GridColDef[] {
         const currentDayShifts = shift.filter((shiftItem: { timeBlock: { weekDayEnum: any } }) => shiftItem.timeBlock.weekDayEnum === day);
         const employeeColumnAmount = determineEmployeeColumn(currentDayShifts);
         
-        const rows = currentDayShifts.map((item: any) => {
+        const rows = currentDayShifts.map((item) => {
             const row: any = {
                 id: item.id,
-                hours: item.timeBlock.startTime + "-" + item.timeBlock.endTime,
+                startTime: item.timeBlock.startTime,
+                endTime: item.timeBlock.endTime,
+                employeesRequired: item.timeBlock.shiftsRequired
             };
             
             for(let i = 0; i < employeeColumnAmount; i++) {
@@ -93,8 +96,7 @@ function makeColumns(day: any): GridColDef[] {
                 row[`employeeWorking${i + 1}`] = item.employeesWorking[i]?.firstName + " " + item.employeesWorking[i]?.lastName || 'Add an Employee': row[`employeeWorking${i + 1}`] = ` `;
             }
             return row;
-        }); 
-        
+        });     
         return rows;
     }
 
