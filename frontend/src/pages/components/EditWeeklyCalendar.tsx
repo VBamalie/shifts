@@ -1,12 +1,10 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
-import axiosInstance from "../../axiosConfig";
-import { useAuth } from "./AuthContext";
 
-export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelection: (shift: any) => void }, shifts: any[]}) {
+
+export default function WeeklyCalendar(props: { onShiftSelection: { onShiftSelection: (shift: any) => void }, shifts: any[] }) {
     const shifts = props.shifts;
-  
+
 
     const weekDayEnum = [{ name: 'Monday', enum: "MON" }, { name: 'Tuesday', enum: "TUE" }, { name: 'Wednesday', enum: "WED" }, { name: 'Thursday', enum: "THU" }, { name: 'Friday', enum: "FRI" }, { name: 'Saturday', enum: "SAT" }, { name: 'Sunday', enum: "SUN" }];
 
@@ -14,19 +12,19 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
         const column: GridColDef[] = [];
         //filter the shifts to only include the shifts for the day
         column.push({ field: 'startTime', headerName: 'Start Time', width: 100 });
-        column.push({field: 'endTime', headerName: 'End Time', width: 100 });
-        column.push({field:'employeesRequired', headerName: 'Req', width: 50 });
+        column.push({ field: 'endTime', headerName: 'End Time', width: 100 });
+        column.push({ field: 'employeesRequired', headerName: 'Req', width: 50 });
         const dayShifts = shifts?.length
-    ? shifts.filter((shiftItem: { timeBlock: { weekDayEnum: any } }) => shiftItem.timeBlock.weekDayEnum === day)
-    : [];
-    const columnAmount = determineEmployeeColumn(dayShifts);
-    for (let i = 0; i < columnAmount; i++) {
-        column.push({ field: `employeeWorking${i + 1}`, headerName: ``, width: 150 });
-    }
+            ? shifts.filter((shiftItem: { timeBlock: { weekDayEnum: any } }) => shiftItem.timeBlock.weekDayEnum === day)
+            : [];
+        const columnAmount = determineEmployeeColumn(dayShifts);
+        for (let i = 0; i < columnAmount; i++) {
+            column.push({ field: `employeeWorking${i + 1}`, headerName: ``, width: 150 });
+        }
         return column;
     }
 
-    function determineEmployeeColumn(currentDayShifts: any){
+    function determineEmployeeColumn(currentDayShifts: any) {
         //find the currentDayShift that has the highest employe encounter
         let maxRequiredEmployees = 0;
         currentDayShifts.forEach((shiftItem: { timeBlock: { shiftsRequired: number } }) => {
@@ -37,42 +35,38 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
         //find out if any shift has more employees than max employees
         let maxWorkingEmployees = 0;
         currentDayShifts.forEach((shiftItem: {
-            employeesWorking: any; timeBlock: { shiftsRequired: number } 
-}) => {
-            if( shiftItem.employeesWorking.length > maxWorkingEmployees) {
+            employeesWorking: any; timeBlock: { shiftsRequired: number }
+        }) => {
+            if (shiftItem.employeesWorking.length > maxWorkingEmployees) {
                 maxWorkingEmployees = shiftItem.employeesWorking.length;
             }
         });
         return maxRequiredEmployees > maxWorkingEmployees ? maxRequiredEmployees : maxWorkingEmployees;
     }
     function makeRows(day: string): any {
-        //filter the shifts to only include the shifts for the day
-        //sort the shifts by the earliest timed shift
-        //create a row for each of those shifts
-        //include the hours in one column
-        //include as many columns as there are employees working the shift
-        const currentDayShifts = shifts.filter((shiftItem: { timeBlock: { weekDayEnum: any } }) => shiftItem.timeBlock.weekDayEnum === day);
+
+        const currentDayShifts = shifts.filter((shiftItem: { timeBlock: { weekDayEnum: any } }) => shiftItem.timeBlock.weekDayEnum === day);//filter the shifts to only include the shifts for the day
         const employeeColumnAmount = determineEmployeeColumn(currentDayShifts);
-        
-        const rows = currentDayShifts.map((item) => {
+
+        const rows = currentDayShifts.map((item) => {//create a row for each of those shifts
             const row: any = {
                 id: item.id,
                 startTime: item.timeBlock.startTime,
                 endTime: item.timeBlock.endTime,
                 employeesRequired: item.timeBlock.shiftsRequired
             };
-            
-            for(let i = 0; i < employeeColumnAmount; i++) {
-                item.employeesWorking[i]?
-                row[`employeeWorking${i + 1}`] = item.employeesWorking[i]?.firstName + " " + item.employeesWorking[i]?.lastName || 'Add an Employee': row[`employeeWorking${i + 1}`] = ` `;
+
+            for (let i = 0; i < employeeColumnAmount; i++) {//include as many columns as there are employees working the shift
+                item.employeesWorking[i] ?
+                    row[`employeeWorking${i + 1}`] = item.employeesWorking[i]?.firstName + " " + item.employeesWorking[i]?.lastName || 'Add an Employee' : row[`employeeWorking${i + 1}`] = ` `;
             }
             return row;
         });
-        rows.sort((a, b)=>{
-            if(a.startTime < b.startTime) {
+        rows.sort((a, b) => {
+            if (a.startTime < b.startTime) {
                 return -1;
             }
-            if(a.startTime > b.startTime) {
+            if (a.startTime > b.startTime) {
                 return 1;
             }
             return 0;
@@ -82,9 +76,9 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
 
     return (
         <Box className="edit-schedule-grid">
-            {weekDayEnum.map((day) => (
+            {weekDayEnum.map((day) => (//maps through each day to create a grid for each day
                 <Box key={day.enum} id={day.enum} className="week-day">
-                    <Typography className="week-day-name"variant="h4">{day.name}</Typography>
+                    <Typography className="week-day-name" variant="h4">{day.name}</Typography>
                     <DataGrid
                         columns={makeColumns(day.enum)}
                         rows={makeRows(day.enum)}
@@ -99,12 +93,9 @@ export default function WeeklyCalendar(props:{ onShiftSelection : { onShiftSelec
                             const selectedRow = shifts.find((row: any) => row.id === newSelection[0]);
                             props.onShiftSelection.onShiftSelection(selectedRow);
                         }}
-                        
                     />
                 </Box>
             ))}
-
-         
         </Box>
     )
 }
