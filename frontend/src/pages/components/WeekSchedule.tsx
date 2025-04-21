@@ -6,9 +6,8 @@ import { Box, Typography } from "@mui/material";
 import { GridColDef, DataGrid } from "@mui/x-data-grid";
 
 //this will be a component of solely the week's worth of schedules.
-//TODO: https://mui.com/x/react-data-grid/row-spanning/ do week schedule like the demo maybe?
 function WeekSchedule(props: any) {
-     const { employee } = useAuth();
+     const { employee } = useAuth();//gets the employee profile from authcontext
     const [shift, setShift] = useState([]);
     const [refreshTrigger, setRefreshTrigger] = useState(0); // Trigger for re-fetching
 

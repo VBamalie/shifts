@@ -91,17 +91,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee.isAvailable(shift.getFirstDate(), shift.getTimeBlock().getWeekDayEnum(), shift.getTimeBlock().getStartTime(), shift.getTimeBlock().getEndTime());
     }
 
-    @Override
-    public int hoursWorkedThisWeek(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hoursWorkedThisWeek'");
-    }
-
-    @Override
-    public int hoursWorkdToday(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hoursWorkdToday'");
-    }
 
     @Override
     public Shift removeShift(Long id, Long shiftId) {

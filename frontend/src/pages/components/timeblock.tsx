@@ -37,7 +37,7 @@ declare module '@mui/x-data-grid' {
 }
 
 function EditToolbar(props: GridSlotProps['toolbar']) {
-  const {employee} = useAuth();
+  const {employee} = useAuth();//gets the employee profile from authcontext
   const { setRows, setRowModesModel, setRefreshData } = props;
 
   const handleClick = () => {//this is for adding a new timeblock
@@ -60,7 +60,7 @@ function EditToolbar(props: GridSlotProps['toolbar']) {
 export default function TimeBlock() {
   const [rows, setRows] = React.useState<GridRowModel[]>([]);
   const [rowModesModel, setRowModesModel] = React.useState<GridRowModesModel>({});
-  const {employee} = useAuth();
+  const {employee} = useAuth();//gets the employee profile from authcontext
   const [refreshData, setRefreshData] = React.useState(0);
   React.useEffect(()=>{
     axiosInstance.get(`http://localhost:8080/api/timeblock/calendar/${employee?.calendar}`).then((response)=>{

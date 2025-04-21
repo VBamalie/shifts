@@ -51,11 +51,6 @@ public class ShiftServiceImpl implements ShiftService{
         return "Shift deleted with id: " + id;
     }
 
-    @Override
-    public boolean hasFilledShifts(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'filledShifts'");
-    }
 
     @Override
     public Shift getShiftByTimeBlockId(Long timeBlockId) {

@@ -105,9 +105,6 @@ public class Employee {
         }
         return counter;
     }
-    public boolean workingAShiftTheyAreUnavailableFor(int date){
-        //TODO: Checks if the employee is working a shift they are unavailable for
-        return false;
-    }
+    
 }
 

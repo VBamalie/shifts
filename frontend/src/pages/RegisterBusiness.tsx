@@ -15,7 +15,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 
 export default function RegisterBusiness() {
-        const {login} = useAuth();
     const [newBusinessData, setNewBusinessData] = useState({
         businessName: ''
     })

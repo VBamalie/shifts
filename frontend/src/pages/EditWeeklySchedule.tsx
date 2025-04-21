@@ -9,7 +9,7 @@ import axiosInstance from "../axiosConfig";
 import { useAuth } from "./components/AuthContext";
 
 export default function EditWeeklySchedule() {
-    const { employee } = useAuth();
+    const { employee } = useAuth();//gets the employee profile from authcontext
     const params = useParams();
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [selectedShift, setSelectedShift] = useState(null);

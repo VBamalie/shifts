@@ -91,7 +91,7 @@ export default function Registration() {
                 sat_end:parseInt(formData.sat_end), 
                 sun_start:parseInt(formData.sun_start), 
                 sun_end:parseInt(formData.sun_end)}
-        const {employee} = useAuth();
+        const {employee} = useAuth();//gets the employee profile from authcontext
         const employeeUrl = `http://localhost:8080/api/employee/register/${employee?.calendar}`;
         setError('')
         try {

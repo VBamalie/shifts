@@ -11,7 +11,7 @@ import { ButtonGroup } from '@mui/material';
 import "../../../public/shift.png";
 
 const Navbar = () => {
-    const { employee, logout } = useAuth();
+    const { employee, logout } = useAuth();//gets the employee profile from authcontext and allows logout function
     const [businessName, setBusinessName]= useState('');
     
     useEffect(() => {//this grabs the current employee's business name
