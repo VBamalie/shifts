@@ -20,9 +20,9 @@ todo:
 - [x] make it choose employees more randomly so that the shifts are not always the same
 - [ ] make things prettier
 - [ ] create loading for dashboard calendar
-- [ ] change the edit timeblock route and name
-- [ ] change the login to be dynamic
-- [ ] change the route for creating a new calendar
+- [x] change the edit timeblock route and name
+- [x] change the login to be dynamic
+- [x] change the route for creating a new calendar
 
 ## Front End Dependencies:
 - react-router-dom

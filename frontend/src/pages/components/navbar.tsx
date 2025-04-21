@@ -33,12 +33,13 @@ const Navbar = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     {businessName}
                     </Typography>
-                    {/* TODO: add conditional for if the employee is a manager} */}
-                    <ButtonGroup variant="contained" aria-label="Basic button group">
+                    {employee.isManager &&(
+                      <ButtonGroup variant="contained" aria-label="Basic button group">
                         <Button href='/registration'>New Employee</Button>
                         <Button>Edit Employee</Button>
                         <Button href='/edit-time-block'>Edit Timeblocks</Button>
-                    </ButtonGroup>
+                    </ButtonGroup>)}
+                    
                     <Button onClick={logout} variant="contained" color="secondary">
                     Logout
                     </Button>
