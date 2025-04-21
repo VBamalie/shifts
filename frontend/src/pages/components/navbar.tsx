@@ -31,7 +31,7 @@ const Navbar = () => {
                 <>
                 <Box  sx={{  backgroundColor: 'purple', borderRadius: '15px', padding: '5px', marginRight: '10px', marginTop: '10px', marginBottom: '10px' }}>
                   <Button href='/'>
-                    <img src="../../../public/shift.png" alt="Shift Logo" width="50" height="50" />
+                    <img src="/shift.png" alt="Shift Logo" width="50" height="50" />
                   </Button>
                 </Box>
                 <Button color="inherit" href="/">Shifts App</Button>

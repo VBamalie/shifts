@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, ButtonGroup, Typography } from "@mui/material";
 import EmployeeList from "./components/EmployeeList";
 import { useEffect, useState } from "react";
 import EmployeeAvailability from "./components/EmployeeAvailability";
@@ -70,8 +70,10 @@ export default function EditWeeklySchedule() {
       {autocreate ? (
         <Box id = 'autocreate-confirmation'>
           <Typography variant="h3"> Looks like this is a new schedule. Would you like to create shifts automatically? </Typography>
+          <ButtonGroup size="large" aria-label="Large button group">
           <Button variant="contained" color="primary" onClick={()=> handleAutoCreate()}> yes</Button>
-          <Button variant="contained" color="primary" onClick={()=> handleRejectAutoCreate()}>No</Button>
+          <Button variant="contained" color="secondary" onClick={()=> handleRejectAutoCreate()}>No</Button>
+          </ButtonGroup>
         </Box>
       ) :
       loading? (
