@@ -8,7 +8,6 @@ import { useAuth } from './AuthContext';
 import axiosInstance from '../../axiosConfig';
 import { useEffect, useState } from 'react';
 import { ButtonGroup } from '@mui/material';
-import "../../../public/shift.png";
 
 const Navbar = () => {
     const { employee, logout } = useAuth();//gets the employee profile from authcontext and allows logout function
@@ -41,7 +40,7 @@ const Navbar = () => {
                   </Typography>
                     {employee.isManager &&(
                   <ButtonGroup variant="contained" aria-label="Basic button group">
-                        <Button href='/registration'>New Employee</Button>
+                        <Button href='/new-employee'>New Employee</Button>
                         <Button>Edit Employee</Button>
                         <Button href='/edit-time-block'>Edit Timeblocks</Button>
                   </ButtonGroup>)}

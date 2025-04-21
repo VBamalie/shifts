@@ -117,7 +117,7 @@ export default function RegisterBusiness() {
         
         const [error, setError] = useState('');
         return (
-            <Card sx={{ maxWidth: 900, margin: '30x,auto', border: '3px solid #356' }}>
+            <Card sx={{ marginTop:'3%', marginBottom:'3%', maxWidth: 900, margin: '30x,auto', border: '3px solid #356' }}>
                 <CardHeader>
                     Create New Business
                 </CardHeader>
@@ -126,7 +126,7 @@ export default function RegisterBusiness() {
                         <Box
                             component="form"
                             onSubmit={handleBusinesssubmit}
-                            sx={{ mt: 4, display: 'flex', flexDirection: 'column', gap: 2 }}
+                            sx={{ mt: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}
                         >
                             <Typography variant="h5" component="h1" align="center">
                                 Create New Business
@@ -142,7 +142,7 @@ export default function RegisterBusiness() {
                                 value={newBusinessData.businessName}
                                 onChange={(e) => setNewBusinessData({ ...newBusinessData, businessName: e.target.value })}
                                 required
-                                fullWidth
+                                sx={{width: 200}}
                                 variant="outlined"
                             />
                         </Box>
@@ -156,16 +156,16 @@ export default function RegisterBusiness() {
         const ManagerDataEnum = [{name: 'firstName', label: 'First Name'}, {name: 'lastName', label: 'Last Name'}, {name: 'email', label: 'Email'}, {name: 'password', label: 'Password'}];
         
         return (
-            <Card sx={{ maxWidth: 900, margin: '30x,auto', border: '3px solid #356' }}>
+            <Card sx={{ marginTop:'3%', marginBottom:'3%', maxWidth: 900, margin: '30x,auto', border: '3px solid #356' }}>
                 <CardHeader>
                     Create New Manager
                 </CardHeader>
                 <CardContent>
-                    <Container maxWidth="xs">
+                    
                         <Box
                             component="form"
                             onSubmit={handleBusinesssubmit}
-                            sx={{ mt: 4, display: 'flex', flexDirection: 'column', gap: 2 }}
+                            sx={{ mt: 4, display: 'flex', flexDirection: 'column', alignItems:'center', gap: 2 }}
                         >
                             <Typography variant="h5" component="h1" align="center">
                                 Create New Manager
@@ -181,35 +181,35 @@ export default function RegisterBusiness() {
                                     key={data.name}
                                     label={data.label}
                                     name={data.name}
+                                    sx={{ width: '200px' }}
                                     value={newManagerData[data.name as keyof typeof newManagerData]}
                                     onChange={(e) => setNewManagerData({ ...newManagerData, [data.name]: e.target.value })}
                                     required
-                                    fullWidth
+                                    
                                     variant="outlined"
                                 />
                             ))}
                         </Box>
-                    </Container>
+                    
                 </CardContent>
             </Card>
         )
     }
     function createAvailabilty(){
-        const availabilityDataEnum=[{name: 'mon_start', label: 'Monday Start Time'}, {name: 'mon_end', label: 'Monday End Time'}, {name: 'tue_start', label: 'Tuesday Start Time'}, {name: 'tue_end', label: 'Tuesday End Time'}, {name: 'wed_start', label: 'Wednesday Start Time'}, {name: 'wed_end', label: 'Wednesday End Time'}, {name: 'thu_start', label: 'Thursday Start Time'}, {name: 'thu_end', label: 'Thursday End Time'}, {name: 'fri_start', label: 'Friday Start Time'}, {name: 'fri_end', label: 'Friday End Time'}, {name: 'sat_start', label: 'Saturday Start Time'}, {name: 'sat_end', label: 'Saturday End Time'}, {name: 'sun_start', label: 'Sunday Start Time'}, {name: 'sun_end', label: 'Sunday End Time'}];
+        const availabilityDataEnum=[{name: 'mon_start', label: 'Monday Start '}, {name: 'mon_end', label: 'Monday End '}, {name: 'tue_start', label: 'Tuesday Start '}, {name: 'tue_end', label: 'Tuesday End '}, {name: 'wed_start', label: 'Wednesday Start '}, {name: 'wed_end', label: 'Wednesday End '}, {name: 'thu_start', label: 'Thursday Start '}, {name: 'thu_end', label: 'Thursday End '}, {name: 'fri_start', label: 'Friday Start '}, {name: 'fri_end', label: 'Friday End '}, {name: 'sat_start', label: 'Saturday Start '}, {name: 'sat_end', label: 'Saturday End '}, {name: 'sun_start', label: 'Sunday Start '}, {name: 'sun_end', label: 'Sunday End '}];
         
         const [error, setError] = useState('');
        
         return (
-            <Card>
+            <Card sx={{ marginTop:'3%', marginBottom:'3%', maxWidth: 900, margin: '30x,auto', border: '3px solid #356' }}>
                 <CardHeader>
                     Create Availability
                 </CardHeader>
                 <CardContent>
-                    <Container maxWidth="xs">
                         <Box
                         component="form"
                         onSubmit={handleBusinesssubmit}
-                        sx={{ mt: 4, display: 'flex', flexDirection: 'column', gap: 2 }}
+                        sx={{ mt: 4, display: 'flex', flexDirection: 'column', alignItems:'center', gap: 2 }}
                         >
                             <Typography variant="h5" component="h1" align="center">
                                 Create Manager Availability
@@ -219,11 +219,12 @@ export default function RegisterBusiness() {
                                     {error}
                                 </Typography>
                             )}
+                            <Box className="time-picker-container" sx={{ mt: 4, display: 'flex', flexDirection: 'row', alignItems:'center', gap: 2, width:'500px', flexWrap: 'wrap' }}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                             {availabilityDataEnum.map((data) => (
                                 <TimePicker
                                 views={['hours']}
-                                sx={{width: '75%'}}
+                                sx={{width: '200px'}}
                                     key={data.name}
                                     label={data.label}
                                     name={data.name}
@@ -231,8 +232,8 @@ export default function RegisterBusiness() {
                                 />
                             ))}                      
                              </LocalizationProvider>
+                             </Box>
                         </Box>
-                    </Container>
                 </CardContent>
             </Card>
         )
@@ -253,11 +254,11 @@ export default function RegisterBusiness() {
     
     return (
         <>
-            <Box>
+            <Box className="active-steps">
                 {formSteps[activeStep]}
             </Box>
-            <Box sx={{ width: '100%' }}>
-                <Stepper activeStep={activeStep}>
+            <Box  sx={{ width: '100%' }}>
+                <Stepper  activeStep={activeStep}>
                     {headerSteps.map((label, index) => {
                         const stepProps: { completed?: boolean } = {};
                         const labelProps: {
@@ -271,7 +272,7 @@ export default function RegisterBusiness() {
                     })}
                 </Stepper>
                 {activeStep === headerSteps.length ? (
-                    <React.Fragment>
+                    <Box className="finished-stepper">
                         <Button onClick={handleBusinesssubmit}>Submit Business</Button>
                         <Typography sx={{ mt: 2, mb: 1 }}>
                             All steps completed - you&apos;re finished
@@ -280,7 +281,7 @@ export default function RegisterBusiness() {
                             <Box sx={{ flex: '1 1 auto' }} />
                             <Button onClick={handleReset}>Reset</Button>
                         </Box>
-                    </React.Fragment>
+                    </Box>
                 ) : (
                     <React.Fragment>
                         <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>

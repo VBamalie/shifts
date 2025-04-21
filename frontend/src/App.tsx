@@ -4,9 +4,8 @@ import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
 import EmployeeRegistration from "./pages/EmployeeRegistration";
 import { AuthProvider} from "./pages/components/AuthContext";
-import NewCalendar from './pages/NewCalendar';
 import HorizontalLinearStepper from './pages/RegisterBusiness';
-import DemoTimeBlock from './pages/EditTimeBlock';
+import EditTimeBlock from './pages/EditTimeBlock';
 import Navbar from './pages/components/navbar';
 import EditWeeklySchedule from './pages/EditWeeklySchedule';
 import"./App.css"
@@ -20,7 +19,6 @@ export default function App() {
       <Navbar/>
     <Router>
       <Routes>
-        <Route path="/edit-time-block" element={<DemoTimeBlock/>}/>
         <Route path="/register-business" element={<RegisterBusiness/>}/>
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/login" element={<LoginPage />} />
@@ -35,16 +33,15 @@ export default function App() {
         <Route path="/login" element={<Navigate to="/login" />} />
       )}
       {localStorage.getItem('employee') ? (
-        <Route path="/registration" element={<EmployeeRegistration />} />
+        <Route path="/new-employee" element={<EmployeeRegistration />} />
       ) : (
-        <Route path="/registration" element={<Navigate to="/login" />} />
+        <Route path="/new-employee" element={<Navigate to="/login" />} />
       )}
       {localStorage.getItem('employee') ? (
-        <Route path="/edit-time-block" element={<DemoTimeBlock/>}/>
+        <Route path="/edit-time-block" element={<EditTimeBlock/>}/>
       ) : (
-        <Route path="/registration" element={<Navigate to="/login" />} />
+        <Route path="/edit-time-block" element={<Navigate to="/login" />} />
       )}
-      <Route path="/edit-time-block" element={<NewCalendar/>}/>
         
       </Routes>
     </Router>

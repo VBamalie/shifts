@@ -69,5 +69,11 @@ public class ShiftServiceImpl implements ShiftService{
         return "Shifts created";
     }
 
+    @Override
+    public boolean hasFilledShifts(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'hasFilledShifts'");
+    }
+
 
 }

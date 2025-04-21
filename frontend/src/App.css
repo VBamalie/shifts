@@ -110,3 +110,18 @@
   align-items: center;
   height: 100vh;
 }
+.finished-stepper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: aliceblue;
+  padding: 5%;
+}
+.active-steps{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.active-steps>div{
+  width: 100%;
+}
