@@ -17,8 +17,13 @@ public class AutoCreateController {
     private AutoCreateService autoCreateService;
 
     @PutMapping("/{id}/{date}")
-    public void autoCreate(@PathVariable long id, @PathVariable String date) {
-        System.out.println("autoCreating...");
-        autoCreateService.autoCreate(id, date);
+    public String autoCreate(@PathVariable long id, @PathVariable String date) {        
+        boolean status = autoCreateService.autoCreate(id, date);
+        if(status) {
+            return "Successfully created shifts";
+        } else {
+            return "Shifts already exist for this week";
+        }
+        
     }
 }

@@ -63,33 +63,24 @@ public class Shift {
 
     public List<Employee> fillEmployeesWorkingAndAlternatives(List<Employee> employees, List<Employee> priorityEmployees) {
         List<Employee> employeesToAdd = new ArrayList<>();
-        System.out.println("inside fillEmployeesWorkingAndAlternatives");
         List<Employee> employeesPotentiallyWorking = new ArrayList<>();
         for (Employee employee : priorityEmployees) {// runs through the list of employees
-            System.out.println("inside for loop");
             if (employee.isAvailable(firstDate, timeBlock.getWeekDayEnum(), timeBlock.getStartTime(),
                     timeBlock.getEndTime())) {// Checks if they are available to work that shift
                 employeesPotentiallyWorking.add(employee);// adds them to an array list of potential employees
             }
         }
-        System.out.println("before sorting");
         Collections.sort(employeesPotentiallyWorking,
                 (a, b) -> Double.compare(a.hoursWorkedThisWeek(firstDate), b.hoursWorkedThisWeek(firstDate)));//sorts the employees by the least amount of hours worked this week to the most amount
-        System.out.println("after sorting");
         if (employeesPotentiallyWorking.size() <= timeBlock.getShiftsRequired()) {
-            System.out.println("inside if statement: if the potentially working size is less than the shifts required");
             int numToFill = Math.min(timeBlock.getShiftsRequired(), employeesPotentiallyWorking.size());
             for (int i = 0; i < numToFill; i++) {
-                System.out.println("Accessing if index " + i + " out of " + employeesPotentiallyWorking.size());
                 employeesToAdd.add(employeesPotentiallyWorking.get(i));
             }
             return employeesToAdd;
         } else {
-            System.out.println(
-                    "inside else statement: if the potentially working size is greater than the shifts required");
                     int numToFill = Math.min(timeBlock.getShiftsRequired(), employeesPotentiallyWorking.size());
                     for (int i = 0; i < numToFill; i++) {
-                        System.out.println("Accessing else index " + i + " out of " + numToFill);
                         Employee emp = employeesPotentiallyWorking.get(i);
                         employeesWorking.add(emp);// Assign the employee
 
