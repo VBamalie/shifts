@@ -92,6 +92,7 @@ export default function EditWeeklySchedule() {
 
 
   function handleRejectAutoCreate(): void {
+    setAutocreate(false);
     setLoading(true);
   }
 

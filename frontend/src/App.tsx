@@ -6,6 +6,7 @@ import EmployeeRegistration from "./pages/EmployeeRegistration";
 import { AuthProvider} from "./pages/components/AuthContext";
 import HorizontalLinearStepper from './pages/RegisterBusiness';
 import EditTimeBlock from './pages/EditTimeBlock';
+import EditEmployee from './pages/EditEmployee';
 import Navbar from './pages/components/navbar';
 import EditWeeklySchedule from './pages/EditWeeklySchedule';
 import"./App.css"
@@ -36,6 +37,11 @@ export default function App() {
         <Route path="/new-employee" element={<EmployeeRegistration />} />
       ) : (
         <Route path="/new-employee" element={<Navigate to="/login" />} />
+      )}
+      {localStorage.getItem('employee') ? (
+        <Route path="/edit-employee" element={<EditEmployee />} />
+      ) : (
+        <Route path="/edit-employee" element={<Navigate to="/login" />} />
       )}
       {localStorage.getItem('employee') ? (
         <Route path="/edit-time-block" element={<EditTimeBlock/>}/>

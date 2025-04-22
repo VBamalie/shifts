@@ -41,7 +41,7 @@ const Navbar = () => {
                     {employee.isManager &&(
                   <ButtonGroup variant="contained" aria-label="Basic button group">
                         <Button href='/new-employee'>New Employee</Button>
-                        <Button>Edit Employee</Button>
+                        <Button href='/edit-employee'>Edit Employee</Button>
                         <Button href='/edit-time-block'>Edit Timeblocks</Button>
                   </ButtonGroup>)}
                     
