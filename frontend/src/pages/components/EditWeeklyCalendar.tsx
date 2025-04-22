@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridCellParams, GridColDef } from "@mui/x-data-grid";
+import { useState } from "react";
 
 
 export default function WeeklyCalendar(props: { onShiftSelection: { onShiftSelection: (shift: any) => void }, shifts: any[] }) {
@@ -19,7 +20,7 @@ export default function WeeklyCalendar(props: { onShiftSelection: { onShiftSelec
             : [];
         const columnAmount = determineEmployeeColumn(dayShifts);
         for (let i = 0; i < columnAmount; i++) {
-            column.push({ field: `employeeWorking${i + 1}`, headerName: ``, width: 150 });
+            column.push({ field: `employeeWorking${i + 1}`, headerName: ``, width: 150, cellClassName: (params: GridCellParams<any>): string => params.value?.toString() || '' });
         }
         return column;
     }
@@ -59,6 +60,7 @@ export default function WeeklyCalendar(props: { onShiftSelection: { onShiftSelec
             for (let i = 0; i < employeeColumnAmount; i++) {//include as many columns as there are employees working the shift
                 item.employeesWorking[i] ?
                     row[`employeeWorking${i + 1}`] = item.employeesWorking[i]?.firstName + " " + item.employeesWorking[i]?.lastName || 'Add an Employee' : row[`employeeWorking${i + 1}`] = ` `;
+                    
             }
             return row;
         });
@@ -73,11 +75,14 @@ export default function WeeklyCalendar(props: { onShiftSelection: { onShiftSelec
         })
         return rows;
     }
-
     return (
         <Box className="edit-schedule-grid">
             {weekDayEnum.map((day) => (//maps through each day to create a grid for each day
-                <Box key={day.enum} id={day.enum} className="week-day">
+                <Box 
+                key={day.enum}
+                 id={day.enum} 
+                 className="week-day"
+                 >
                     <Typography className="week-day-name" variant="h4">{day.name}</Typography>
                     <DataGrid
                         columns={makeColumns(day.enum)}

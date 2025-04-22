@@ -11,6 +11,8 @@ function WeekSchedule(props: any) {
     const [shift, setShift] = useState([]);
     const [refreshTrigger, setRefreshTrigger] = useState(0); // Trigger for re-fetching
 
+    const [coloredCells, setColoredCells] = useState<{className: string, color: string}[]>([]);
+
     
     function addShifts() {
      axiosInstance.post(`http://localhost:8080/api/shift/calendar/addShifts/${props.date}`, employee?.calendar)
@@ -22,6 +24,38 @@ function WeekSchedule(props: any) {
          });
  }
          
+   // Function to generate random color
+   const generateRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Function to create coloredCells list
+const createColoredCells = (shifts: any[]) => {
+    const colorMap: {className: string, color: string}[] = [];
+    
+    shifts.forEach((shiftItem: any) => {
+        if (shiftItem.employeesWorking && shiftItem.employeesWorking.length > 0) {
+            shiftItem.employeesWorking.forEach((employee: any) => {
+                // Check if employee's lastName already exists in colorMap
+                const existingEntry = colorMap.find(item => item.className === employee.lastName);
+                
+                if (!existingEntry && employee.lastName) {
+                    colorMap.push({
+                        className: employee.lastName,
+                        color: generateRandomColor()
+                    });
+                }
+            });
+        }
+    });
+    
+    setColoredCells(colorMap);
+};
     
     useEffect(() => {
          const calendarId:number = employee?.calendar;
@@ -30,6 +64,7 @@ function WeekSchedule(props: any) {
                addShifts(); // Create shifts if none exist
            } else {
                setShift(response.data); // Update state with fetched shifts
+               createColoredCells(response.data);
            }
           }).catch((error) => {
               console.log("error fetching shift", error);
@@ -49,7 +84,7 @@ function WeekSchedule(props: any) {
     : [];
     const columnAmount = determineEmployeeColumn(dayShifts);
     for (let i = 0; i < columnAmount; i++) {
-        column.push({ field: `employeeWorking${i + 1}`, headerName: ``, width: 150 });
+        column.push({ field: `employeeWorking${i + 1}`, headerName: ``, width: 150, cellClassName: (params: GridCellParams<any>): string => params.value?.toString() || '' });
     }
         return column;
     }
@@ -100,16 +135,22 @@ function WeekSchedule(props: any) {
     }
 
     return (
-        <Box className="edit-schedule-grid">
+        <Box 
+        className="edit-schedule-grid"
+
+        >
             {weekDayEnum.map((day) => (
                 <Box key={day.weekDayEnum} id={day.weekDayEnum} className="week-day">
                     <Typography className="week-day-name"variant="h4">{day.name}</Typography>
                     <DataGrid
                         columns={makeColumns(day.weekDayEnum)}
                         rows={makeRows(day.weekDayEnum)}
-                        sx={{
-                            height: 'fit-content',
-                        }}
+                        sx={
+                            Object.fromEntries(coloredCells.map((cell)=>[
+                            `& .${cell.className}`,
+                            { backgroundColor: cell.color }
+                          ]
+                        ))}
                         // unstable_rowSpanning
                         hideFooter
                         showCellVerticalBorder

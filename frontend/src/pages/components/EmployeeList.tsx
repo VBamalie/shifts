@@ -11,7 +11,8 @@ import { Box, Typography } from "@mui/material";
 
 
 /*This is the table that will display the list of employees. it has a mapping function that will reference the row function above. */
-function EmployeeList({ onEmployeeSelection }: { onEmployeeSelection: (employee: any) => void }) {
+function EmployeeList({ 
+  onEmployeeSelection }: { onEmployeeSelection: (employee: any) => void }) {
   const { employee } = useAuth();//this is specifically the manager that is logged in
   const [employees, setEmployees] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
