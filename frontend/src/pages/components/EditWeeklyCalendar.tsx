@@ -12,6 +12,7 @@ export default function WeeklyCalendar(props: { onShiftSelection: { onShiftSelec
     function makeColumns(day: any): GridColDef[] {
         const column: GridColDef[] = [];
         //filter the shifts to only include the shifts for the day
+        column.push({field: 'alert', headerName:'', width: 50, renderCell: (params) => <img src={params.value} alt={params.row.alertMessage} width="20" height="20" title={params.row.alertMessage} /> });
         column.push({ field: 'startTime', headerName: 'Start Time', width: 100 });
         column.push({ field: 'endTime', headerName: 'End Time', width: 100 });
         column.push({ field: 'employeesRequired', headerName: 'Req', width: 50 });
@@ -48,8 +49,32 @@ export default function WeeklyCalendar(props: { onShiftSelection: { onShiftSelec
 
         const currentDayShifts = shifts.filter((shiftItem: { timeBlock: { weekDayEnum: any } }) => shiftItem.timeBlock.weekDayEnum === day);//filter the shifts to only include the shifts for the day
         const employeeColumnAmount = determineEmployeeColumn(currentDayShifts);
+        // Track total hours worked by each employee for this day
+    const employeeHoursMap: Record<string, number> = {};
+    
+    // First pass: calculate total hours for each employee
+    currentDayShifts.forEach((item) => {
+        const shiftDuration = item.timeBlock.endTime - item.timeBlock.startTime;
+        item.employeesWorking.forEach((employee: any) => {
+            const employeeId = employee.id;
+            if (!employeeHoursMap[employeeId]) {
+                employeeHoursMap[employeeId] = 0;
+            }
+            employeeHoursMap[employeeId] += shiftDuration;
+        });
+    });
 
         const rows = currentDayShifts.map((item) => {//create a row for each of those shifts
+            let alert = false;
+            let alertMessage = "Shift is properly staffed";
+            if(item.employeesWorking.length < item.timeBlock.shiftsRequired) {
+                alert = true;
+                alertMessage = "Shift is understaffed";
+            }
+            if(item.employeesWorking.length > item.timeBlock.shiftsRequired) {
+                alert = true;
+                alertMessage = "Shift is overstaffed";
+            }
             const row: any = {
                 id: item.id,
                 startTime: item.timeBlock.startTime,
@@ -62,6 +87,22 @@ export default function WeeklyCalendar(props: { onShiftSelection: { onShiftSelec
                     row[`employeeWorking${i + 1}`] = item.employeesWorking[i]?.firstName + " " + item.employeesWorking[i]?.lastName || 'Add an Employee' : row[`employeeWorking${i + 1}`] = ` `;
                     
             }
+            item.employeesWorking.map((employee: any) => {
+                //check if the employee is unavailable for the shift
+                const availabilityStart = Object.keys(employee.availability).find((key) => key === `${day.toLowerCase()}_start`);
+                const availabilityEnd = Object.keys(employee.availability).find((key) => key === `${day.toLowerCase()}_end`);
+                if(employee.availability[availabilityStart] > item.timeBlock.startTime || employee.availability[availabilityEnd] < item.timeBlock.endTime) {
+                    alert = true;
+                    alertMessage = "Employee is outside of their available hours";
+                }
+                if (employeeHoursMap[employee.id] > 8) {
+                    alert = true;
+                    alertMessage = `${employee.firstName} ${employee.lastName} is working more than 8 hours (${employeeHoursMap[employee.id]} hours)`;
+                }
+            });
+            
+            alert ? row.alert = "/caution.png" : row.alert = "/check.png";
+            row.alertMessage = alertMessage;
             return row;
         });
         rows.sort((a, b) => {

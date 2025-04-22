@@ -22,15 +22,16 @@ export default function EditWeeklySchedule() {
     color: string;
   }>>([]);
 
-  const addColorEmployees = ()=>{
-    employees.forEach(element => {
-      console.log("element", element);
-      setColoredCells(prev => [...prev, {
-        className: element?.lastName,
-        color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-      }]);
-    });
-  }
+  // Function to generate random color
+  const generateRandomColor = () => {
+    const colorList = ['068D9D', '7A7FB8', 'FE938C','7DCD85','E71D36', 'AF5AAF', 'DA6C9C','DA6C9C','FE5F55']
+    let color = '#';
+    const chosenColor = colorList[Math.floor(Math.random() * colorList.length)];
+        color += chosenColor;
+        console.log("color", color);
+        colorList.splice(colorList.indexOf(chosenColor), 1);
+    return color;
+}
   const handleEmployeeSelection = (employee: any) => {
     setSelectedEmployee(employee);
   };
@@ -48,6 +49,7 @@ export default function EditWeeklySchedule() {
       return newShift;
     });
   };
+  
 
   useEffect(() => {
     const calendarId: number = employee?.calendar;
@@ -70,7 +72,7 @@ export default function EditWeeklySchedule() {
       response.data.forEach(element => {
         setColoredCells(prev => [...prev, {
           className: element?.lastName,
-          color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
+          color: `${generateRandomColor()}`
         }]);
       })
     }).catch((error) => {
