@@ -21,15 +21,14 @@ export default function EditWeeklySchedule() {
     className: string;
     color: string;
   }>>([]);
+  let colorList = ['068D9D', '7A7FB8', 'FE938C','7DCD85','E71D36', 'AF5AAF', 'DA6C9C','DA6C9C','FE5F55', 'C5F4E0', 'C7CCDB','A5C4D4', '8D809D']
 
   // Function to generate random color
   const generateRandomColor = () => {
-    const colorList = ['068D9D', '7A7FB8', 'FE938C','7DCD85','E71D36', 'AF5AAF', 'DA6C9C','DA6C9C','FE5F55']
+    
     let color = '#';
     const chosenColor = colorList[Math.floor(Math.random() * colorList.length)];
         color += chosenColor;
-        console.log("color", color);
-        colorList.splice(colorList.indexOf(chosenColor), 1);
     return color;
 }
   const handleEmployeeSelection = (employee: any) => {
