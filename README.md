@@ -22,17 +22,17 @@ once inside the project directory, you will need to run the following commands:
 ## Back End
 I will be using Java Springboot for the server-side. I have used Maven for all dependencies for the server-side. I will use a Model View Controller design to structure my code. I also have a service folder with more complex business logic
 ### Tools Used:
-•	Starter data JPA- This is used to access the H2 database and convert entities into objects
-•	H2 Database- This is a prototype in memory database 
-•	Lombok- Anotation library to simplify class construction
-•	Starter Security- Authentication for client trying to access back end
+* Starter data JPA- This is used to access the H2 database and convert entities into objects
+* H2 Database- This is a prototype in memory database 
+* Lombok- Anotation library to simplify class construction
+* Starter Security- Authentication for client trying to access back end
 ## Front End
 The client-side is typescript React. It displays and interacts with the information that was processed within the server side. The front end sends fetch requests to the back end and receive JSON objects as payloads. I will be using Node for any dependencies needed within React. 
 ### Tools Used:
-•	MUI Libraries- graphical components and data grids
-•	Axios- HTTP client requests
-•	DayJs- localizes time and dates
-•	Auth0 React- Client Side Authentication
+* MUI Libraries- graphical components and data grids
+* Axios- HTTP client requests
+* DayJs- localizes time and dates
+* Auth0 React- Client Side Authentication
 
 ## Model for Java Classes
 ![alt text](image-1.png)
